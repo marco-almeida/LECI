@@ -1,0 +1,42 @@
+CREATE TABLE contacts ( 
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	firstname TEXT,
+	middlename TEXT,
+	lastname TEXT,
+	email TEXT,
+	phone TEXT,
+	company_id TEXT
+);
+
+INSERT INTO contacts(firstname, middlename, lastname, email, phone, company_id)
+VALUES (
+	"João", "Manuel", "Fonseca", "jmf@gmail.com", "912345654", "3"
+),
+(
+	"Pedro", "Albuquerque", "Silva", "pedro23@gmail.com", "932454349", "2"
+),
+(
+	"Maria", "Carreira", "Dinis", "mariadi@ua.pt", "234958673", "1"
+),
+(
+	"Catarina", "Alexandra", "Rodrigo", "calexro@sapo.pt", "963343386", "1"
+);
+
+CREATE TABLE companies( 
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name TEXT,
+	address TEXT,
+	vatnumber TEXT
+);
+
+INSERT INTO companies(name, address, vatnumber)
+VALUES (
+	"MaxiPlano", "Aveiro", "123123123123"
+),
+(
+	"Luís Manuel & filhos", "Águeda", "54534343435"
+),
+(
+	"ProDesign", "Porto", "54534343435"
+);
+

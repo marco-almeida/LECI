@@ -1,0 +1,330 @@
+.login1983-container {
+  min-height: 100vh;
+  margin-right: 5%;
+}
+
+.login1983-login1983 {
+  width: 360px;
+  height: 640px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  max-width: 360px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-color: transparent;
+  border-radius: 8px;
+}
+
+.login1983-group171984 {
+  top: 0px;
+  left: 0px;
+  width: 360px;
+  height: 648.7999877929688px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-image {
+  top: 0px;
+  left: 0px;
+  width: 360px;
+  height: 649px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+
+.login1983-text {
+  top: 35px;
+  left: 22.5px;
+  color: rgba(0, 0, 0, 1);
+  width: 93px;
+  height: auto;
+  position: absolute;
+  font-size: 18px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-text1 {
+  top: 86px;
+  left: 75.5px;
+  color: rgba(0, 0, 0, 1);
+  width: 235px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-group181989 {
+  top: 168px;
+  left: 49px;
+  width: 278px;
+  height: 405px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-navlink {
+  display: contents;
+}
+
+.login1983-image1 {
+  top: 177px;
+  left: 12.199981689453125px;
+  width: 254px;
+  height: 48px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+
+.login1983-group71992 {
+  top: 0px;
+  left: 12.199996948242188px;
+  width: 254px;
+  height: 48.38461685180664px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-svg {
+  width: 254;
+  height: 48;
+  position: absolute;
+}
+
+.login1983-text2 {
+  top: 13px;
+  left: 42.30000305175781px;
+  color: rgba(0, 0, 0, 0.4000000059604645);
+  width: 57px;
+  height: auto;
+  position: absolute;
+  font-size: 16px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-image2 {
+  top: 10px;
+  left: 6.2999958992004395px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+
+.login1983-group31997 {
+  top: 85.38461303710938px;
+  left: 12.200004577636719px;
+  width: 254px;
+  height: 48.38461685180664px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-svg1 {
+  width: 254;
+  height: 48;
+  position: absolute;
+}
+
+.login1983-svg2 {
+  top: 7.961540222167969px;
+  width: 41;
+  height: 34;
+  position: absolute;
+}
+
+.login1983-text3 {
+  top: 12.615386962890625px;
+  left: 41.30000305175781px;
+  color: rgba(0, 0, 0, 0.4000000059604645);
+  width: 135px;
+  height: auto;
+  position: absolute;
+  font-size: 16px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-group511001 {
+  top: 277px;
+  left: 13px;
+  width: 254px;
+  height: 28.461538314819336px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-svg3 {
+  top: 14.230786323547363px;
+  left: 141.75396728515625px;
+  width: 112;
+  height: 0;
+  position: absolute;
+}
+
+.login1983-svg4 {
+  top: 14.230786323547363px;
+  width: 111;
+  height: 0;
+  position: absolute;
+}
+
+.login1983-text4 {
+  top: 0px;
+  left: 115.17509460449219px;
+  color: rgba(0, 0, 0, 1);
+  width: 21px;
+  height: auto;
+  position: absolute;
+  font-size: 13px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-group811005 {
+  top: 357px;
+  left: 0px;
+  width: 278px;
+  height: 48px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+
+.login1983-navlink1 {
+  display: contents;
+}
+
+.login1983-svg5 {
+  width: 278;
+  height: 48;
+  position: absolute;
+  text-decoration: none;
+}
+
+.login1983-text5 {
+  top: 8px;
+  left: 11px;
+  color: rgba(255, 255, 255, 1);
+  width: 256px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-svg6 {
+  top: 272px;
+  left: 284.5px;
+  width: 22;
+  height: 15;
+  position: absolute;
+}
+
+.login1983-text6 {
+  top: 362px;
+  left: 142.5px;
+  color: rgba(255, 255, 255, 1);
+  width: 93px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  align-self: auto;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 12px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.login1983-text7 {
+  top: 399px;
+  left: 117.5px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  opacity: 0.50;
+  position: absolute;
+  font-size: 10px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}

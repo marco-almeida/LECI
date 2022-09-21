@@ -1,0 +1,22 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "aas.netconfs.net" in{
+	type master;
+	file "/etc/bind/db.aas.netconfs.net";
+};
+zone "arqredes.pt" in{
+type master; //define the zone as master
+file "/etc/bind/db.arqredes.pt"; //file   with   the   domain records
+};
+
+zone "marcoscompany.pt" in{
+type master;
+file "/etc/bind/db.marcoscompany.pt";
+};
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <form name="Produto" action="http://localhost:5500/index.htm" method="get">
+        <table border="1" width="800px">
+            <tr>
+                <th width="150px">Numero</th>
+                <td><input type="number" name="numero" placeholder="id do produto" value="1" min="1" max="10000" /></td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td><input type="text" name="produto" placeholder="Insira o nome do produto" size="60" /></td>
+            </tr>
+            <tr>
+                <th>Preço</th>
+                <td><input type="number" name="preco" placeholder="0" value="100" min="1" max="1000000000" /></td>
+            </tr>
+            <tr>
+                <th>Tipo Produto</th>
+                <td>
+                    <input type="radio" name="tipo_prod" value="Componente" />
+                    <label for="Componente">Componente</label><br>
+                    <input type="radio" name="tipo_prod" value="Equipamento" />
+                    <label for="Equipamento">Equipamento</label><br>
+                </td>
+            </tr>
+            <tr>
+                <th>Para Equipamento</th>
+                <td>
+                    <input type="checkbox" name="equipamento1" value="Tablet" />
+                    <label for="Tablet">Tablet</label><br>
+                    <input type="checkbox" name="equipamento2" value="PC" />
+                    <label for="PC">PC</label><br>
+                </td>
+            </tr>
+            <tr>
+                <th>Nivel Energetico</th>
+                <td>
+                    <select id="energ" name="energ" />
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="btnSub" value="Enviar" />
+                    <input type="reset" name="btnRes" value="Limpar" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

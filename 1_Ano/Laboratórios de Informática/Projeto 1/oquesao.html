@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>O que são</title>
+    <link rel="icon" href="images/icone.png" type="image/icon type">
+    <a id="top"></a>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="index.html">Placas Gráficas</a></h1>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="oquesao.html">O que são</a></li>
+                    <li><a href="historia.html">História</a></li>
+                    <li><a href="mercado.html">Mercado</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="about.html">Acerca</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
+        </nav>
+
+        <!-- Wrapper -->
+        <section id="wrapper">
+            <header>
+                <div class="inner">
+                    <h2>O que são</h2>
+                    <p>Uma visualização detalhada sobre as funções e componentes de uma Placa Gráfica</p>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="wrapper">
+                <div class="inner">
+
+                    <h3 class="major">Introdução</h3>
+                    <p><span class="image right"><img src="images/amdoquesao.png" alt="" /></span>As Placas Gráficas
+                        foram
+                        criadas com a finalidade
+                        de transformar a informação digital processada em uma imagem representada
+                        no monitor, sendo por isso responsável por todo o conteúdo visual e, consequentemente,
+                        necessária e presente em todos os computadores de forma a que
+                        possa ser transmitida uma imagem com a informação recolhida (salvo exceções
+                        de processadores com GPU integrada).</p>
+
+                    <p><span class="image left"><img src="images/rtxbanner.png" alt="" /></span>O uso das Placas
+                        Gráficas varia conforme a função que for designada, podendo servir
+                        apenas para tarefas simples como trabalhar em programas básicos, visualizar
+                        fotografias ou vídeos, ou uma simples pesquisa na internet, até atividades que
+                        requerem um maior desempenho gráfico como em videojogos, programas de
+                        edição de imagem mais pesados, renderização 3D.</p>
+                    <br><br>
+
+                    <h3 class="major">Componentes e Funções</h3>
+                    <p>As Placas de Vídeo possuem componentes, cada um com a sua
+                        função, que vão então ler a informação e transmiti-la ao utilizador e muito
+                        mais.</p>
+
+                    <h3>
+                        <p align="center">GPU</p>
+                    </h3>
+                    <p><span class="image left"><img src="images/pic01oquesao.jpg" alt="" /></span>
+                        A GPU é o componente mais importante e o coração da placa gráfica, este
+                        componente faz todo o processamento na placa de vídeo. Geralmente, a maioria
+                        das placas gráficas possuem apenas um GPU mas existem placas gráficas com
+                        mais do que um GPU.<br>A GPU funciona de acordo com a sua arquitetura e esta varia de série para
+                        série e de fabricante para fabricante.<br> Há milhares de <i>cores</i> dentro das GPU’s
+                        para processamento paralelo e <i>multi-tasking</i> e estes <i>cores</i> trabalham de forma
+                        diferente, dependendo da respetiva arquitetura.
+                        Geralmente, quanto mais recente for a arquitetura da GPU,
+                        mais performance e menos consumo de energia terá a placa de vídeo.
+                    <p>O seguinte gráfico apresenta a diferente quantidade de <i>CUDA Cores</i> (no caso da NVIDIA) ou
+                        <i>Stream Processors</i> (no caso da AMD) nas Placas Gráficas mais relevantes atualmente.
+                    </p>
+                    <div class="col-md-6 offset-md-3 my-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <hr>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="oquesaochart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript" src="assets/js/oquesaograph.js"></script>
+                    </p>
+                    <h3>
+                        <p align="center">VRAM</p>
+                    </h3>
+                    <p><span class="image left"><img width="200" height="200" src="images/mem.jpg" alt="" /></span>
+                        Este componente é o segundo mais importante de uma placa de Vídeo.<br> Video
+                        Random Access Memory (VRAM) é onde todos os dados gráficos e textura
+                        de jogos são armazenados para serem processados pela Placa Gráfica.<br> É de notar que
+                        maior velocidade da VRAM aumenta drasticamente a performance da Placa, mas
+                        apenas se esta não for fraca e consiga acompanhar.<br> Memória por si própria
+                        não aumenta o desempenho da Placa Gráfica. Há vários tipos de VRAM disponíveis para Placas de
+                        Vídeo dependendo na
+                        velocidade e banda larga que oferecem.<br>A DDR3 é a mais antiga e consequentemente, a mais
+                        lenta, utilizada em
+                        PG’s de baixa gama. A GDDR5 é a mais popular e utilizada em Placas Gráficas de média
+                        gama. A GDDR6X é utilizada nas Placas de topo de gama da Nvidia.
+
+
+                    <h3>
+                        <p align="center">VRM</p>
+                    </h3>
+                    <p><span class="image left"><img width="200" height="200" src="images/vrm.jpg" alt="" /></span>
+                        Talvez o terceiro componente mais importante da Placa Gráfica, o Módulo regulador de
+                        voltagem ou ,Voltage Regulator Module (VRM), é o circuito que fornece energia
+                        à GPU.<br> O VRM converte a voltagem de grande nível(12V) proveniente da
+                        Fonte de Alimentação para níveis mais baixos de
+                        voltagem(1 a 1,5V), visto que a Placa de Vídeo opera nestes níveis de tensão. O número de
+                        Reguladores de Voltagem numa Placa de Vídeo variam de produto para produto, dado que há GPU's
+                        com
+                        diferentes graus de performance e
+                        com necessidades de energia diferentes.<br> VRM’s podem chegar a temperaturas ainda maiores que
+                        a
+                        GPU, sendo necessários agentes de refrigeração para
+                        prevenir danos permanentes à Placa Gráfica.
+
+                    <h3>
+                        <p align="center">Cooler</p>
+                    </h3>
+                    <p><span class="image left"><img width="200" height="200" src="images/cooler.png" alt="" /></span>
+                        Todas as placas de vídeo possuem um tipo de Cooler para dissipar o calor e
+                        manter as temperaturas da GPU, VRAM e VRM em níveis seguros. Os Coolers
+                        podem ser considerados ativos ou passivos.<br> Os Coolers ativos possuem um
+                        <i>heatsink</i> e ventoinha enquanto que os Coolers passivos possuem apenas
+                        o <i>heatsink</i>. Existem também Water Coolers, ou seja, Coolers que arrefecem o
+                        sistema através do uso de água e geralmente são encontrados nos sistemas do mais alto
+                        nível.<br> A maioria das GPU'S apresentam Coolers do tipo ativo,
+                        porque geralmente,
+                        requerem menos espaço e produzem melhor dissipação de calor, enquanto que
+                        Cooling passivo é utilizado em Placas Gráficas de baixa qualidade e é completamente
+                        silencioso a realizar a sua função.
+
+                    <h3>
+                        <p align="center">Controlador</p>
+                    </h3>
+                    <p><span class="image left"><img width="200" height="200" src="images/nvidia.jpg" alt="" /></span>
+                        O Controlador, ou <i>driver</i>, é essencialmente software que trata da comunicação
+                        entre o sistema operativo, videojogos e aplicações e a Placa de Vídeo.<br>
+                        É extremamente importante que todas as Placas de Vídeo tenham este software instalado e
+                        atualizado para assegurar que a Placa Gráfica esteja a funcionar como é
+                        suposto e para evitar o encontro de erros.</p>
+                </div>
+                <a href="#top" class=button>Voltar ao Início</a>
+            </div>
+
+        </section>
+        <section id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>Realizado por Marco Almeida e Pedro Mendes</li>
+                    <li>All rights reserved.</a></li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/menu.js"></script>
+
+</body>
+
+</html>

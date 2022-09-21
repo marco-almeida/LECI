@@ -1,0 +1,9 @@
+--fsm
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Escolha_Prod_FSM is
+	port (clock, reset, cafe, cha, choc : in std_logic;
+			selWord : out std_logic_vector(6 downto 0));
+end Escolha_Prod_FSM;

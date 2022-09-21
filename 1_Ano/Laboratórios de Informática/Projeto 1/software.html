@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="icon" href="images/icone.png" type="image/icon type">
+	<title>Software</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="stylesheet" href="assets/css/raytracing-estilo.css">
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="index.html">Placas Gráficas</a></h1>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<div class="inner">
+				<h2>Menu</h2>
+				<ul class="links">
+					<li><a href="index.html">Início</a></li>
+					<li><a href="oquesao.html">O que são</a></li>
+					<li><a href="historia.html">História</a></li>
+					<li><a href="mercado.html">Mercado</a></li>
+					<li><a href="software.html">Software</a></li>
+					<li><a href="about.html">Acerca</a></li>
+				</ul>
+				<a href="#" class="close">Close</a>
+			</div>
+		</nav>
+
+		<!-- Wrapper -->
+		<section id="wrapper">
+			<header>
+				<div class="inner">
+					<h2>Software</h2>
+					<p>Interação entre os componentes e capacidades gráficas</p>
+				</div>
+			</header>
+
+			<!-- Content -->
+			<div class="wrapper">
+				<div class="inner">
+
+					<h3 class="major">Interface de Programação de Aplicações (API)</h3>
+					<p>Como é que a informação navega pelo computador? E como é que o computador sabe o que significa
+						visto poder ter sido escrita em linguagens de programação diferentes? Foram estas as questões
+						que levaram diversos desenvolvedores a criar uma maneira eficiente de conseguir transportar a
+						informação previamente processada, quer seja por uma componente de hardware ou um website, e de
+						ser lida, independentemente da linguagem de configuração. Assim, é possível um código escrito em
+						Java, ser transportado para um servidor em C++, e por fim levado ao destinatário final em
+						Python, e é aqui que entram as APIs.</p>
+					<img src="images/api.png" alt="api" width="1100" height="600">
+					<p>De uma forma bastante simplificada, uma API funciona como um intermediário de informação, que a
+						transporta de um local A para um local B. Independentemente da linguagem de programação base do
+						remetente e do destinatário, a API tem a capacidade de "traduzir" a linguagem de forma a que
+						possa ser recebida, entendida e processada, devolvendo depois a informação de volta da mesma
+						forma. Pensemos num restaurante, o que separa o cliente da comida? Seja o cliente o ponto A, e o
+						chefe de cozinha o ponto B, a comida será a informação armazenada nesse ponto B, onde cada item
+						do menu vai corresponder a uma entidade do tipo <b>Xn</b>, onde <b>X</b> representa uma letra
+						qualquer que varia com o tipo de prato (carne, peixe, vegetariano, etc), e <b>n</b> um número
+						qualquer, que representa os vários itens nesse tipo de prato, será o empregado de mesa,
+						designemos por <b>M</b>, o responsável por transformar o pedido do cliente no prato que desejou.
+						Exemplificando o processo:</p>
+					<ul>
+						<li>O ponto A pretende obter o item <i>C4</i> do Ponto B.</li>
+						<li>O ponto A envia essa informação para o API <b>M</b>, que a transporta até o ponto B. Caso a
+							linguagem difira, o API é encarregado de a traduzir e adaptar ao recetor.</li>
+						<li>O ponto B processa o pedido, realiza-o e devolve a <b>M</b>.</li>
+						<li>Por último <b>M</b> retorna a A com o pedido inicial.</li>
+					</ul>
+					<p>Claro que num caso que realmente envolva APIs o processo é contínuo, formando assim um
+						<i>loop</i> enquanto 2 pontos estão a interagir. Regressando à temática de placas gráficas, elas
+						também possuem diversos APIs que permitem então realizar esta troca de informações. Mesmo que
+						nunca se tenha ouvido falar na palavra API, algumas delas são bastante conhecidas, tais como a
+						Vulkan, OpenGl e DirectX.
+					</p>
+
+					<h3 class="major">RayTracing e o futuro da iluminação virtual</h3>
+					<p>Embora a tecnologia RayTracing seja bastante falada hoje em dia com o lançamento das gerações
+						GeForce 20 e 30 e as placas gráficas RTX, é na verdade algo utilizado na indústria
+						cinematográfica há bastante tempo. O RayTracing, traduzido à letra para algo como <i>traço de
+							raios</i>, é essencialmente o que o próprio nome indica. Tenta replicar a física real da luz
+						e aplicá-la sob forma de iluminação, sombras e reflexos num ambiente virtual. Embora seja uma
+						réplica da realidade, o RayTracing funciona exatamente ao contrário de como a luz se desloca na
+						vida real. Como aprendemos em física básica, uma fonte de luz qualquer incide sobre um objeto,
+						seguindo uma reflexão para os nosso olhos. Já a iluminação com RayTracing, dependendo do campo
+						de visão, a luz viajará para o objeto e por último para uma fonte emissora.</p>
+					<p>O RayTracing é uma tecnologia que mudou completamente a forma de como a iluminação funciona em
+						videojogos. Embora ainda muitas empresas optem por iluminação manual, o RayTracing tem sido cada
+						vez mais utilizado, não só por apresentar por vezes melhores resultados, mas também por ser um
+						método mais prático. Nas imagens seguintes é possível verificar a diferença de iluminação com e
+						sem RayTracing, presente nas placas gráficas RTX da Nvidia:</p>
+					<div class="img-comp-container">
+						<div class="compFinal">
+							<img src="images/minecraft-antes.png" width="1210" height="800">
+						</div>
+						<div class="compFinal overlay-imagens">
+							<img src="images/minecraft-depois.png" width="1210" height="800">
+						</div>
+					</div>
+					<br>
+					<div class="img-comp-container">
+						<div class="compFinal">
+							<img src="images/cyberpunk-antes.png" width="1210" height="800">
+						</div>
+						<div class="compFinal overlay-imagens">
+							<img src="images/cyberpunk-depois.png" width="1210" height="800">
+						</div>
+					</div>
+					<br>
+					<div class="img-comp-container">
+						<div class="compFinal">
+							<img src="images/control-antes.png" width="1210" height="800">
+						</div>
+						<div class="compFinal overlay-imagens">
+							<img src="images/control-depois.png" width="1210" height="800">
+						</div>
+					</div>
+					<script src="assets/js/raytracing.js"></script>
+					<script>rayTracing();</script><br>
+					<a href="#top" class=button>Voltar ao Início</a>
+				</div>
+			</div>
+
+		</section>
+
+
+		<section id="footer">
+			<div class="inner">
+				<ul class="copyright">
+					<li>Realizado por Marco Almeida e Pedro Mendes</li>
+					<li>All rights reserved.</a></li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/menu.js"></script>
+
+</body>
+
+</html>

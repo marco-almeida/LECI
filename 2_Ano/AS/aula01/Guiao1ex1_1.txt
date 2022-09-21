@@ -1,0 +1,4 @@
+O seguinte diagrama descreve como se comporta um sistema de encomendas; Receção
+de pedido de encomenda; no caso do pedido ser recusado mediante os requisitos, é encerrado o
+mesmo, caso contrário preenche-se o pedido; de seguida, envia-se, simultaneamente, a fatura e a
+encomenda; assim que a fatura seja paga, o pedido é encerrado.

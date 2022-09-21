@@ -1,0 +1,32 @@
+Dec 15 17:19:54.811 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Dec 15 17:19:54.812 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 56086.
+Dec 15 17:19:54.815 HYPERVISOR: exec_cmd: hypervisor version 
+Dec 15 17:19:54.815 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\Marco\GNS3\projects\projetofinal\project-files\dynamips 
+Dec 15 17:19:54.815 GENERAL: working_dir=C:\Users\Marco\GNS3\projects\projetofinal\project-files\dynamips
+Dec 15 17:19:54.815 HYPERVISOR: exec_cmd: ethsw create Switch1 
+Dec 15 17:19:54.916 HYPERVISOR: exec_cmd: nio create_udp udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 10031 127.0.0.1 10030 
+Dec 15 17:19:54.916 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 
+Dec 15 17:19:54.925 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 1 
+Dec 15 17:19:54.957 HYPERVISOR: exec_cmd: nio create_udp udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 10033 127.0.0.1 10032 
+Dec 15 17:19:54.957 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 
+Dec 15 17:19:54.989 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 1 
+Dec 15 17:19:55.017 HYPERVISOR: exec_cmd: nio create_udp udp-a161e6f8-032a-435e-a4d9-28a260319da0 10034 127.0.0.1 10035 
+Dec 15 17:19:55.017 HYPERVISOR: exec_cmd: ethsw add_nio Switch1 udp-a161e6f8-032a-435e-a4d9-28a260319da0 
+Dec 15 17:19:55.019 HYPERVISOR: exec_cmd: ethsw set_access_port Switch1 udp-a161e6f8-032a-435e-a4d9-28a260319da0 1 
+Dec 15 17:23:20.787 HYPERVISOR: exec_cmd: ethsw rename Switch1 DesignSwitch 
+Dec 15 17:23:20.787 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 1 
+Dec 15 17:23:20.788 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 1 
+Dec 15 17:23:20.788 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-a161e6f8-032a-435e-a4d9-28a260319da0 1 
+Dec 15 17:23:20.835 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 1 
+Dec 15 17:23:20.836 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 1 
+Dec 15 17:23:20.836 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-a161e6f8-032a-435e-a4d9-28a260319da0 1 
+Dec 15 17:23:44.853 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 1 
+Dec 15 17:23:44.854 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 1 
+Dec 15 17:23:44.854 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-a161e6f8-032a-435e-a4d9-28a260319da0 1 
+Dec 15 17:23:51.602 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-5ef881d7-2b15-454e-a162-6f02d11c87f2 1 
+Dec 15 17:23:51.602 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-8d4b335a-9399-46f9-ae1c-38b884f1012e 1 
+Dec 15 17:23:51.602 HYPERVISOR: exec_cmd: ethsw set_access_port DesignSwitch udp-a161e6f8-032a-435e-a4d9-28a260319da0 1 
+Dec 15 18:04:26.337 HYPERVISOR: exec_cmd: ethsw delete DesignSwitch 
+Dec 15 18:04:26.429 HYPERVISOR: exec_cmd: hypervisor stop 
+Dec 15 18:04:26.598 HYPERVISOR: Stopped.
+Dec 15 18:04:26.598 GENERAL: reset done.

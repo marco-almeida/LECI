@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Gestão do Stock</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1 id="logo"><a href="index.html">PetCare<sup>TM</sup></a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Página Principal</a></li>
+                    <li><a href="stock.html">Gestão do Stock</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="wrapper style1">
+            <div class="container">
+                <header class="major">
+                    <h2>Gestão do Stock</h2>
+                </header>
+                <hr />
+
+                <h4>Informação</h4>
+                <blockquote>O objectivo da gestão de stocks inclui a determinação de 3 decisões principais:
+
+                    <li>Quanto encomendar,</li>
+                    <li>Quando encomendar;</li>
+                    <li>Quantidade de stock de segurança que se deve manter para que cada artigo assegure um nível de serviço satisfatório para o cliente.</li>
+
+                </blockquote>
+                </section>
+
+                <section>
+                    <h4>FoodCare<sup>TM</sup></h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Farmina N&D (Natural & Delicious)</td>
+                                    <td>É a principal linha da marca Farmina. A N&D usa na suas receitas proteínas de alta qualidade e palatabilidade (que são mecanicamente separadas), sendo feita com ingredientes selecionados e frescos.</td>
+                                    <td>+1220</td>
+                                    <td>29.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Biofresh</td>
+                                    <td>A Biofresh é uma ração Super Premium feita com alta concentração de ingredientes frescos conservados de maneira inteiramente natural.</td>
+                                    <td>+5120</td>
+                                    <td>19.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Royal Canin</td>
+                                    <td>A Royal Canin é uma das marcas mais tradicionais e está no mercado há mais de 100 anos. </td>
+                                    <td>+120</td>
+                                    <td>50.99</td>
+                                </tr>
+                                <tr>
+                                    <td>PremieR</td>
+                                    <td>A ração PremieR também está na categoria Super Premium por ser feita com ingredientes de ótima qualidade.</td>
+                                    <td>+1000</td>
+                                    <td>5.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Purina Pro Plan</td>
+                                    <td>A Pro Plan, ração Super Premium da marca Purina, já está há bastante tempo no mercado e também desenvolve ótimas rações com várias opções para os nossos gatinhos.</td>
+                                    <td>+9540</td>
+                                    <td>29.99</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Form -->
+                <section>
+                    <h3>Atualizar o stock</h3>
+                    <form method="post" action="#">
+                        <div class="row gtr-uniform gtr-50">
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="name" id="name" value="" placeholder="Name do produto" />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="quant" id="name" value="" placeholder="Quantidade do produto" />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="preco" id="name" value="" placeholder="Preço do produto" />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="email" name="email" id="email" value="" placeholder="Email" />
+                            </div>
+                            <div class="col-12">
+                                <select name="category" id="category">
+                                    <option value="">- Categoria -</option>
+                                    <option value="1">Alimentação</option>
+                                    <option value="1">Medicamentos</option>
+                                    <option value="1">Brinquedos</option>
+									<option value="1">Outros</option>
+								</select>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <input type="radio" id="priority-low" name="priority" checked>
+                                <label for="priority-low">Prioridade Baixa</label>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <input type="radio" id="priority-normal" name="priority">
+                                <label for="priority-normal">Prioridade Normal</label>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <input type="radio" id="priority-high" name="priority">
+                                <label for="priority-high">Prioridade Alta</label>
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <input type="checkbox" id="copy" name="copy">
+                                <label for="copy">Envie um email por mensagem</label>
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <input type="checkbox" id="human" name="human" checked>
+                                <label for="human">Não sou um robot</label>
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" id="message" placeholder="Introduza a sua mensagem" rows="6"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><input type="submit" value="Enviar a mensagem" class="primary" /></li>
+                                    <li><input type="reset" value="Limpar" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+.vscode/
+bin/
+.scannerwork/
+sonar-project.properties

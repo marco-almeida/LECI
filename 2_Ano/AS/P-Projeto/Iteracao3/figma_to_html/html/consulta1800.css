@@ -1,0 +1,1027 @@
+.consulta1800-container {
+  min-height: 100vh;
+}
+.consulta1800-consulta1800 {
+  width: 360px;
+  height: 710px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  max-width: 360px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-color: transparent;
+  border-radius: 8px;
+  background-color: rgba(255, 252, 252, 1);
+}
+.consulta1800-text {
+  top: 35px;
+  left: 22.5px;
+  color: rgba(0, 0, 0, 1);
+  width: 93px;
+  height: auto;
+  position: absolute;
+  font-size: 18px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text01 {
+  top: 89px;
+  left: 24px;
+  color: rgba(0, 0, 0, 1);
+  width: 312px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1961803 {
+  top: 157px;
+  left: 23px;
+  width: 328px;
+  height: 47px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image {
+  top: 0px;
+  left: 0px;
+  width: 157px;
+  height: 47px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 100px;
+  background-color: rgba(217, 217, 217, 1);
+}
+.consulta1800-text02 {
+  top: 13px;
+  left: 52px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 16px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-image01 {
+  top: 0px;
+  left: 171px;
+  width: 157px;
+  height: 47px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 100px;
+  background-color: rgba(217, 217, 217, 1);
+}
+.consulta1800-text03 {
+  top: 13px;
+  left: 186px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-image02 {
+  top: 16px;
+  left: 14px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  box-sizing: content-box;
+  object-fit: cover;
+  border-color: rgba(217, 217, 217, 1);
+  border-style: solid;
+  border-width: 1px;
+}
+.consulta1800-group1981809 {
+  top: 247px;
+  left: 22px;
+  width: 317px;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image03 {
+  top: 6px;
+  left: 138px;
+  width: 179px;
+  height: 18px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 100px;
+  background-color: rgba(217, 217, 217, 1);
+}
+.consulta1800-text04 {
+  top: 6px;
+  left: 163px;
+  color: rgba(0, 0, 0, 0.4000000059604645);
+  width: 149px;
+  height: auto;
+  position: absolute;
+  font-size: 14px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text05 {
+  top: 0px;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-svg {
+  top: 8px;
+  left: 145px;
+  width: 13;
+  height: 13;
+  position: absolute;
+}
+.consulta1800-group1991814 {
+  top: 304px;
+  left: 13px;
+  width: 335px;
+  height: 115px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1971815 {
+  top: 0px;
+  left: 0px;
+  width: 335px;
+  height: 115px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1821816 {
+  top: 1px;
+  left: 29px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1811817 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1801818 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1781819 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-svg01 {
+  top: 10px;
+  left: 12.323832511901855px;
+  width: 66;
+  height: 64;
+  position: absolute;
+}
+.consulta1800-svg02 {
+  width: 89;
+  height: 114;
+  position: absolute;
+}
+.consulta1800-group1771822 {
+  top: 6px;
+  left: 19px;
+  width: 51px;
+  height: 51px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image04 {
+  top: 0px;
+  left: 0px;
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: rgba(255, 255, 255, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 44.5px;
+}
+.consulta1800-text06 {
+  top: 56px;
+  left: 14px;
+  color: rgba(0, 0, 0, 1);
+  width: 61px;
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1831825 {
+  top: 1px;
+  left: 122px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1811826 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1801827 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1781828 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-svg03 {
+  top: 9px;
+  left: 12.323832511901855px;
+  width: 66;
+  height: 64;
+  position: absolute;
+}
+.consulta1800-svg04 {
+  width: 89;
+  height: 114;
+  position: absolute;
+}
+.consulta1800-group1771831 {
+  top: 4px;
+  left: 17px;
+  width: 55px;
+  height: 52px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image05 {
+  top: 0px;
+  left: 0px;
+  width: 55px;
+  height: 52px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: rgba(255, 255, 255, 1);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 44.5px;
+}
+.consulta1800-text07 {
+  top: 57px;
+  left: 10px;
+  color: rgba(0, 0, 0, 1);
+  width: 70px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1841834 {
+  top: 0px;
+  left: 214px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1811835 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-group1801836 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image06 {
+  top: 0px;
+  left: 0px;
+  width: 89px;
+  height: 114px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.consulta1800-text08 {
+  top: 58px;
+  left: 10px;
+  color: rgba(0, 0, 0, 1);
+  width: 70px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-svg05 {
+  top: 46px;
+  left: 315px;
+  width: 20;
+  height: 35;
+  position: absolute;
+}
+.consulta1800-svg06 {
+  left: 4px;
+  width: 20;
+  bottom: 35px;
+  height: 35;
+  position: absolute;
+}
+.consulta1800-group1921843 {
+  top: 93px;
+  left: 132px;
+  width: 68px;
+  height: 17px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(24, 67, 177, 1);
+}
+.consulta1800-text09 {
+  top: 0px;
+  left: 20px;
+  color: rgba(217, 217, 217, 1);
+  width: 28px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Open Sans;
+  font-weight: 400px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1941846 {
+  top: 93px;
+  left: 224px;
+  width: 68px;
+  height: 17px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(24, 67, 177, 1);
+}
+.consulta1800-text10 {
+  top: 0px;
+  left: 20px;
+  color: rgba(217, 217, 217, 1);
+  width: 28px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Open Sans;
+  font-weight: 400px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-image07 {
+  top: 4px;
+  left: 141px;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 24.5px;
+}
+.consulta1800-image08 {
+  top: 5px;
+  left: 233px;
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 24px;
+}
+.consulta1800-image09 {
+  top: 93px;
+  left: 41px;
+  width: 68px;
+  height: 17px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 10px;
+  background-color: rgba(24, 67, 177, 1);
+}
+.consulta1800-text11 {
+  top: 93px;
+  left: 61px;
+  color: rgba(217, 217, 217, 1);
+  width: 28px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Open Sans;
+  font-weight: 400px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group10000045351853 {
+  top: 454px;
+  left: 261px;
+  width: 88px;
+  height: 25.030000686645508px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-image10 {
+  top: 0px;
+  left: 0px;
+  width: 88px;
+  height: 25px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 10px;
+  background-color: rgba(217, 217, 217, 1);
+}
+.consulta1800-text12 {
+  top: 3px;
+  left: 16px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 13px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text13 {
+  top: 491px;
+  left: 9px;
+  color: rgba(0, 0, 0, 1);
+  width: 127px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: 94.9999988079071%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-image11 {
+  top: 506px;
+  left: 6px;
+  width: 343px;
+  height: 117px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: rgba(19, 22, 53, 0.20000000298023224);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 0 10px 10px;
+  background-color: rgba(217, 217, 217, 0);
+}
+.consulta1800-group10000045361858 {
+  top: 494px;
+  left: 14px;
+  width: 340px;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-text14 {
+  top: 21px;
+  left: 0px;
+  color: rgba(10, 16, 71, 1);
+  width: 327px;
+  height: auto;
+  position: absolute;
+  font-size: 10px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: 94.9999988079071%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text15 {
+  color: rgba(10, 16, 71, 1);
+  width: 327px;
+  height: auto;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-weight: 300px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text16 {
+  color: rgba(0, 0, 0, 1);
+  width: 327px;
+  height: auto;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-weight: 300px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text17 {
+  color: rgba(10, 16, 71, 1);
+  width: 327px;
+  height: auto;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-weight: 300px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text18 {
+  color: rgba(0, 0, 0, 1);
+  width: 327px;
+  height: auto;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-weight: 300px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text19 {
+  top: 0px;
+  left: 241px;
+  color: rgba(0, 0, 0, 1);
+  width: 99px;
+  height: auto;
+  position: absolute;
+  font-size: 10px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: 94.9999988079071%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-svg07 {
+  top: 506px;
+  left: 6px;
+  width: 342;
+  height: 1px;
+  position: absolute;
+}
+.consulta1800-text20 {
+  top: 538px;
+  left: 14px;
+  color: rgba(0, 0, 0, 1);
+  width: 329px;
+  height: auto;
+  position: absolute;
+  font-size: 12px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: 94.9999988079071%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-text30 {
+  top: 446px;
+  left: 7px;
+  color: rgba(19, 22, 53, 0.75);
+  width: 129px;
+  height: auto;
+  position: absolute;
+  font-size: 24px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-frame21864 {
+  top: 454px;
+  left: 143px;
+  width: 110px;
+  height: 25px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(25, 68, 178, 0.5);
+}
+.consulta1800-text31 {
+  top: 5px;
+  left: 5.4228515625px;
+  color: rgba(0, 0, 0, 1);
+  width: 96px;
+  height: auto;
+  position: absolute;
+  font-size: 10px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 300px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1651867 {
+  top: 641px;
+  left: 0px;
+  width: 360px;
+  height: 69px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.consulta1800-navlink {
+  display: contents;
+}
+.consulta1800-group1601869 {
+  top: 10px;
+  left: 281px;
+  width: 60px;
+  height: 41px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.consulta1800-image12 {
+  top: 0px;
+  left: 19px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.consulta1800-group1341872 {
+  top: 30px;
+  left: 0px;
+  width: 60px;
+  height: 11px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-text32 {
+  top: 0px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  width: 60px;
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-navlink1 {
+  display: contents;
+}
+.consulta1800-group1351874 {
+  top: 11px;
+  left: 209px;
+  width: 51px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.consulta1800-svg08 {
+  left: 12px;
+  width: 26;
+  height: 23;
+  position: absolute;
+}
+.consulta1800-text33 {
+  top: 29px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-navlink2 {
+  display: contents;
+}
+.consulta1800-group1371877 {
+  top: 12px;
+  left: 19px;
+  width: 91px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.consulta1800-svg09 {
+  left: 33px;
+  width: 27;
+  height: 23;
+  position: absolute;
+}
+.consulta1800-text34 {
+  top: 29px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  height: auto;
+  position: absolute;
+  font-size: 13px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-group1361880 {
+  top: 12px;
+  left: 131px;
+  width: 57px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.consulta1800-text35 {
+  top: 29px;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.consulta1800-svg10 {
+  left: 14px;
+  width: 23;
+  height: 23;
+  position: absolute;
+}
+@media(max-width: 479px) {
+  .consulta1800-text31 {
+    right: 6px;
+    width: 100px;
+    bottom: -8px;
+  }
+}

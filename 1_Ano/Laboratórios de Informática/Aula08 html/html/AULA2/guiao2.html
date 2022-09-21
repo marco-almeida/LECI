@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title>Conceitos elementares de CSS</title>
+	</head>
+	
+	<body>
+		<h1 style="color: black;">9.2 Sintaxe e aplicação de estilos<br/>------------------------</h1>
+		
+		<img src="walter.png" alt="aaa" style="width: 150px;" ></img>
+		<br>
+		<img src="walter.png" alt="aaa" style="width: 200px;" ></img>
+		
+		<h1 style="color: rgb(0, 0, 0);">9.2.1 Estilos em linha<br/>------------------------</h1>
+		
+		<p style="color: blue;">Em azul</p>
+		<p style="color: cyan;">Em cyan</p>
+		<p style="color: #add8e6;">Em light blue</p>
+		<p style="color: white; background-color: black">Em branco</p>
+		
+		<h1 style="color: red; background-color: blue">Em h1</h1>
+		<h2 style="color: orange; background-color: cyan">Em h2</h2>
+		<h3 style="color: yellow; background-color: green">Em h3</h3>
+		<h4 style="color: green; background-color: yellow">Em h4</h4>
+		<h5 style="color: cyan; background-color: orange">Em h5</h5>
+		<h6 style="color: blue; background-color: red">Em h6</h6>
+		
+		<h1 style="color: black;">9.2.2 Estilos no cabeçalho<br/>------------------------</h1>
+		
+		<style>
+			h1 {
+				color: red;
+			}
+			h2 {
+				color: green;
+			}
+			h3 {
+				color: blue;
+			}
+			h4 {
+				color: orange;
+			}
+			h5 {
+				color: black;
+			}
+			h6 {
+				color: cyan;
+			}
+				
+		</style>
+		
+		<h1> Este texto ficará vermelho </h1>
+		<h2> Este texto ficará verde </h2>
+		<h3> Este texto ficará azul </h3>
+		<h4> Este texto ficará laranja </h4>
+		<h5> Este texto ficará preto </h5>
+		<h6> Este texto ficará cyan </h6>
+		
+		<h1 style="color: black;">9.2.3 Inclusão de estilos externos<br/>------------------------</h1>
+		
+		<style>
+			table, td, th {
+				border: 1px solid black;
+			}
+		#coldest {
+			background-color: lightblue;
+		}
+		#hottest {
+			background-color: orange;
+		}
+		#ameno {
+			background-color: green;
+		}
+		</style>
+	</head>
+		<table>
+		<tr><th>Nome</th><th>2009</th><th>2010</th><th>2011</th><th>2012</th></tr>
+		<tr><td>Jan</td><td>14</td><td id ="hottest">13</td><td>11</td><td>9</td></tr>
+		<tr><td>Fev</td><td>15</td><td>14</td><td>14</td><td>11</td></tr>
+		<tr><td>Mar</td><td>17</td><td>17</td><td>15</td><td>16</td></tr>
+		<tr><td>Abr</td><td>18</td><td>17</td><td>13</td><td>18</td></tr>
+		<tr><td>Mai</td><td id ="ameno">19</td><td>18</td><td>16</td><td>21</td></tr>
+		<tr><td>Jun</td><td>21</td><td>22</td><td>20</td><td>16</td></tr>
+		<tr><td>Jul</td><td>23</td><td>21</td><td>22</td><td>18</td></tr>
+		<tr><td>Ago</td><td>24</td><td>23</td><td>24</td><td>23</td></tr>
+		<tr><td>Set</td><td>21</td><td>20</td><td>22</td><td>15</td></tr>
+		<tr><td>Out</td><td>18</td><td>16</td><td>19</td><td>11</td></tr>
+		<tr><td>Nov</td><td>15</td><td>14</td><td>14</td><td>10</td></tr>
+		<tr><td>Dez</td><td>13</td><td>11</td><td>12</td><td id="coldest"> 8 </td></tr>
+		</table>
+
+		<div style="border: 2px solid black;">
+			<div style="border-style: outset; border-width: 10px; margin: 10px; padding: 10px">
+				<div style="border: 2px dashed red;">
+					Caixa outset
+				</div>
+			</div>
+		</div>
+
+	</body>
+	
+</html>

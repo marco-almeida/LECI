@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "Easy Breakfast Board", "price": "15€", "img": "breakfast1.jpg", "description": "This easy breakfast board with bacon, eggs and fresh fruit is the perfect fuss-free, versatile breakfast or weekend brunch for serving a crowd." },
+  { "id": 2, "title": "Quick healthy breakfast", "price": "8€", "img": "breakfast2.jpg", "description": "Spread butter to both side of the bread, and toast it until golden brown with low - medium heat or use bread toaster." },
+  { "id": 3, "title": "Sunny-Side Up Fried Eggs", "price": "10€", "img": "breakfast3.jpg", "description": "Your foolproof plan for perfect sunny side up eggs." },
+  { "id": 4, "title": "Healthy porridge bowl", "price": "5€", "img": "breakfast4.jpg", "description": "Start your day right with this filling bowl of oats, berries, banana and seeds. It's healthy and packed with nutrients to fuel body and mind." },
+  { "id": 5, "title": "Slow cooker Turkish breakfast eggs", "price": "7€", "img": "breakfast5.jpg", "description": "Spice up your baked eggs and get two of your five-a-day with this Turkish-style breakfast or brunch dish. It's low-calorie, too, and high in vitamin C." },
+  { "id": 6, "title": "Slow cooker bio yogurt", "price": "4€", "img": "breakfast6.jpg", "description": "You need just two ingredients – milk and live yogurt – to make this bio yogurt, full of gut-friendly probiotics. Mix with fruit, or cereal for breakfast." }
+]

@@ -1,0 +1,33 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+E
+.vscode/settings.json,8\9\89aa447020cdcb580cea0495694d46a55941edbe
+J
+src/ementas/TipoPeixe.java,c\1\c12a0e080f06614d92478e143b803d196eb637e4
+H
+src/ementas/Cliente.java,f\1\f19c4cc5912967e0d59e857cf80634e1a18aa2fd
+G
+src/ementas/Legume.java,b\0\b04d836d8322589ba1fada113ab9d126d8816649
+F
+src/ementas/Peixe.java,7\0\705876b3237678c1837c14795477e5f457025423
+G
+src/ementas/Pedido.java,0\5\051fce3103e382b3cb4df72822db97088eb38ec6
+O
+src/ementas/VariedadeCarne.java,4\7\47031f0b8537f818871d0c90fbe199808b1a53c3
+G
+src/ementas/Ementa.java,a\3\a3d1065ce56cdc23af009f1eedc54ba9367dc7ff
+B
+src/DemoClass.java,2\5\25b9c0cb9d52e57d1598e438a6f9f5374b279bbe
+Q
+!src/ementas/PratoVegetariano.java,4\b\4bc2ab6bc9bbcea8e09a27aa6b120cd69372c590
+F
+src/ementas/Prato.java,8\9\891c6c684b2b8b526a711236576c62589ab98610
+K
+src/ementas/PratoDieta.java,b\1\b1f74809fc52240052e9b20be07b67d2e21fba31
+I
+src/ementas/Alimento.java,5\a\5a543a9af2e9cd21d75ce96dde33968c3434bb50
+F
+src/ementas/Carne.java,6\e\6e0aed67a64a9a8c287c0c1b63344258464cfe92
+G
+src/ementas/Cereal.java,0\c\0c6cb4df349795d73ab818656dbb4e66eae4a333

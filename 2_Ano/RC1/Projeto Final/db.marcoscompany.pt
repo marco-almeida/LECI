@@ -1,0 +1,15 @@
+$TTL	604800
+$ORIGIN marcoscompany.pt.
+@	IN	SOA	ns1.marcoscompany.pt. adm.marcoscompany.pt. (
+			2		; Serial
+			604800		; Refresh
+			86400		; Retry
+			2419200		; Expire
+			604800)		; Negative Cache TTL
+	IN	NS	ns1.marcoscompany.pt.
+ns1	IN	A	203.0.0.129
+@	IN	A	203.0.0.129
+www	IN	A	203.0.0.129
+design	IN	A	203.0.0.129
+marketing	IN	A	203.0.0.129
+hostPC	IN	A	203.0.0.129

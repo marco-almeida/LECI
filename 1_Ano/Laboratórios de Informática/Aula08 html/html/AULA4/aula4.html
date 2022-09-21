@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <title>LABI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#labi">LABI</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#topicoA">TópicoA</a></li>
+                    <li><a href="#topicoB">TópicoB</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            TópicoC<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#topicobopcao1">Opção1</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#topicobopcao2">Opção2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#default">Default</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h2 id="topicoA">Este é o Tópico A</h2>
+        <a href="#topicoA"> link para o Topico A </a>
+        (Conteúdo da página.)
+    </div>
+    <div id="oMeuPopup" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Pop Up</h4>
+                </div>
+                <div class="modal-body">
+                    <p>sup</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#oMeuPopup">
+        Lançar popup
+    </button>
+    <div id="grafico-linhas" style="width: 400px; height: 300px;"></div>
+    <script type="text/javascript" src="C:/Users/marco/Desktop/uni/Labi/html/AULA4/grafico-linhas.js"></script>
+    <button class="btn btn-primary" onclick="desenhaGrafico()">
+        Grafico de Linhas
+    </button>
+    <div id="grafico-colunas" style="width: 400px; height: 300px;"></div>
+    <script type="text/javascript" src="C:/Users/marco/Desktop/uni/Labi/html/AULA4/grafico-linhas.js"></script>
+    <button class="btn btn-primary" onclick="graficoColumns()">
+        Grafico de Colunas
+    </button>
+    <div id="grafico-pie" style="width: 400px; height: 300px;"></div>
+    <script type="text/javascript" src="C:/Users/marco/Desktop/uni/Labi/html/AULA4/grafico-linhas.js"></script>
+    <button class="btn btn-primary" onclick="graficoPie()">
+        Grafico Circular
+    </button>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <div id="borba" style="width: 500px; height: 400px"></div>
+    <script type="text/javascript" src="C:/Users/marco/Desktop/uni/Labi/html/AULA4/grafico-linhas.js"></script>
+    <br>
+
+    <div id="labi"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        
+        var disqus_config = function () {
+            this.page.url = labi;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = labi; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () {  // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+
+            s.src = 'https://jamesgosling.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+            powered by Disqus.</a></noscript>
+
+</body>
+
+</html>

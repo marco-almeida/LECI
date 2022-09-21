@@ -1,0 +1,29 @@
+* {box-sizing: border-box;}
+
+.img-comp-container {
+  position: relative;
+  height: 800px;
+}
+
+.compFinal {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.compFinal img {
+  display: block;
+  vertical-align: middle;
+}
+
+.compSlide {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}

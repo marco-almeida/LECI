@@ -1,0 +1,69 @@
+1.	
+1.1.
+i) 5
+ii) IP: 192.168.100.186
+   GATEWAY: 192.168.100.1
+
+1.2.
+i) LAPTOP-4UE5NRD3
+ii) 38-F3-AB-B7-7A-7C
+    76-4C-A1-BB-69-DB
+    F6-4C-A1-BB-69-DB
+    74-4C-A1-BB-69-DB
+    74-4C-A1-BB-69-DC
+iii) 192.168.100.1
+
+2.
+2.1.
+www.ua.pt 193.136.173.58
+ua.pt 193.136.172.174 193.136.172.173 193.136.172.175
+www.tvi.iol.pt 193.126.240.138
+www.sapo.pt 213.13.146.142
+www.tsf.pt 148.69.168.41 148.69.168.38 148.69.168.39 148.69.168.40
+www.antena3.pt 94.46.160.176
+www.rtp.pt 199.232.82.192
+www.publico.pt 18.66.112.6 18.66.112.45 18.66.112.76 18.66.112.99
+www.google.com 216.58.209.68
+www.google.pt 142.250.184.163
+www.google.es 216.58.215.163
+www.google.fr 142.250.200.99
+
+2.2.
+193.136.173.58 lvs-ng.ua.pt
+193.137.55.13 www.up.pt
+157.240.212.35 edge-star-mini-shv-01-lis1.facebook.com
+31.13.66.174 instagram-p42-shv-01-iad3.fbcdn.net
+
+2.3.
+ip = nome
+
+3.
+3.1.
+www.ua.pt Aveiro, Portugal (0Km) 6ms
+www.up.pt Porto, Portugal (~60Km) 12ms
+www.fc.ul.pt Lisboa, Portugal (~220Km) 9ms
+www.utad.pt Vila Real, Portugal (~160Km) timed out
+www.uevora.pt Évora, Portugal (~250Km) 18ms
+www.uam.es Madrid, Espanha (~420Km) 37ms
+www.univ-paris8.fr Paris, França (~1260Km) timed out 
+web.mit.edu EUA (~5100Km) 19ms
+www.zju.edu.cn China (~7200Km) 163ms
+www.unisa.ac.za África do Sul (~8750Km) timed out
+www.adelaide.edu.au Austrália (~17100Km) 289ms
+www.gtelecom.gw Guiné Bissau (~3100Km) Ping request could not find host www.gtelecom.gw. Please check the name and try again.
+
+4.
+4.1.
+www.ua.pt Aveiro, Portugal (0Km) 5 10.1.0.101
+www.up.pt Porto, Portugal (~60Km) 10 [194.210.6.105]
+www.fc.ul.pt Lisboa, Portugal (~220Km) 11 [193.137.1.18]
+www.utad.pt Vila Real, Portugal (~160Km) request timed out.
+www.uevora.pt Évora, Portugal (~250Km) 11 [193.136.1.18]
+www.uam.es Madrid, Espanha (~420Km) 14 [130.206.216.2]
+www.univ-paris8.fr Paris, França (~1260Km) timed out
+web.mit.edu EUA (~5100Km) 12 [83.97.88.209]
+www.zju.edu.cn China (~7200Km) 19 [195.22.208.79]
+www.unisa.ac.za África do Sul (~8750Km) timed out
+www.adelaide.edu.au Austrália (~17100Km) timed out
+www.gtelecom.gw Guiné Bissau (~3100Km) Unable to resolve target system name www.gtelecom.gw.
+

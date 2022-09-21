@@ -1,0 +1,16 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity eqCmp8 is
+	port (a : in std_logic_vector(7 downto 0);
+			b : in std_logic_vector(7 downto 0);
+			c : out std_logic);
+end eqCmp8
+
+architecture behav of eqCmp8 is
+begin 
+
+	c <= '1' when (a = b) else '0';
+
+end behav;
+	

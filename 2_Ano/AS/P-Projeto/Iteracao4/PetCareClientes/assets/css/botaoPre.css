@@ -1,0 +1,19 @@
+ .previous {
+     text-align: center;
+     background-color: #f1f1f1;
+     color: black;
+     margin-right: 90%;
+     margin-top: 5%;
+     margin-left: 4%;
+     font-weight: 1000;
+     width: 50px;
+ }
+ 
+ .next {
+     background-color: #04AA6D;
+     color: white;
+ }
+ 
+ .round {
+     border-radius: 50%;
+ }

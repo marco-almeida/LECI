@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>PetCare&trade;</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link rel="stylesheet" href="assets/css/botaoPre.css" />
+
+</head>
+
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <a href="javascript:history.back()" class="previous round" style="font-size: 21pt;">&#8249;</a>
+        <h1>PetCare&trade;</h1>
+        <h3>Informações de pagamento</h3>
+        <div class="field half">
+            <div class="field">
+                <select name="paymentMethod" id="paymentMethod">
+                    <option value="">Método de pagamento</option>
+                    <option value="1">Multibanco</option>
+                    <option value="1">Visa</option>
+                    <option value="1">MB WAY</option>
+                    <option value="1">Paypal</option>
+                </select>
+            </div>
+            <br>
+
+            <input type="text" name="cc" id="cc" placeholder="Cartão de Crédito: " />
+            <br>
+            <input type="text" name="validade" id="validade" placeholder="Validade: " />
+            <br>
+            <input type="text" name="cvv" id="cvv" placeholder="CVV: " />
+            <br>
+
+            <div class="field half">
+                <div class="field">
+                    <select name="localization" id="localization" placeholder="Localização">
+                        <option value="">Localização</option>
+                        <option value="1">Localização do perfil</option>
+                        <option value="1">Localização atual</option>
+                        <option value="1">Adicionar Localização</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <br>
+            <h6 id="message"></h6>
+            <a class="button primary" onclick="validate()">Confirmar Pagamento</a>
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/payment.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+</body>
+
+</html>

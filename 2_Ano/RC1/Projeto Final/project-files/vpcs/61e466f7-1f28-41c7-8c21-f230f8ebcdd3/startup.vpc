@@ -1,0 +1,3 @@
+set pcname VPCS
+dhcp
+ip auto

@@ -1,0 +1,34 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+li a {
+    display: block;
+    color: rgb(66, 15, 15);
+    padding: 8px 16px;
+    text-decoration: none;
+    text-align: center;
+}
+
+li a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.active {
+    background-color: #dde0dd;
+    color: black;
+}
+
+.banner {
+    height: 600px;
+    margin: auto;
+    background-image: url('ua.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

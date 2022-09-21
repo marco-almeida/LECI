@@ -1,0 +1,15 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity nandGate is
+	port (a : in std_logic;
+			b : in std_logic;
+			c : out std_logic);
+end nandGate;
+
+architecture struct of nandGate is
+begin
+
+	ul: entity.work()
+
+end struct

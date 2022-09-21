@@ -1,0 +1,15 @@
+library ieee;
+use ieee.std_logic_vector_1164.all;
+
+entity AdderN is
+	generic (N : positive);
+	port (op0 : in std_logic_vector(N-1 downto 0);
+			op1 : in std_logic_vector(N-1 downto 0);
+			res : out std_logic_vector(N-1 downto 0));
+end AdderN;
+
+architecture v1 of AdderN is
+
+	res <= op0 + op1;
+
+end v1;

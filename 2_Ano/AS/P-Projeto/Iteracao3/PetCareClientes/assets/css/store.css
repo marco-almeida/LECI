@@ -1,0 +1,45 @@
+ button.primary,
+         .button.primary {
+             background-color: #ffffff;
+             color: #1b1f22 !important;
+             font-weight: 600;
+             width: 100%;
+            
+            
+         }
+ 
+         a {
+             text-decoration: none;
+             display: inline-block;
+              padding: 0% 6%;
+             
+           }
+           
+           a:hover {
+             background-color: #ddd;
+             color: black;
+             font-size: 200%
+        
+           }
+           
+           .previous {
+             background-color: #f1f1f1;
+             color: black;
+             margin-right: 90%;
+             margin-top:5%;
+             margin-left:4%;
+            font-weight: 1000;
+           
+           }
+           
+           .next {
+             background-color: #04AA6D;
+             color: white;
+         
+           }
+           
+           .round {
+            border-radius: 50%;
+            
+           }
+         

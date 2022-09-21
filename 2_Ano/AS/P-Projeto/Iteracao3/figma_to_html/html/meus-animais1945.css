@@ -1,0 +1,420 @@
+.meus-animais1945-container {
+  min-height: 100vh;
+}
+.meus-animais1945-meus-animais1945 {
+  width: 360px;
+  height: 800px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  max-width: 360px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.meus-animais1945-text {
+  top: 56px;
+  left: 14px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  align-self: auto;
+  font-style: normal;
+  text-align: left;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-group10000045481947 {
+  top: 110px;
+  left: 11px;
+  width: 103px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045451948 {
+  top: 0px;
+  left: 0px;
+  width: 103px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045431949 {
+  top: 0px;
+  left: 0px;
+  width: 103px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.meus-animais1945-text1 {
+  top: 80px;
+  left: 33px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-image {
+  top: 6px;
+  left: 17px;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 113px;
+}
+.meus-animais1945-image1 {
+  top: 111px;
+  left: 39px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045491954 {
+  top: 110px;
+  left: 125px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045461955 {
+  top: 0px;
+  left: 0px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045441956 {
+  top: 0px;
+  left: 0px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.meus-animais1945-text2 {
+  top: 80px;
+  left: 31px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-image2 {
+  top: 6px;
+  left: 17px;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+  border-radius: 92.5px;
+}
+.meus-animais1945-image3 {
+  top: 110px;
+  left: 39px;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045501961 {
+  top: 110px;
+  left: 240px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045471962 {
+  top: 0px;
+  left: 0px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-group10000045441963 {
+  top: 0px;
+  left: 0px;
+  width: 104px;
+  height: 144px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.meus-animais1945-text3 {
+  top: 97px;
+  left: 16px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-image4 {
+  top: 26px;
+  left: 23px;
+  width: 58px;
+  height: 58px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.meus-animais1945-group1631967 {
+  top: 731px;
+  left: 0px;
+  width: 360px;
+  height: 69px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 1);
+}
+.meus-animais1945-navlink {
+  display: contents;
+}
+.meus-animais1945-group1601969 {
+  top: 10px;
+  left: 281px;
+  width: 60px;
+  height: 41px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.meus-animais1945-image5 {
+  top: 0px;
+  left: 19px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  box-sizing: border-box;
+  object-fit: cover;
+  border-color: transparent;
+}
+.meus-animais1945-group1341972 {
+  top: 30px;
+  left: 0px;
+  width: 60px;
+  height: 11px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-text4 {
+  top: 0px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  width: 60px;
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-navlink1 {
+  display: contents;
+}
+.meus-animais1945-group1351974 {
+  top: 11px;
+  left: 209px;
+  width: 51px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.meus-animais1945-svg {
+  left: 12px;
+  width: 26;
+  height: 23;
+  position: absolute;
+}
+.meus-animais1945-text5 {
+  top: 29px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-navlink2 {
+  display: contents;
+}
+.meus-animais1945-group1371977 {
+  top: 12px;
+  left: 19px;
+  width: 91px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  text-decoration: none;
+}
+.meus-animais1945-svg1 {
+  left: 33px;
+  width: 27;
+  height: 23;
+  position: absolute;
+}
+.meus-animais1945-text6 {
+  top: 29px;
+  left: 0px;
+  color: rgba(167, 186, 197, 1);
+  height: auto;
+  position: absolute;
+  font-size: 13px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-group1361980 {
+  top: 12px;
+  left: 131px;
+  width: 57px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+}
+.meus-animais1945-text7 {
+  top: 29px;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 11px;
+  align-self: auto;
+  font-style: normal;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 700px;
+  line-height: 11px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.meus-animais1945-svg2 {
+  left: 14px;
+  width: 23;
+  height: 23;
+  position: absolute;
+}
