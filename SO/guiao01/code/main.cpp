@@ -1,106 +1,148 @@
 /*
  */
 
+#include <errno.h>
 #include <inttypes.h>
+#include <libgen.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <libgen.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <string.h>
 #include <time.h>
-#include <errno.h>
-#include <stdarg.h>
+#include <unistd.h>
 
-#include <map>
-#include <string>
 #include <iostream>
+#include <map>
 #include <stdexcept>
+#include <string>
 
 #include "ull.h"
 
 /* ******************************************** */
 
-static void printMenu(void)
-{
-    printf("\n"
-           "+===============================================+\n"
-           "|            Manipulation functions             |\n"
-           "+===============================================+\n"
-           "| 0 --- quit                                    |\n"
-           "| 1 --- reset the list of students              |\n"
-           "| 2 --- insert new student                      |\n"
-           "| 3 --- get student's name, given the number    |\n"
-           "| 4 --- remove student, through number          |\n"
-           "| 5 --- print list in ascending order of number |\n"
-           "| 6 --- load list of students from file         |\n"
-           "+===============================================+\n");
+static void printMenu(void) {
+    printf(
+        "\n"
+        "+===============================================+\n"
+        "|            Manipulation functions             |\n"
+        "+===============================================+\n"
+        "| 0 --- quit                                    |\n"
+        "| 1 --- reset the list of students              |\n"
+        "| 2 --- insert new student                      |\n"
+        "| 3 --- get student's name, given the number    |\n"
+        "| 4 --- remove student, through number          |\n"
+        "| 5 --- print list in ascending order of number |\n"
+        "| 6 --- load list of students from file         |\n"
+        "+===============================================+\n");
 }
 
 /* ******************************************** */
 
-static void printUsage(const char *cmd_name)
-{
-    printf("Sinopsis: %s [OPTIONS]\n"
-           "  OPTIONS:\n"
-           "  -i «fname»  --- file containing list of student registers\n"
-           "  -n          --- operate in non-interactive mode (dfl: interactive)\n"
-           "  -h          --- print this help\n", cmd_name);
+static void printUsage(const char *cmd_name) {
+    printf(
+        "Sinopsis: %s [OPTIONS]\n"
+        "  OPTIONS:\n"
+        "  -i «fname»  --- file containing list of student registers\n"
+        "  -n          --- operate in non-interactive mode (dfl: interactive)\n"
+        "  -h          --- print this help\n",
+        cmd_name);
 }
 
 /* ******************************************** */
 /* menu handling functions */
 /* ******************************************** */
 
+/* ******************************************** */
+
+void menuChoiceQuit() { exit(EXIT_SUCCESS); }
 
 /* ******************************************** */
 
-void menuChoiceQuit()
-{
-    exit(EXIT_SUCCESS);
+void menuChoiceReset() { ull::reset(); }
+
+/* ******************************************** */
+
+char *inputString(FILE *fp, size_t size) {
+    char *str;
+    int ch;
+    size_t len = 0;
+    str = (char *)realloc(NULL, sizeof(*str) * size);  // size is start size
+    if (!str) return str;
+    while (EOF != (ch = fgetc(fp)) && ch != '\n') {
+        str[len++] = ch;
+        if (len == size) {
+            str = (char *)realloc(str, sizeof(*str) * (size += 16));
+            if (!str) return str;
+        }
+    }
+    str[len++] = '\0';
+
+    return (char *)realloc(str, sizeof(*str) * len);
+}
+
+uint32_t getUint32_t() {
+    uint32_t nmec;
+    char *line = NULL;
+    size_t n = 0;
+    if (getline(&line, &n, stdin) == -1) {
+        perror("Fail getting line of input (for nmec)");
+        exit(EXIT_FAILURE);
+    }
+
+    /* validate the input */
+    int n1 = 0, n2 = 0;
+    sscanf(line, "%u%n %*c%n", &nmec, &n1, &n2);
+    if (n1 == 0 or n2 != 0) {
+        fprintf(stderr, "Wrong input format: %s", line);
+        delete line;
+        exit(EXIT_FAILURE);
+    }
+    return nmec;
+}
+void menuChoiceInsert() {
+    printf("Nmec: ");
+    uint32_t nmec = getUint32_t();
+
+    char *name;
+    printf("Name : ");
+    name = inputString(stdin, 10);
+
+    ull::insert(nmec, name);
 }
 
 /* ******************************************** */
 
-void menuChoiceReset()
-{
+void menuChoiceQuery() {
+    printf("Student's Nmec: ");
+    uint32_t nmec = getUint32_t();
+    const char *res = ull::query(nmec);
+    if (strcmp(res, "") != 0) {
+        printf("Student with Nmec %u is named %s", nmec, res);
+    }
 }
 
 /* ******************************************** */
 
-void menuChoiceInsert()
-{
+void menuChoiceRemove() {
+    printf("Student's Nmec: ");
+    uint32_t nmec = getUint32_t();
+
+    ull::remove(nmec);
 }
 
 /* ******************************************** */
 
-void menuChoiceQuery()
-{
-}
+void menuChoicePrint() { ull::print(); }
 
 /* ******************************************** */
 
-void menuChoiceRemove()
-{
-}
+void menuChoiceLoad() {}
 
 /* ******************************************** */
 
-void menuChoicePrint()
-{
-}
-
-/* ******************************************** */
-
-void menuChoiceLoad()
-{
-}
-
-/* ******************************************** */
-
-void getChoiceAndCallHandler()
-{
+void getChoiceAndCallHandler() {
     /* ask for command */
     printf("Your command: ");
     uint32_t cmd;
@@ -120,8 +162,7 @@ void getChoiceAndCallHandler()
         return;
     }
 
-    switch(cmd) 
-    {
+    switch (cmd) {
         case 0:
             menuChoiceQuit();
             break;
@@ -151,23 +192,20 @@ void getChoiceAndCallHandler()
 
 /* ******************************************** */
 /* The main function */
-int main(int argc, char *argv[])
-{
-    const char *progName = basename(argv[0]); // must be called before dirname!
+int main(int argc, char *argv[]) {
+    const char *progName = basename(argv[0]);  // must be called before dirname!
     bool interactiveMode = true;
 
     /* process command line options */
     int opt;
-    while ((opt = getopt(argc, argv, "i:nh")) != -1)
-    {
-        switch (opt)
-        {
-            case 'h':          /* help mode */
+    while ((opt = getopt(argc, argv, "i:nh")) != -1) {
+        switch (opt) {
+            case 'h': /* help mode */
             {
                 printUsage(progName);
                 return EXIT_SUCCESS;
             }
-            case 'i':   /* load from file */
+            case 'i': /* load from file */
             {
                 // ACP: ignored for now
                 break;
@@ -177,8 +215,7 @@ int main(int argc, char *argv[])
                 interactiveMode = false;
                 break;
             }
-            default:
-            {
+            default: {
                 fprintf(stderr, "[\e[31;2m%s\e[0m]: Wrong option.\n", progName);
                 printUsage(progName);
                 return EXIT_FAILURE;
@@ -187,8 +224,7 @@ int main(int argc, char *argv[])
     }
 
     /* check non existence of mandatory argument */
-    if ((argc - optind) != 0)
-    {
+    if ((argc - optind) != 0) {
         fprintf(stderr, "%s: Wrong number of mandatory arguments.\n", progName);
         printUsage(progName);
         return EXIT_FAILURE;
@@ -196,12 +232,11 @@ int main(int argc, char *argv[])
 
     /* do the job */
     if (interactiveMode) {
-        while (true)
-        {
+        while (true) {
             printMenu();
             getChoiceAndCallHandler();
         }
     }
 
     return EXIT_SUCCESS;
-}     /* end of main */
+} /* end of main */
