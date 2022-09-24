@@ -8,8 +8,8 @@
 #include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 namespace ull {
@@ -31,6 +31,9 @@ static Node *head = NULL;
 
 /* ************************************************* */
 void delete_elements(Node *ptr) {
+    if (!head) {
+        return;
+    }
     if (ptr->next != NULL) {
         delete_elements(ptr->next);
         delete ptr;
@@ -42,33 +45,60 @@ void reset() { delete_elements(head); }
 
 /* ************************************************* */
 
-void load(const char *fname) {}
+void load(const char *fname) {
+    FILE *ptr = fopen(fname, "r");
+    if (ptr == NULL) {
+        fprintf(stderr, "File %s not found!", fname);
+        return;
+    }
+
+    char line[200];
+    while (fgets(line, 200, ptr) != NULL) {
+        char *name = new char[100];  // tem que ter new
+        uint32_t nmec;
+        const char *token = strtok(line, ";");
+        // file must have format <name;nmec>
+        strcpy(name, token);
+        token = strtok(NULL, ";");
+        nmec = strtoul(token, NULL, 0);
+        insert(nmec, name);
+    }
+    fclose(ptr);
+}
 
 /* ************************************************* */
 
 void print() {
     for (Node *ptr = head; ptr != NULL; ptr = ptr->next) {
-        printf("%d %s\n", ptr->reg.nmec, ptr->reg.name);
+        printf("%u %s\n", ptr->reg.nmec, ptr->reg.name);
     }
 }
 
 /* ************************************************* */
 
 void insert(uint32_t nmec, const char *name) {
-    if (head == NULL) {
-        head = new Node();
-        head->next = NULL;
-        head->reg.name = name;
-        head->reg.nmec = nmec;
-    } else {
-        Node *ptr = head;
-        for (; ptr->next != NULL; ptr = ptr->next) {
+    Node *now = head;
+    Node *previous = NULL;
+
+    for (; now != NULL; previous = now, now = now->next) {
+        if (nmec == now->reg.nmec) {
+            fprintf(stderr, "Student with nmec %u already exists!\n", nmec);
+            return;
         }
-        Node *novo = new Node();
-        ptr->next = novo;
-        novo->reg.name = name;
-        novo->reg.nmec = nmec;
-        novo->next = NULL;
+        if (nmec < now->reg.nmec) {
+            break;
+        }
+    }
+    Node *novo = new Node();
+    novo->reg.name = name;
+    novo->reg.nmec = nmec;
+
+    if (!previous) {
+        novo->next = head;
+        head = novo;
+    } else {
+        previous->next = novo;
+        novo->next = now;
     }
 }
 
@@ -79,24 +109,28 @@ const char *query(uint32_t nmec) {
         if (ptr->reg.nmec == nmec) {
             return ptr->reg.name;
         }
+        if (ptr->reg.nmec > nmec) {
+            break;
+        }
     }
     fprintf(stderr, "Student %u does not exist in the database!\n", nmec);
-    return "";
+    return NULL;
 }
 
 /* ************************************************* */
 
 void remove(uint32_t nmec) {
     const char *name = query(nmec);
-    if (strcmp(name, "") == 0) {
+    if (!name) {
         return;
     }
 
-    char buffer[75];
-    snprintf(buffer, sizeof buffer, "Student %d %s removed successfully\n", nmec, name);
+    char buffer[100];
+    snprintf(buffer, sizeof buffer, "Student %d %s removed successfully\n",
+             nmec, name);
 
     if (head->reg.nmec == nmec) {
-        Node* ptr = head;
+        Node *ptr = head;
         delete head;
         head = ptr->next;
         printf("%s", buffer);
@@ -104,7 +138,8 @@ void remove(uint32_t nmec) {
     }
 
     Node *nextptr = head->next;
-    for (Node *ptr = head; nextptr != NULL; ptr = ptr->next, nextptr = nextptr->next) {
+    for (Node *ptr = head; nextptr != NULL;
+         ptr = ptr->next, nextptr = nextptr->next) {
         if (nextptr->reg.nmec == nmec) {
             ptr->next = nextptr->next;
             delete nextptr;
@@ -112,6 +147,15 @@ void remove(uint32_t nmec) {
             return;
         }
     }
+}
+
+void store(const char *fileName) {
+    FILE *out_file = fopen(fileName, "w");
+
+    for (Node *ptr = head; ptr != NULL; ptr = ptr->next) {
+        fprintf(out_file, "%s;%u\n", ptr->reg.name, ptr->reg.nmec);
+    }
+    fclose(out_file);  
 }
 
 /* ************************************************* */

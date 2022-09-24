@@ -21,49 +21,6 @@
 #include "ull.h"
 
 /* ******************************************** */
-
-static void printMenu(void) {
-    printf(
-        "\n"
-        "+===============================================+\n"
-        "|            Manipulation functions             |\n"
-        "+===============================================+\n"
-        "| 0 --- quit                                    |\n"
-        "| 1 --- reset the list of students              |\n"
-        "| 2 --- insert new student                      |\n"
-        "| 3 --- get student's name, given the number    |\n"
-        "| 4 --- remove student, through number          |\n"
-        "| 5 --- print list in ascending order of number |\n"
-        "| 6 --- load list of students from file         |\n"
-        "+===============================================+\n");
-}
-
-/* ******************************************** */
-
-static void printUsage(const char *cmd_name) {
-    printf(
-        "Sinopsis: %s [OPTIONS]\n"
-        "  OPTIONS:\n"
-        "  -i «fname»  --- file containing list of student registers\n"
-        "  -n          --- operate in non-interactive mode (dfl: interactive)\n"
-        "  -h          --- print this help\n",
-        cmd_name);
-}
-
-/* ******************************************** */
-/* menu handling functions */
-/* ******************************************** */
-
-/* ******************************************** */
-
-void menuChoiceQuit() { exit(EXIT_SUCCESS); }
-
-/* ******************************************** */
-
-void menuChoiceReset() { ull::reset(); }
-
-/* ******************************************** */
-
 char *inputString(FILE *fp, size_t size) {
     char *str;
     int ch;
@@ -101,6 +58,50 @@ uint32_t getUint32_t() {
     }
     return nmec;
 }
+
+static void printMenu(void) {
+    printf(
+        "\n"
+        "+===============================================+\n"
+        "|            Manipulation functions             |\n"
+        "+===============================================+\n"
+        "| 0 --- quit                                    |\n"
+        "| 1 --- reset the list of students              |\n"
+        "| 2 --- insert new student                      |\n"
+        "| 3 --- get student's name, given the number    |\n"
+        "| 4 --- remove student, through number          |\n"
+        "| 5 --- print list in ascending order of number |\n"
+        "| 6 --- load list of students from file         |\n"
+        "| 7 --- store list in file                      |\n"
+        "+===============================================+\n");
+}
+
+/* ******************************************** */
+
+static void printUsage(const char *cmd_name) {
+    printf(
+        "Sinopsis: %s [OPTIONS]\n"
+        "  OPTIONS:\n"
+        "  -i «fname»  --- file containing list of student registers\n"
+        "  -n          --- operate in non-interactive mode (dfl: interactive)\n"
+        "  -h          --- print this help\n",
+        cmd_name);
+}
+
+/* ******************************************** */
+/* menu handling functions */
+/* ******************************************** */
+
+/* ******************************************** */
+
+void menuChoiceQuit() { exit(EXIT_SUCCESS); }
+
+/* ******************************************** */
+
+void menuChoiceReset() { ull::reset(); }
+
+/* ******************************************** */
+
 void menuChoiceInsert() {
     printf("Nmec: ");
     uint32_t nmec = getUint32_t();
@@ -118,7 +119,7 @@ void menuChoiceQuery() {
     printf("Student's Nmec: ");
     uint32_t nmec = getUint32_t();
     const char *res = ull::query(nmec);
-    if (strcmp(res, "") != 0) {
+    if (res) {
         printf("Student with Nmec %u is named %s", nmec, res);
     }
 }
@@ -138,7 +139,25 @@ void menuChoicePrint() { ull::print(); }
 
 /* ******************************************** */
 
-void menuChoiceLoad() {}
+void menuChoiceLoad() {
+    printf("File name (must be in current directory): ");
+    char *fileName;
+    fileName = inputString(stdin, 10);
+    strcat(fileName,".txt");
+
+    ull::load(fileName);
+}
+
+/* ******************************************** */
+
+void menuChoiceStore() {
+    printf("File name: ");
+    char *fileName;
+    fileName = inputString(stdin, 10);
+    strcat(fileName,".txt");
+
+    ull::store(fileName);
+}
 
 /* ******************************************** */
 
@@ -183,6 +202,9 @@ void getChoiceAndCallHandler() {
             break;
         case 6:
             menuChoiceLoad();
+            break;
+        case 7:
+            menuChoiceStore();
             break;
         default:
             fprintf(stderr, "Wrong action required (%u)\n", cmd);
