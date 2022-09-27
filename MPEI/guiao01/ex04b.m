@@ -1,7 +1,5 @@
 chancesZeroAVinte = [];
 for a = 0:20
-   chancesZeroAVinte(a+1) = probCalculator(0.5, a, 10, 1e5);
-
+   chancesZeroAVinte(a+1) = probCalculator(0.5, 20, a, 1e5);
 end
-stem(0:20, chancesZeroAVinte);
-disp(sum(chancesZeroAVinte))
+bar(0:20, chancesZeroAVinte);
