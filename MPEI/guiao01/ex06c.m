@@ -11,4 +11,4 @@ for k = 0:5
     chances = smpl == k; % ver se as somas de cada elemento são == k
     res(k+1) = sum(chances) / N
 end
-histogram(res, 6)
+bar(0:5, res)
