@@ -9,7 +9,7 @@
 int main(void)
 {
     printf("I'm the child: PID = %d, PPID = %d\n", getpid(), getppid());
-    usleep(0);
+    usleep(100000);
     printf("I'm the child: PID = %d, PPID = %d\n", getpid(), getppid());
 
    return EXIT_SUCCESS;
