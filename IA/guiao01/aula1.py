@@ -135,17 +135,15 @@ def juntar(l1, l2):
 
 #Exercicio 3.4
 def menor(lista):
-	# ta bem, mas somehow callcount nao dá o que querem
-	first = lista[0]
-	rest = lista[1:]
+	if(lista == []):
+		return None
 
-	if rest:
-		elem = 1
-		if first >= rest[0]:
-			elem = 0
-		lista.pop(elem)
-		return menor(lista)
-	return first
+	m = menor(lista[1:])
+
+	if(len(lista) == 1):
+		return lista[0]
+
+	return m if m < lista[0] else lista[0]
 
 #Exercicio 3.6
 def max_min(lista):

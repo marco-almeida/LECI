@@ -32,9 +32,21 @@ def ordem(lista, f):
 
 #Exercicio 4.10
 def filtrar_ordem(lista, f):
-    pass
+    if not lista:
+        return 0, []
+
+    s1, s2 = filtrar_ordem(lista[1:], f)
+
+    if f(lista[0], s1):
+        return lista[0], s2
+    
+    return s1, [lista[0]] + s2
 
 #Exercicio 5.2
 def ordenar_seleccao(lista, ordem):
-    pass
-
+    if len(lista) <= 1:
+        return lista
+    else:
+        return ordenar_seleccao([e for e in lista[1:] if ordem(e, lista[0])], ordem) + [lista[0]] +\
+            ordenar_seleccao([e for e in lista[1:] if not ordem(e, lista[0])], ordem)
+    
