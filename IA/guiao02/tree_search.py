@@ -65,6 +65,7 @@ class SearchNode:
     def __init__(self,state,parent): 
         self.state = state
         self.parent = parent
+        self.depth = 0 if parent == None else parent.depth + 1 # ex 2
     def __str__(self):
         return "no(" + str(self.state) + "," + str(self.parent) + ")"
     def __repr__(self):
@@ -80,6 +81,14 @@ class SearchTree:
         self.open_nodes = [root]
         self.strategy = strategy
         self.solution = None
+      
+    @property # ex 3
+    def length(self):
+        return self.solution.depth
+
+    @property
+    def avg_branching(self):
+        return (self.terminals + self.non_terminals - 1) / self.non_terminals
 
     # obter o caminho (sequencia de estados) da raiz ate um no
     def get_path(self,node):
@@ -90,18 +99,23 @@ class SearchTree:
         return(path)
 
     # procurar a solucao
-    def search(self):
-        while self.open_nodes != []:
+    def search(self, limit = None):
+        self.non_terminals = 0 # ex 5
+        while self.open_nodes != []: # open_nodes sao sitios que faltam ser visitados?
             node = self.open_nodes.pop(0)
-            if self.problem.goal_test(node.state):
+            if self.problem.goal_test(node.state): # se ja chegamos ao goal
                 self.solution = node
+                self.terminals = len(self.open_nodes) + 1 # ex 5
                 return self.get_path(node)
-            lnewnodes = []
-            for a in self.problem.domain.actions(node.state):
-                newstate = self.problem.domain.result(node.state,a)
-                newnode = SearchNode(newstate,node)
-                lnewnodes.append(newnode)
-            self.add_to_open(lnewnodes)
+            self.non_terminals += 1 # ex 5
+            if limit == None or node.depth < limit: # ex 4
+                lnewnodes = [] # se ainda nao chegamos ao goal
+                for a in self.problem.domain.actions(node.state): # por cada açao possivel neste node
+                    newstate = self.problem.domain.result(node.state,a) # ver o resultado de cada açao possivel
+                    if newstate not in self.get_path(node): # ex 1 -- se resultado not in path...
+                        newnode = SearchNode(newstate,node) 
+                        lnewnodes.append(newnode)
+                self.add_to_open(lnewnodes)
         return None
 
     # juntar novos nos a lista de nos abertos de acordo com a estrategia
