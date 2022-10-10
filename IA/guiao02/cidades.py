@@ -28,8 +28,11 @@ class Cidades(SearchDomain):
         (C1,C2) = action
         if C1==city:
             return C2
-    def cost(self, city, action):
-        pass
+    def cost(self, city, action): # ex 7
+        for con in cidades_portugal.connections:
+            if action[0] in con and action[1] in con:
+                return con[2]
+        return None
     def heuristic(self, city, goal_city):
         pass
     def satisfies(self, city, goal_city):

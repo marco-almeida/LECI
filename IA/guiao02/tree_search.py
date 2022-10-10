@@ -37,7 +37,8 @@ class SearchDomain(ABC):
     # custo de uma accao num estado
     @abstractmethod
     def cost(self, state, action):
-        pass
+        from cidades import Cidades # ex 8, tem que ser aqui, otherwise dá circular import error
+        return Cidades.cost(self, state,action)
 
     # custo estimado de chegar de um estado a outro
     @abstractmethod
@@ -66,8 +67,9 @@ class SearchNode:
         self.state = state
         self.parent = parent
         self.depth = 0 if parent == None else parent.depth + 1 # ex 2
+        self.cost = 0 if parent == None else parent.cost + SearchDomain.cost(self, self.state, (self.state, self.parent.state)) # ex 8
     def __str__(self):
-        return "no(" + str(self.state) + "," + str(self.parent) + ")"
+        return "no(" + str(self.state) + "," + str(self.depth) + "," + str(self.parent)  +")"
     def __repr__(self):
         return str(self)
 
@@ -86,9 +88,13 @@ class SearchTree:
     def length(self):
         return self.solution.depth
 
-    @property
+    @property # ex 6
     def avg_branching(self):
         return (self.terminals + self.non_terminals - 1) / self.non_terminals
+
+    @property # ex 9
+    def cost(self):
+        return self.solution.cost
 
     # obter o caminho (sequencia de estados) da raiz ate um no
     def get_path(self,node):
@@ -109,7 +115,7 @@ class SearchTree:
                 return self.get_path(node)
             self.non_terminals += 1 # ex 5
             if limit == None or node.depth < limit: # ex 4
-                lnewnodes = [] # se ainda nao chegamos ao goal
+                lnewnodes = [] 
                 for a in self.problem.domain.actions(node.state): # por cada açao possivel neste node
                     newstate = self.problem.domain.result(node.state,a) # ver o resultado de cada açao possivel
                     if newstate not in self.get_path(node): # ex 1 -- se resultado not in path...
