@@ -43,7 +43,8 @@ class SearchDomain(ABC):
     # custo estimado de chegar de um estado a outro
     @abstractmethod
     def heuristic(self, state, goal):
-        pass
+        from cidades import Cidades # ex 8, tem que ser aqui, otherwise dá circular import error
+        return Cidades.heuristic(self, state,goal)
 
     # test if the given "goal" is satisfied in "state"
     @abstractmethod
@@ -63,11 +64,12 @@ class SearchProblem:
 
 # Nos de uma arvore de pesquisa
 class SearchNode:
-    def __init__(self,state,parent): 
+    def __init__(self,state,parent, heuristic = 0): # ver se ha outra forma em vez de estar a modificar construtor
         self.state = state
         self.parent = parent
         self.depth = 0 if parent == None else parent.depth + 1 # ex 2
         self.cost = 0 if parent == None else parent.cost + SearchDomain.cost(self, self.state, (self.state, self.parent.state)) # ex 8
+        self.heuristic = heuristic # ex 12
     def __str__(self):
         return "no(" + str(self.state) + "," + str(self.depth) + "," + str(self.parent)  +")"
     def __repr__(self):
@@ -118,8 +120,8 @@ class SearchTree:
                 lnewnodes = [] 
                 for a in self.problem.domain.actions(node.state): # por cada açao possivel neste node
                     newstate = self.problem.domain.result(node.state,a) # ver o resultado de cada açao possivel
-                    if newstate not in self.get_path(node): # ex 1 -- se resultado not in path...
-                        newnode = SearchNode(newstate,node) 
+                    if newstate not in self.get_path(node): # ex 1 -- se cidade for nova...
+                        newnode = SearchNode(newstate,node, SearchDomain.heuristic(self, newstate, self.problem.goal)) # ex 12 -- add 3o argumento no construtor
                         lnewnodes.append(newnode)
                 self.add_to_open(lnewnodes)
         return None
@@ -130,6 +132,7 @@ class SearchTree:
             self.open_nodes.extend(lnewnodes)
         elif self.strategy == 'depth':
             self.open_nodes[:0] = lnewnodes
-        elif self.strategy == 'uniform':
-            pass
+        elif self.strategy == 'uniform' or self.strategy == 'greedy': # ex 10 / 13
+            self.open_nodes.extend(lnewnodes)
+            self.open_nodes.sort(key = lambda x : x.cost) # porque tem que se ver o de menor custo sempre
 
