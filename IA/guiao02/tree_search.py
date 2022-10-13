@@ -85,7 +85,8 @@ class SearchTree:
         self.open_nodes = [root]
         self.strategy = strategy
         self.solution = None
-        self.highest_cost_nodes = []
+        self.highest_cost_nodes = [root]
+        self.average_depth = 0
       
     @property # ex 3
     def length(self):
@@ -112,17 +113,10 @@ class SearchTree:
         self.non_terminals = 0 # ex 5
         while self.open_nodes != []: # open_nodes sao sitios que faltam ser visitados
             node = self.open_nodes.pop(0)
-            # if len(self.highest_cost_nodes) == 0: # ex 15
-            #     self.highest_cost_nodes.append(node)
-            # else:
-            #     if node.cost == self.highest_cost_nodes[0]:
-            #         self.highest_cost_nodes.append(node.state)
-            #     if node.cost > self.highest_cost_nodes[0].cost: SearchNode(newstate,node, SearchDomain.heuristic(self, newstate, self.problem.goal))
-            #         self.highest_cost_nodes.clear()
-            #         self.highest_cost_nodes.append(node.state)
             if self.problem.goal_test(node.state): # se ja chegamos ao goal
                 self.solution = node
                 self.terminals = len(self.open_nodes) + 1 # ex 5
+                self.average_depth /= self.terminals + self.non_terminals # ex 16
                 return self.get_path(node)
             self.non_terminals += 1 # ex 5
             if limit == None or node.depth < limit: # ex 4
@@ -132,6 +126,11 @@ class SearchTree:
                     if newstate not in self.get_path(node): # ex 1 -- se cidade for nova...
                         newnode = SearchNode(newstate,node, SearchDomain.heuristic(self, newstate, self.problem.goal)) # ex 12 -- add 3o argumento no construtor
                         lnewnodes.append(newnode)
+                        self.average_depth += newnode.depth # ex 16
+                        if newnode.cost == self.highest_cost_nodes[0].cost: # ex 15
+                            self.highest_cost_nodes.append(newnode)
+                        if newnode.cost > self.highest_cost_nodes[0].cost:
+                            self.highest_cost_nodes = [newnode]
                 self.add_to_open(lnewnodes)
         return None
 
