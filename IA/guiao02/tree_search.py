@@ -85,6 +85,7 @@ class SearchTree:
         self.open_nodes = [root]
         self.strategy = strategy
         self.solution = None
+        self.highest_cost_nodes = []
       
     @property # ex 3
     def length(self):
@@ -109,8 +110,16 @@ class SearchTree:
     # procurar a solucao
     def search(self, limit = None):
         self.non_terminals = 0 # ex 5
-        while self.open_nodes != []: # open_nodes sao sitios que faltam ser visitados?
+        while self.open_nodes != []: # open_nodes sao sitios que faltam ser visitados
             node = self.open_nodes.pop(0)
+            # if len(self.highest_cost_nodes) == 0: # ex 15
+            #     self.highest_cost_nodes.append(node)
+            # else:
+            #     if node.cost == self.highest_cost_nodes[0]:
+            #         self.highest_cost_nodes.append(node.state)
+            #     if node.cost > self.highest_cost_nodes[0].cost: SearchNode(newstate,node, SearchDomain.heuristic(self, newstate, self.problem.goal))
+            #         self.highest_cost_nodes.clear()
+            #         self.highest_cost_nodes.append(node.state)
             if self.problem.goal_test(node.state): # se ja chegamos ao goal
                 self.solution = node
                 self.terminals = len(self.open_nodes) + 1 # ex 5
@@ -132,7 +141,12 @@ class SearchTree:
             self.open_nodes.extend(lnewnodes)
         elif self.strategy == 'depth':
             self.open_nodes[:0] = lnewnodes
-        elif self.strategy == 'uniform' or self.strategy == 'greedy': # ex 10 / 13
+        elif self.strategy == 'uniform': # ex 10
             self.open_nodes.extend(lnewnodes)
             self.open_nodes.sort(key = lambda x : x.cost) # porque tem que se ver o de menor custo sempre
-
+        elif self.strategy == 'greedy': # ex 13
+            self.open_nodes.extend(lnewnodes)
+            self.open_nodes.sort(key = lambda x : x.heuristic) # porque tem que se ver o de menor custo sempre
+        elif self.strategy == 'a*': # ex 14
+            self.open_nodes.extend(lnewnodes)
+            self.open_nodes.sort(key = lambda x : x.heuristic + x.cost) # porque tem que se ver o de menor custo sempre

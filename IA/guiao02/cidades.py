@@ -30,6 +30,7 @@ class Cidades(SearchDomain):
         if C1==city:
             return C2
     def cost(self, city, action): # ex 7
+        assert city == action[0]
         for con in cidades_portugal.connections:
             if action[0] in con and action[1] in con:
                 return con[2]
