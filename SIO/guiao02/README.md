@@ -140,7 +140,7 @@ We can observe what is loaded by looking at the browser console, and the server 
 
 The following snippet can be used to simulate different requests from within Javascript.
 
-```html
+```js
     $.ajax({
         url: 'http://external:8000/smile.jpg',
         type: 'GET',
