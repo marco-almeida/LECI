@@ -20,3 +20,34 @@ Assim que dermos decrypt, vao aparecer os dados iniciais (encoded em binario).
 ## File decryption
 
 Para dar decrypt é preciso a key e é preciso o iv/nonce acho eu
+
+## Cipher Modes
+
+### Initializing Vector
+
+- What length should the IV be?
+
+        16B
+- For each cipher mode, what is the impact of repeating the IV, while changing the Key?
+- For each cipher mode, what is the impact of repeating the Key, while changing the IV?
+
+### Patterns
+
+Nao ha nenhum .bmp file mas isto ta nos slides
+
+- What do you conclude from the experiment?
+
+        Different cipher modes have different results
+
+- Can we have an insecure AES cryptogram?
+
+        acho que sim
+
+### Cryptogram corruption
+
+### Padding
+
+- Is padding required for all ciphers modes?
+
+        CTR, OFB, CFB, GCM nao precisam. ECB e CBC precisam
+- What is the impact of padding when selecting the cryptographic primitive?
