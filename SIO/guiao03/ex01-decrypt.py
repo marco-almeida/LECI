@@ -39,7 +39,7 @@ if ENCRYPTION_ALGORITHM not in ALGORITHMS:
 
 
 if ENCRYPTION_ALGORITHM == "AES":
-    cipher = Cipher(algorithms.AES(key), modes.CBC(iv_nonce))
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv_nonce)) # padding required with cbc
     decryptor = cipher.decryptor()
     data_to_unpad = decryptor.update(padded_data)
     

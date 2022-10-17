@@ -47,7 +47,7 @@ f.write(key)
 f.close()
 
 if ENCRYPTION_ALGORITHM == "AES":
-    # aes precisa de padding de dados
+    # aes precisa de padding de dados no modo cbc e ecb
     padder = padding.PKCS7(128).padder()
     # dar encode numa variavel é tipo b"string"
     padded_data = padder.update(plain_text)

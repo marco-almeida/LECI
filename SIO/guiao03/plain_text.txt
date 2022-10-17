@@ -1,0 +1,3 @@
+primeira linha do texto. Agora vou meter um newline
+segunda linha, o tamanho do conteudo convem nao ser multiplo do block size.
+terceira linha. Isto tem 172 bytes acho eu

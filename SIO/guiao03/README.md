@@ -25,6 +25,8 @@ Para dar decrypt é preciso a key e é preciso o iv/nonce acho eu
 
 ### Initializing Vector
 
+falta fazer a partir deste como deve ser, mais vale fazer logo todas as ciphers de uma vez em vez de tar a pedir, e pa manter o iv, comenta-se o gerador no encrypt.py
+
 - What length should the IV be?
 
         16B
@@ -33,7 +35,7 @@ Para dar decrypt é preciso a key e é preciso o iv/nonce acho eu
 
 ### Patterns
 
-Nao ha nenhum .bmp file mas isto ta nos slides
+da mt trabalho
 
 - What do you conclude from the experiment?
 
@@ -41,9 +43,11 @@ Nao ha nenhum .bmp file mas isto ta nos slides
 
 - Can we have an insecure AES cryptogram?
 
-        acho que sim
+        acho que sim, ecb deixa padroes nas imagens e cbc já é mais complexo/random
 
 ### Cryptogram corruption
+
+                Depende mt do cipher mode. Uma, se corromper um bloco, todos os blocos para a frente ficam corrompidos uma vez que dependem da decifraçao do bloco anterior. Outro, se corromper um bloco, fica so esse bloco corrompido e os outros blocos sao decifrados bem, desde que sao independentes.
 
 ### Padding
 
@@ -51,3 +55,5 @@ Nao ha nenhum .bmp file mas isto ta nos slides
 
         CTR, OFB, CFB, GCM nao precisam. ECB e CBC precisam
 - What is the impact of padding when selecting the cryptographic primitive?
+
+        num sei
