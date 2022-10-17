@@ -2,9 +2,9 @@ import sys
 import os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
+import base64
 
-
-usage = "python3 ex01-encrypt-decrypt.py <name of file to encrypt> <name of file to store the cryptogram> <encryption algorithm>"
+usage = "python3 ex01-encrypt.py <name of file to encrypt> <name of file to store the cryptogram> <encryption algorithm>"
 
 if len(sys.argv) != 4:
     print("Error. Execute file like so: " + usage)
@@ -25,7 +25,7 @@ if ENCRYPTION_ALGORITHM not in ALGORITHMS:
 
 key = input("Key (Press enter to randomize key): ")
 
-filIn = open(FILE_TO_ENCRYPT, "r")
+filIn = open(FILE_TO_ENCRYPT, "rb")
 plain_text = filIn.read()
 filIn.close()
 
@@ -37,45 +37,31 @@ else:  # AES aceita keys de tamanho 128, 192, ou 256 bits. ChaCha20 aceita apena
     padded_key += padder_key.finalize()
     key = padded_key
 
+iv_nonce = os.urandom(16)
+f = open("iv_nonce.txt", "wb")
+f.write(iv_nonce)
+f.close()
+
+f = open("key.txt", "wb")
+f.write(key)
+f.close()
+
 if ENCRYPTION_ALGORITHM == "AES":
     # aes precisa de padding de dados
     padder = padding.PKCS7(128).padder()
     # dar encode numa variavel é tipo b"string"
-    padded_data = padder.update(plain_text.encode())
+    padded_data = padder.update(plain_text)
     padded_data += padder.finalize()    # data with block size as multiple of 128bits
 
-    iv = os.urandom(16)
-    cipher = Cipher(algorithms.AES(key), modes.CBC(iv))
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv_nonce))
     encryptor = cipher.encryptor()
     ct = encryptor.update(padded_data) + encryptor.finalize()
 else:   # ChaCha20 nao é block cipher, entao nao precisa de padding nos dados.
-    nonce = os.urandom(16)
-    algorithm = algorithms.ChaCha20(key, nonce)
+    algorithm = algorithms.ChaCha20(key, iv_nonce)
     cipher = Cipher(algorithm, mode=None)
     encryptor = cipher.encryptor()
-    ct = encryptor.update(plain_text.encode())
+    ct = encryptor.update(plain_text)
 
 f = open(FILE_TO_STORE_ENCRYPTION + ".txt", "wb")
 f.write(ct)
-f.close()
-
-# para dar decrypt é preciso a key como é preciso o iv/nonce acho eu, por isso faço isso ja neste file pa dar menos trabalho
-
-op = input("Do you wish to decrypt the file? (y/n) ").lower()
-if op == 'y':
-    FILOUT = input("Name of file to store decrypted results: ")
-else:
-    sys.exit()
-
-decryptor = cipher.decryptor()
-if ENCRYPTION_ALGORITHM == "AES":
-    data_to_unpad = decryptor.update(ct) + decryptor.finalize()
-    
-    unpadder = padding.PKCS7(128).unpadder()
-    data = unpadder.update(data_to_unpad) + unpadder.finalize()
-else:
-    data = decryptor.update(ct)
-
-f = open(FILOUT + ".txt", "w")
-f.write(data.decode())
 f.close()
