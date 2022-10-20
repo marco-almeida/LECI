@@ -62,6 +62,7 @@ def test_exercicio4(sn_net):
     assert sorted(sn_net.list_types()) == ['filosofo', 'homem', 'mamifero', 'vertebrado']
 
 def test_exercicio5(sn_net):
+    print(sn_net.list_local_associations('socrates'))
     assert sorted(sn_net.list_local_associations('socrates')) == ['peso', 'professor']
 
 def test_exercicio6(sn_net):
