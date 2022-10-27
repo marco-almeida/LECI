@@ -134,14 +134,54 @@ class SemanticNetwork:
     def list_local_associations_by_user(self, entity: str):   # ex 8
         return set([(d.relation.name, d.user) for d in set([d for d in self.declarations if isinstance(d.relation, Association) and d.relation.entity1 == entity])])
 
-    def predecessor(self, pre1: str, pre2: str):
+    def predecessor(self, pre1: str, pre2: str):  # ex 9
+        '''if pre1 (e.g vertebrado) and pre2 (e.g socrates) -> returns true
+        '''
         if pre1 == pre2:
             return True
         for d in self.declarations:
-            if isinstance(d.relation, Member) and d.relation.entity2 == pre1:
+            if (isinstance(d.relation, Member) or isinstance(d.relation, Subtype)) and d.relation.entity2 == pre1:
                 if self.predecessor(d.relation.entity1, pre2):
                     return True
-            if isinstance(d.relation, Subtype) and d.relation.entity2 == pre1:
+        return False
+
+    def predecessor_path(self, pre1: str, pre2: str):  # ex 10
+        if pre1 == pre2:
+            return [pre1]
+        for d in self.declarations:
+            if (isinstance(d.relation, Member) or isinstance(d.relation, Subtype)) and d.relation.entity2 == pre1:
                 if self.predecessor(d.relation.entity1, pre2):
-                    return True
-        return False        
+                    return [pre1] + self.predecessor_path(d.relation.entity1, pre2)
+        return []
+
+    def query(self, e1: str, assoc_name: str = None):  # ex 11 a)
+        stunf = []
+        for d in self.declarations:
+            if isinstance(d.relation, Association) or isinstance(d.relation, Member):
+                if assoc_name != None:
+                    if d.relation.name == assoc_name and self.predecessor(d.relation.entity1, e1):
+                        stunf.append(d)
+                else:
+                    if self.predecessor(d.relation.entity1, e1):
+                        stunf.append(d)
+        return stunf
+
+    def query2(self, e1: str, assoc_name: str = None):  # ex 11 b)
+        stunf = []
+        for d in self.declarations:
+            if isinstance(d.relation, Member) or isinstance(d.relation, Subtype):
+                if e1 == d.relation.entity1:
+                    stunf.append(d)
+        stunf.extend(self.query(e1, assoc_name))
+        return stunf
+
+    def query_cancel(self, e1: str, assoc_name: str):  # ex 12
+        filho = ""
+        for d in self.declarations:
+            if isinstance(d.relation, Member) and d.relation.entity1 == e1:
+                filho = d.relation.entity2
+                break
+        return [d for d in self.declarations if isinstance(d.relation, Association) and d.relation.entity1 == filho and d.relation.name == assoc_name]
+
+    def query_down(self, type: str, assoc_name: str):
+        pass
