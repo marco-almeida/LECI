@@ -132,8 +132,16 @@ class SemanticNetwork:
         return len(set([d.relation.name for d in self.query_local(user=entity, e1=None, rel=None, e2=None) if isinstance(d.relation, Association)]))
 
     def list_local_associations_by_user(self, entity: str):   # ex 8
-        # association_declarations_about_entity = set([d for d in self.declarations if isinstance(d.relation, Association) and d.relation.entity1 == entity])
         return set([(d.relation.name, d.user) for d in set([d for d in self.declarations if isinstance(d.relation, Association) and d.relation.entity1 == entity])])
 
     def predecessor(self, pre1: str, pre2: str):
-        return True
+        if pre1 == pre2:
+            return True
+        for d in self.declarations:
+            if isinstance(d.relation, Member) and d.relation.entity2 == pre1:
+                if self.predecessor(d.relation.entity1, pre2):
+                    return True
+            if isinstance(d.relation, Subtype) and d.relation.entity2 == pre1:
+                if self.predecessor(d.relation.entity1, pre2):
+                    return True
+        return False        

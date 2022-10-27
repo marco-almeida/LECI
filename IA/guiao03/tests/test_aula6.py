@@ -75,5 +75,5 @@ def test_exercicio8(sn_net):
     assert sorted(sn_net.list_local_associations_by_user('socrates')) == [('peso', 'darwin'), ('peso', 'descartes'), ('professor', 'descartes'), ('professor', 'simao'), ('professor', 'simoes')]
 
 def test_exercicio9(sn_net):
-    assert sn_net.predecessor('vertebrado','socrates')
-    assert not sn_net.predecessor('vertebrado','filosofo')
+    assert sn_net.predecessor('vertebrado','socrates') # true
+    assert not sn_net.predecessor('vertebrado','filosofo') # false
