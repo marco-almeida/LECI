@@ -183,5 +183,14 @@ class SemanticNetwork:
                 break
         return [d for d in self.declarations if isinstance(d.relation, Association) and d.relation.entity1 == filho and d.relation.name == assoc_name]
 
-    def query_down(self, type: str, assoc_name: str):
-        pass
+    def query_down(self, type: str, assoc_name: str): # ex 13
+        stunf = []
+        for d in self.declarations:
+            if (isinstance(d.relation, Member) or isinstance(d.relation, Subtype)) and type == d.relation.entity2: # if is predecessor
+                for dec in self.declarations: # append own associations (with assoc_name), then go to next child
+                    if isinstance(dec.relation, Association) and dec.relation.name == assoc_name and dec.relation.entity1 == d.relation.entity1:
+                        stunf.append(dec)
+                return stunf + self.query_down(d.relation.entity1, assoc_name)
+        return stunf
+                    
+                
