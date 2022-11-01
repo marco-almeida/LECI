@@ -34,6 +34,8 @@ class Predicate:
             return type(self)(assign[la[0]])
         # add other cases if needed
         return type(self)(assign[la[0]],assign[la[1]])
+    def __hash__(self) -> int:
+        return hash(str(self))
 
 
 # STRIPS operators
@@ -53,6 +55,8 @@ class Operator:
     def __repr__(self):
         argsstr = args2string(self.args)
         return type(self).__name__ + "(" + argsstr + ")"
+    def __hash__(self) -> int:
+        return hash(str(self))
 
     # Produce a concrete action by instanciating a specific 
     # operator (i.e. the "Operator" subclass where the method was 
@@ -93,8 +97,19 @@ class STRIPS(SearchDomain):
     # Result of a given "action" in a given "state"
     # ( returns None, if the action is not applicable in the state)
     def result(self, state, action):
-        pass
+        # check if action is available
+        state = list(state)
+        for pc in action.pc:
+            if pc not in state:
+                return None
+        
+        for stuff in action.neg: # remove previous states
+            state.remove(stuff)
+        
+        state.extend(action.pos) # add new current states
+        return set(state)
 
+        
     def cost(self, state, action):
         return 1
 
@@ -103,8 +118,9 @@ class STRIPS(SearchDomain):
 
     # Checks if a given "goal" is satisfied in a given "state"
     def satisfies(self, state, goal):
-        pass
-
+        # todos os elementos do goal devem estar contidos no state
+        return all(op in state for op in goal)
+    
 
 
 # Auxiliary functions
