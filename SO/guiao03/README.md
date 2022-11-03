@@ -69,9 +69,8 @@ Pronto, agora temos a fifo e o buffer. Outra vez, o fifo vai guardar em si os id
 
 Agora temos que simular o client-server. Faz-se o service.h para auxilio.
 
-Um serviço tem o tipo de operação, **enum operation** {letters, digits}. É também ou um **request ou um response**.
-No caso de ser um request, tem o **enum operation**, **string data**, **int length**.
-No caso de ser um response, tem o **int length** e **string data**.
+Um serviço é ou um **request ou um response**.
+Em ambos os casos, há **string data**, **int length**.
 
 Tem tambem as funçoes **create()**, **destroy()**, **callService(ServiceRequest& req, ServiceResponse& res)** e **processService()**.
 
@@ -141,15 +140,13 @@ req.size = (pool[id]->length) * sizeof(char);
 buffer::read(*pool[id], req.data);
 ```
 
-Para acabar de preencher os atributos do ServiceRequest, falta ver o tipo de operaçao. Vamos ver o primeiro caracter da mensagem. Se for um digito, é digits. Se for uma letra, é letters. (ig idk)
-
 Criamos agora um objeto ServiceResponse.
 Chamamos o **produceResponse(req, res)** para preencher o `res`. De seguida dá-se free ao req.data, clear ao buffer, write no buffer da resposta, free da res.data e por fim, fazemos o set_solved ao buffer para o semaforo sinalizar que o buffer ja está disponivel. Acho que agora se podia colocar o buffer no fifo de freebuffers e remover do pendingrequests.
 
 Já ta tudo feito, agora é fazer o main para correr isto tudo.
 
 Faz-se uma função que gera random requests: **ServiceRequest get_random_request()**
-Cria-se um objeto ServiceRequest e preenche-se os atributos. O tipo de operação é random. A string tambem. Dá return ao request.
+Cria-se um objeto ServiceRequest e preenche-se os atributos. A string é random. Dá return ao request.
 
 Faz-se uma função que produz e recebe resposta: **void produce_and_receive_response()**: Cria-se e preenche-se um objeto de request a partir da função get_random_request. Depois printa-se o que o cliente mandou (o request). Depois cria-se um objeto de response e chama-se a função callService(request, response). Por fim, printa-se a resposta e dá se free aos dados.
 
