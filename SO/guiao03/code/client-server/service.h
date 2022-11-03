@@ -1,8 +1,6 @@
 namespace service {
-enum operation { letters, digits };
 
 struct ServiceRequest {
-    enum operation op;
     char* data;
     int size;
 };

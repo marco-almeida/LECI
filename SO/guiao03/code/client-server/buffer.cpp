@@ -19,7 +19,7 @@ BUFFER* create() {
     buffer->bufferid = bufferID;  // save the id of the shared memory
 
     /* create access, full and empty semaphores */
-    buffer->semid = psemget(IPC_PRIVATE, 3, 0600 | IPC_CREAT | IPC_EXCL);
+    buffer->semid = psemget(IPC_PRIVATE, 1, 0600 | IPC_CREAT | IPC_EXCL);
 
     set_solved(*buffer);
 

@@ -8,14 +8,14 @@
 #include "service.h"
 
 const char* random_strings[] = {
-    "Lorem",    "Ipsum", "is",        "simply",  "dummy",
-    "of",       "the",   "printing",  "and",     "typesetting",
-    "industry", "1500",  "unchanged", "desktop", "publishing"};
+    "Lorem",    "23",   "is",        "simply",  "459",
+    "of",       "the",  "1400",      "323",     "typesetting",
+    "industry", "1500", "unchanged", "desktop", "78"};
 
 service::ServiceRequest get_random_request() {
     service::ServiceRequest request;
-    request.op = (service::operation)(rand() % 2);
-    uint random_string_idx = rand() % (sizeof(random_strings) / sizeof(random_strings[0]));
+    uint random_string_idx =
+        rand() % (sizeof(random_strings) / sizeof(random_strings[0]));
     uint str_size = strlen(random_strings[random_string_idx]);
     request.data = (char*)malloc(sizeof(char) * str_size);
     memcpy(request.data, random_strings[random_string_idx], str_size);
@@ -26,12 +26,7 @@ service::ServiceRequest get_random_request() {
 void produce_and_get_response() {
     srand(getpid());
     service::ServiceRequest sreq = get_random_request();
-    if (sreq.op == service::operation::letters)
-        printf("Client query (proccess %d): operation = letters, text = %s\n",
-               getpid(), sreq.data);
-    else if (service::operation::digits) {
-        printf("Client query: operation = digits , text = %s\n", sreq.data);
-    }
+    printf("Client query (proccess %d):text = %s\n", getpid(), sreq.data);
     service::ServiceResponse response;
     service::callService(sreq, response);
     printf("Server awnser (process %d): %d\n", getpid(), response.data[0]);

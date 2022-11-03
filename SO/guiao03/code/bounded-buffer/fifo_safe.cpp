@@ -95,7 +95,7 @@ namespace fifo
         }
         fifo->ii = fifo->ri = 0;
         fifo->cnt = 0;
-    
+
         /* create access, full and empty semaphores */
         fifo->semid = psemget(IPC_PRIVATE, 3, 0600 | IPC_CREAT | IPC_EXCL);
 

@@ -47,7 +47,7 @@ namespace fifo
         ITEM slot[FIFOSZ];  ///< storage memory
     };
 
-    int fifoId = -1; 
+    int fifoId = -1;
     FIFO *fifo = NULL;
 
     /* ************************************************* */

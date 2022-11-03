@@ -2,7 +2,7 @@
 
 ## Try to understand how shared memory is created and used
 
-    Cria-se memoria partilhada com shmget(sizeof Fifo) e dá se mapping com shmat
+    Cria-se memoria partilhada com shmget(sizeof Fifo) e dá se mapping desta memoria (shmat()  attaches  the  System V  shared  memory segment identified by shmid to the address space of the calling process.). Isto da memoria partilhada é usado porque varios processos (os consumers e producers provenientes do fork()) querem aceder e modificar esta memoria, e como tal é necessario que esta seja partilhada.
 
 ## Try to understand why race conditions can appear
 
@@ -14,7 +14,7 @@
 
 ## Try to understand how semaphores are used to avoid both race conditions and busy waiting
 
-    No create(), faz-se o semget de 3 semaforos, ou seja criam-se 3 semaforos, daí os indices de nslots, nitems e access irem de 0 a 2. Se successful, dá return ao set identifier, um inteiro positivo, senão -1.
+    No create(), faz-se o semget de um set de 3 semaforos, ou seja criam-se 3 semaforos (acho eu), daí os indices de nslots, nitems e access irem de 0 a 2. Um para controlar os slots, outro para acesso e outro para items. Se successful, dá return ao set identifier, um inteiro positivo, senão -1.
 
     depois para cada slot, inicializa-se (up) o semoforo nslots e no fim faz se a inicializaçao de access.
 
@@ -50,7 +50,7 @@ Um buffer tem que ter um **bufferId, semId, char data[size], length**. O atribut
 
 O buffer tem que ter as funçoes create, destroy, clear, write, read, wait_until_solved e set_solved.
 
-O **create** é igual, cria-se a shared memory e dá se mapping. Mete-se o semaforo do buffer em up (**set_solved**), uma vez que está disponivel.
+O **create** é igual, cria-se a shared memory e dá se mapping. Mete-se o semaforo do buffer em up (**set_solved**), uma vez que está disponivel. O buffer só precisa de 1 semaforo e não 3 como o fifo.
 
 O **destroy** é igual, ainda com um **approach estatico**. Mete-se no argumento o endereço do buffer que queremos destruir. Aqui, primeiro dá-se detach da shared memory do addressing space do processo e só depois é que se destrói a shared memory.
 No fifo era ao contrario.
@@ -61,7 +61,7 @@ O **read** pede o endereço do buffer e o destino para onde meter o que vou ler.
 
 O **clear** coloca a length a 0 e a data sem dados lá dentro.
 
-O **wait_until_solved** é usado mais depois mas é uma função que leva de argumento o endereço de um buffer. Coloca o semaforo desse buffer em down **DUAS VEZES**(nsei pq) para bloquear o buffer.
+O **wait_until_solved** é usado mais depois mas é uma função que leva de argumento o endereço de um buffer. Coloca o semaforo desse buffer em down **DUAS VEZES**(nsei pq. Also testei e só uma vez funciona, nem deu segfault) para bloquear o buffer.
 
 O **set_solved** é uma função que leva de argumento o endereço de um buffer. Coloca o semaforo desse buffer em up para sinalizar que está desbloqueado.
 
@@ -108,7 +108,8 @@ for (i = 0; i < N; i++) {
 
 Função **destroy()**: dá-se destroy ao fifo do freeBuffers e ao fifo do pendingRequests. Faz-se for-loop de 0 a N e dá se destroy a cada buffer na pool. `buffer::destroy(*pool[i]);`
 
-Função **callService(ServiceRequest &req, ServiceResponse &res)**: A ideia desta funçao pegar num id de um buffer nos freebuffers, escrever nesse buffer (da pool) (`buffer::write()`) lá dados, dados estes que nos são dados no `&req`. De seguida, inserimos este buffer no fifo de pending requests `fifo::in(*pendingRequests, id)`.
+Função **callService(ServiceRequest &req, ServiceResponse &res)**: A ideia desta funçao é pegar num id de um buffer nos freebuffers, escrever nesse buffer (da pool) (`buffer::write()`) lá dados, dados estes que nos são dados no `&req`. De seguida, inserimos este buffer no fifo de pending requests `fifo::in(*pendingRequests, id)`.
+ O servidor quando estiver disponível irá processar estes dados (contar numero de letras na string por exemplo) e meter essa informação no buffer.
 
 Agora bloqueamos o buffer enquanto uma resposta não chega. `buffer::wait_until_solved(*pool[id]);`
 De seguida, escreve-se no `&res` os dados que estão no buffer.
@@ -119,7 +120,7 @@ res.size = pool[id]->length;
 buffer::read(*pool[id], res.data);
 ```
 
-Função **static void produceResponse(ServiceRequest &req, ServiceResponse &res)**: Esta função tem o objetivo de processar a mensagem. Vamos analisar, ou quantos digitos a mensagem tem, ou quantas letras.
+Função **static void produceResponse(ServiceRequest &req, ServiceResponse &res)**: Esta função tem o objetivo de processar a mensagem. Vamos analisar, ou quantos digitos, ou quantas letras, a mensagem tem,
 
 De acordo com o tipo de operação em `&req`, vamos fazer o que temos de fazer. Se for **letters**, vamos contar quantas letras tem a mensagem. Se for **digits**, vamos contar quantas letras tem a mensagem.
 
