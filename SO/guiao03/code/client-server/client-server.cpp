@@ -27,7 +27,7 @@ void produce_and_get_response() {
     srand(getpid());
     service::ServiceRequest sreq = get_random_request();
     if (sreq.op == service::operation::letters)
-        printf("Client query (proccess %d): operation = letters , text = %s\n",
+        printf("Client query (proccess %d): operation = letters, text = %s\n",
                getpid(), sreq.data);
     else if (service::operation::digits) {
         printf("Client query: operation = digits , text = %s\n", sreq.data);

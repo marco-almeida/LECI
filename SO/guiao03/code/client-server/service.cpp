@@ -9,7 +9,6 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <unistd.h>
-
 #include "buffer.h"
 #include "fifo.h"
 #include "process.h"
@@ -103,6 +102,8 @@ void processService() {
     buffer::write(*pool[id], res.data, res.size);
     free(res.data);
     buffer::set_solved(*pool[id]);
+    // fifo::out(*pendingRequests, id); // remove id from pending requests
+    // fifo::in(*freeBuffers, id);  // put buffer back in fifo of free buffers
 }
 
 

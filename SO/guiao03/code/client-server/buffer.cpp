@@ -8,7 +8,7 @@
 
 namespace buffer {
 
-buffer::BUFFER* create() {
+BUFFER* create() {
     /* create the shared memory */
     int bufferID =
         pshmget(IPC_PRIVATE, sizeof(BUFFER), 0600 | IPC_CREAT | IPC_EXCL);
@@ -17,7 +17,6 @@ buffer::BUFFER* create() {
     BUFFER* buffer = (BUFFER*)pshmat(bufferID, NULL, 0);
 
     buffer->bufferid = bufferID;  // save the id of the shared memory
-    // buffer->length = 0;
 
     /* create access, full and empty semaphores */
     buffer->semid = psemget(IPC_PRIVATE, 3, 0600 | IPC_CREAT | IPC_EXCL);
