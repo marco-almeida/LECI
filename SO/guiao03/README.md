@@ -121,7 +121,7 @@ buffer::read(*pool[id], res.data);
 
 Função **static void produceResponse(ServiceRequest &req, ServiceResponse &res)**: Esta função tem o objetivo de processar a mensagem. Vamos analisar, ou quantos digitos, ou quantas letras, a mensagem tem,
 
-De acordo com o tipo de operação em `&req`, vamos fazer o que temos de fazer. Se for **letters**, vamos contar quantas letras tem a mensagem. Se for **digits**, vamos contar quantas letras tem a mensagem.
+Vamos contar quantas letras tem a mensagem.
 
 Metemos o resultado na resposta `res.data`
 
