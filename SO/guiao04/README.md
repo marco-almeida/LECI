@@ -90,3 +90,5 @@ mutex_unlock(&accessCR);
 ## Question 2 Designing and implementing a simple client-server application
 
 Mesmo que ultimo guiao mas os buffers e fifos usam mutexes e condition variables e o client-server threads em vez de processos.
+
+Quando o server lê o buffer e faz uma resposta, mete o buffer como solved, sinalizando a condiçao de solved.

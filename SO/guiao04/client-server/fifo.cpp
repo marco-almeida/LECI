@@ -7,8 +7,7 @@ namespace fifo {
 
 /* create a FIFO in shared memory, initialize it, and return its id */
 FIFO* create() {
-    //FIFO* fifo = new FIFO;
-    FIFO* fifo = (FIFO*)malloc(sizeof(FIFO));
+    FIFO* fifo = new FIFO;
     fifo->fifoNotFull = PTHREAD_COND_INITIALIZER;
     fifo->fifoNotEmpty = PTHREAD_COND_INITIALIZER;
     fifo->accessCR = PTHREAD_MUTEX_INITIALIZER;
@@ -17,14 +16,12 @@ FIFO* create() {
         perror("Fail creating fifo");
         exit(EXIT_FAILURE);
     }
-    for (uint32_t i = 0; i < N; i++) {
-        fifo->slot[i] = -1;
-    }
+    
     fifo->ii = fifo->ri = 0;
     fifo->cnt = 0;
 
-    // cond_broadcast(&fifo->fifoNotFull);
-    // mutex_unlock(&fifo->accessCR);
+    cond_broadcast(&fifo->fifoNotFull); // nem é preciso isto
+    mutex_unlock(&fifo->accessCR);
 
     return fifo;
 }
