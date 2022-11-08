@@ -87,36 +87,44 @@ void init_simulation(uint32_t np) {
 
 /* ************************************************* */
 
-void *nurse_iteration(void *) {
+void nurse_iteration() {
+    uint32_t patient = retrieve_pfifo(&hd->triage_queue);
+    printf("\e[34;01mNurse: get next patient\e[0m\n");
+    check_valid_patient(patient);
+    printf("\e[34;01mNurse: evaluate patient %u priority\e[0m\n", patient);
+    uint32_t priority = random_manchester_triage_priority();
+    printf("\e[34;01mNurse: add patient %u with priority %u to doctor queue\e[0m\n", patient, priority);
+    insert_pfifo(&hd->doctor_queue, patient, priority);
+}
+
+void *nurse_life(void *) {
     while (true) {
-        uint32_t patient = retrieve_pfifo(&hd->triage_queue);
-        printf("\e[34;01mNurse: get next patient\e[0m\n");
-        check_valid_patient(patient);
-        printf("\e[34;01mNurse: evaluate patient %u priority\e[0m\n", patient);
-        uint32_t priority = random_manchester_triage_priority();
-        printf("\e[34;01mNurse: add patient %u with priority %u to doctor queue\e[0m\n", patient, priority);
-        insert_pfifo(&hd->doctor_queue, patient, priority);
+        nurse_iteration();
     }
     return NULL;
 }
 
 /* ************************************************* */
 
-void *doctor_iteration(void *) {
+void doctor_iteration() {
+    uint32_t patient = retrieve_pfifo(&hd->doctor_queue);
+    printf("\e[32;01mDoctor: get next patient\e[0m\n");
+    check_valid_patient(patient);
+    printf("\e[32;01mDoctor: treat patient %u\e[0m\n", patient);
+
+    mutex_lock(&hd->all_patients[patient].accessPatient);
+
+    random_wait();
+    hd->all_patients[patient].done = 1;
+    printf("\e[32;01mDoctor: patient %u treated with priority\e[0m\n", patient);
+
+    cond_broadcast(&hd->all_patients[patient].isDone);
+    mutex_unlock(&hd->all_patients[patient].accessPatient);
+}
+
+void *doctor_life(void *) {
     while (true) {
-        uint32_t patient = retrieve_pfifo(&hd->doctor_queue);
-        printf("\e[32;01mDoctor: get next patient\e[0m\n");
-        check_valid_patient(patient);
-        printf("\e[32;01mDoctor: treat patient %u\e[0m\n", patient);
-
-        mutex_lock(&hd->all_patients[patient].accessPatient);
-
-        random_wait();
-        hd->all_patients[patient].done = 1;
-        printf("\e[32;01mDoctor: patient %u treated\e[0m\n", patient);
-
-        cond_broadcast(&hd->all_patients[patient].isDone);
-        mutex_unlock(&hd->all_patients[patient].accessPatient);
+        doctor_iteration();
     }
     return NULL;
 }
@@ -155,9 +163,9 @@ void *patient_life(void *id) {
 /* ************************************************* */
 
 int main(int argc, char *argv[]) {
-    uint32_t nnurses = 3;  ///< number of triage nurses
-    uint32_t ndoctors = 4; ///< number of doctors
-    uint32_t npatients = 15; ///< number of patients
+    uint32_t nnurses = 1;    ///< number of triage nurses
+    uint32_t ndoctors = 2;   ///< number of doctors
+    uint32_t npatients = 5; ///< number of patients
 
     /* command line processing */
     int option;
@@ -200,16 +208,17 @@ int main(int argc, char *argv[]) {
     /* init simulation */
     init_simulation(npatients);
 
+
     pthread_t doctors[ndoctors];
     pthread_t nurses[nnurses];
     pthread_t patients[npatients];
 
     for (uint32_t i = 0; i < ndoctors; i++) {
-        thread_create(&doctors[i], NULL, doctor_iteration, NULL);
+        thread_create(&doctors[i], NULL, doctor_life, NULL);
     }
 
     for (uint32_t i = 0; i < nnurses; i++) {
-        thread_create(&nurses[i], NULL, nurse_iteration, NULL);
+        thread_create(&nurses[i], NULL, nurse_life, NULL);
     }
 
     int args[npatients];
@@ -225,15 +234,7 @@ int main(int argc, char *argv[]) {
         printf("Patient thread %d has terminated\n", i);
     }
 
-    for (uint32_t i = 0; i < nnurses; i++) {
-        thread_cancel(nurses[i]);
-        printf("Nurse thread %d has terminated\n", i);
-    }
-
-    for (uint32_t i = 0; i < ndoctors; i++) {
-        thread_cancel(doctors[i]);
-        printf("Doctor thread %d has terminated\n", i);
-    }
+    // nao é preciso dar cancel nas outras threads uma vez que quando o main termina, todas as threads sao terminadas
 
     return EXIT_SUCCESS;
 }
