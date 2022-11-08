@@ -2,7 +2,7 @@
  * @brief A priority FIFO (implemented with a circular array),
  *        whose elements are pairs of integers, one being an
  *        non-negative id and the other a positive priority value.
- * 
+ *
  * The following operations are defined:
  *    \li initializer
  *    \li check if is empty
@@ -11,26 +11,27 @@
  *    \li retrieval of a value.
  **/
 
-
 #ifndef PFIFO_H
 #define PFIFO_H
 
 #include <stdint.h>
-#include  "settings.h"
 
-//#include "thread.h"
-//#include "process.h"
+#include "settings.h"
+#include "thread.h"
 
-typedef struct
-{
-   struct
-   {
-      uint32_t id;         // element ID (works as an index in array all_patients)
-      uint32_t priority;   // patient priority in FIFO
-   } array[FIFO_MAXSIZE];
-   uint32_t inp;  ///< point of insertion (queue tail)
-   uint32_t out;  ///< point of retrieval (queue head)
-   uint32_t cnt;  ///< number of items stored
+// uma priority fifo tem entao no maximo 5 elementos. cada elemento tem um id e uma prioridade
+// para aceder ao elemento 0, temos de fazer pfifo->array[0].id e pfifo->array[0].priority acho eu
+typedef struct {
+    struct {
+        uint32_t id;  // element ID (works as an index in array all_patients)
+        uint32_t priority;  // patient priority in FIFO
+    } array[FIFO_MAXSIZE];
+    uint32_t inp;  ///< point of insertion (queue tail)
+    uint32_t out;  ///< point of retrieval (queue head)
+    uint32_t cnt;  ///< number of items stored
+	pthread_cond_t notFull; 
+	pthread_cond_t notEmpty; 
+	pthread_mutex_t access; 
 } PriorityFIFO;
 
 void init_pfifo(PriorityFIFO* pfifo);
