@@ -1,5 +1,5 @@
 
-
+from collections import Counter
 # Guiao de representacao do conhecimento
 # -- Redes semanticas
 #
@@ -59,6 +59,15 @@ class Member(Relation):
 #   Exemplo:
 #   m = Member('socrates','homem')
 
+class AssocOne(Relation):
+    # associaçoes com apenas um valor
+    # e.g pai
+    def __init__(self, obj, assoc, value):
+        Relation.__init__(self, obj, assoc, value)
+
+class AssocNum(Relation):
+    def __init__(self, e1, e2, num):
+        Relation.__init__(self, e1, e2, num)
 # classe Declaration
 # -- associa um utilizador a uma relacao por si inserida
 #    na rede semantica
@@ -192,5 +201,40 @@ class SemanticNetwork:
                         stunf.append(dec)
                 return stunf + self.query_down(d.relation.entity1, assoc_name)
         return stunf
+    
+    def query_induce(self, e1: str, assoc_name: str): # ex 14
+        lst = [dec.relation.entity2 for dec in self.query_down(e1, assoc_name)]
+        # get most common
+        return max(set(lst), key=lst.count)
+
+    def query_local_assoc(self, entity: str, assoc_name: str): # ex 15
+        local_decl = self.query_local(e1 = entity, rel = assoc_name)
+
+        for l in local_decl:
+            if isinstance(l.relation, Association):
+                c = Counter([la.relation.entity2 for la in local_decl])
+
+                local_val = []
+                for common in c.most_common():
+                    local_val.append(common)
+                    if sum([c/len(local_decl) for dummy,c in local_val]) > 0.75:
+                        return [(val, c/len(local_decl)) for val, c in local_val]
+
+            if isinstance(l.relation, AssocOne):
+                c = Counter([la.relation.entity2 for la in local_decl])
+
+                val, count = c.most_common(1)[0]
+                return val, count/len(local_decl)
+
+            if isinstance(l.relation, AssocNum):
+                return sum([la.relation.entity2 for la in local_decl])/len(local_decl)
+    
+    def query_assoc_value(self, e1: str, assoc: str):
+        return "bruh"
+            
+
+
+            
+
                     
                 
