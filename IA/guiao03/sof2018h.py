@@ -1,8 +1,8 @@
 from bayes_net import *
+variables = ['sc', 'pt', 'cp', 'fr', 'pa', 'cnl']
 
-bn = BayesNet()
+bn = BayesNet(variables)
 
-#variables = ['sc', 'pt', 'cp', 'fr', 'pa', 'cnl']
 
-bn.add(None, [], 0)
+#bn.add(None, [], 0)
 

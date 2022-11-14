@@ -232,9 +232,3 @@ class SemanticNetwork:
     def query_assoc_value(self, e1: str, assoc: str):
         return "bruh"
             
-
-
-            
-
-                    
-                
