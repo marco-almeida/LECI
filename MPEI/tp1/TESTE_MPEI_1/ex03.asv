@@ -1,0 +1,94 @@
+% b
+%    1   3     5   7     9    FIM
+T = [0 0.8/3 0 0.8/3 0 0
+    1/3 0 0.5 0 0.4 0
+    1/3 0.8/3 0 0.8/3 0 0
+    1/3 0 0.5 0 0.4 0
+    0 0.8/3 0 0.8/3 0 0
+    0 0.2 0 0.2 0.2 0
+    ];
+
+% c
+A = [1 2 3 4 5 6];
+letras = ['1' '3' '5' '7' '9' '.'];
+probs = [0.25 0.125 0.25 0.25 0.125];
+randomIndex = genNumber(probs)
+
+
+% d
+% simule a geraçao de 10^6 strings aleatorias (com cell arays) para obter uma lista de strings geradas
+
+N = 100000;
+c_array = {N};
+
+for i = 1:N
+    randomIndex = randi(length(possibleInitialStates), 1);
+    selected_A_value = possibleInitialStates(randomIndex);
+    gen = crawl(T, selected_A_value, 6);
+    palavra = zeros(1, length(gen) - 1);
+
+    for k = 1:length(gen) - 1
+        palavra(k) = letras(gen(k));
+    end
+
+    c_array{i} = char(palavra);
+    clear palavra
+    clear gen
+end
+
+% anexo
+
+function generatedNumber = genNumber(probabilities)
+    prob = rand();
+
+    if prob < probabilities(1)
+        generatedNumber = 1;
+    elseif prob < probabilities(2) + probabilities(1)
+        generatedNumber = 2;
+    elseif prob < probabilities(2) + probabilities(1) + probabilities(3)
+        generatedNumber = 3;
+    elseif prob < probabilities(2) + probabilities(1) + probabilities(3) + probabilities(4)
+        generatedNumber = 4;
+    elseif prob <= probabilities(2) + probabilities(1) + probabilities(3) + probabilities(4) + probabilities(5)
+        generatedNumber = 5;
+    end
+
+end
+
+function [state] = crawl(H, first, last)
+    % the sequence of states will be saved in the vector "state"
+    % initially, the vector contains only the initial state:
+    state = [first];
+    % keep moving from state to state until state "last" is reached:
+    while (1)
+        state(end + 1) = nextState(H, state(end));
+
+        if ismember(state(end), last) % verifies if state(end) is absorbing
+            break;
+        end
+
+    end
+
+end
+
+% Returning the next state
+% Inputs:
+% H - state transition matrix
+% currentState - current state
+function state = nextState(H, currentState)
+    % find the probabilities of reaching all states starting at the current one:
+    probVector = H(:, currentState)'; % probVector is a row vector
+    n = length(probVector); %n is the number of states
+    % generate the next state randomly according to probabilities probVector:
+    state = discrete_rnd(1:n, probVector);
+end
+
+% Generate randomly the next state.
+% Inputs:
+% states = vector with state values
+% probVector = probability vector
+function state = discrete_rnd(states, probVector)
+    U = rand();
+    i = 1 + sum(U > cumsum(probVector));
+    state = states(i);
+end
