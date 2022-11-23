@@ -1,0 +1,64 @@
+//multiplas teste 2 
+1 - d é imune  
+2 - a
+3 - d (ver melhor)
+4 - d
+5 - d
+6 - c 
+7 - d
+8 - d senhas descartaveis tipicamente nao permitem autenciaçao mutua.
+9 - b
+10 - d
+11 - ? d por exclusao de hipoteses 
+12 - d  (a é o real e o efetivo), (b altera o gid associado ao processo) c falso
+13 - c o dono nao pode ler porque tem "wx" (dono do ficheiro, grupo, outros) 
+14 - b 
+15 - a
+16 - a - (nao devolver menos do que k linhas) (no query can deliver an anonymiti set with less than k entries)
+17 - a
+18 - d
+19 - d (a partilha de ficheiros por varios utentes é simples)
+
+
+final 2017
+1 - c
+2 - b
+3 - d
+4 - d
+
+9 - DAC - Control de acesso discricionário - onde alguns sujeitos podem atualizar os seus direitos
+permitindo ou negando o acesso a outros para um determinado objeto (geralmente sao os administradores)
+ o MAC é uma politica estáticamente implementada por um monitor, nao pode ser alterada por um sujeito
+(b) 
+
+
+10 - No contexto de um servidor HTTPS o que tem de existir no servidor para que cidadãos portugueses
+sejam autorizados a utilizar um recurso.
+- a CA raíz do cartao de cidadao portugues
+-Um cartao de cidadao portugues inserido no leitor de cartoes
+-As chaves publicas dos cidadaos que pretendem aceder ao recurso <--------ESTA OPCAO
+- a senha? de certificaçao do cartao de cidadao portugues
+
+11 -ACL - says wich subject can do what, it acts as a security monitor 
+d - info errada ( cada coluna é uma acl) 
+12 - d 
+13 - c (nao tem r, logo nao pode fazer o read) 
+14 - b
+15 -a
+16 - d
+17 - 
+
+recurso
+8 - d
+10 - capability é a linha da matriz de acesso ou seja (capacidades para cada objeto de um sujeito)
+se fosse a coluna de cada objeto era a ACL access control list.
+16 - d) nome da diretoria pode facilmente ser escondido sem que haja problema 
+18 -a) integridade dos dados : assegurar a correçao e coerencia dos dados.
+19 - b Um dado sensivel é (declarado sensivel,de uma fonte sensivel, pode inferir dados sensiveis)
+20 - b) the security manager instancia por omissao PODE ser redefinida.
+
+
+
+
+
+

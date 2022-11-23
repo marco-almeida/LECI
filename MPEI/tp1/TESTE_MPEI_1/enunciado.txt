@@ -1,0 +1,26 @@
+1. 4 empresas de publicidades, A B C e D
+A cada 2 minutos passa uma publicidade. Começam desde as 7h00 até as 24h00
+A primeira possibilidade do dia é equiprovavel para as 4 empresas
+
+a) fazer matriz
+c) calcule a probabilidade de às 7:10 ser escolhida a publicidade da empresa A
+d) Calcule as probabilidades limite de T e indique quanto tempo por hora em media é mostrada a publicidade da empresa A das 12 as 24 horas
+e) Probabilidade de termos a sequencia ABXXXBB; X quer dizer que nao importa
+
+2. dar load à matriz L com load('L.mat');
+
+a) Numero de paginas de L e numero de dead-ends
+b) Fazer matriz com as probabilidades certas por coluna(até agora sempre que é possivel ir para uma certa pagina, o valor é 1. Temos que, para cada coluna, fazer o somatorio e esses 1's ficam 1/somatorio).
+c) matriz A do google com B = 0.85
+d) valor de pagerank de todas as paginas de forma iterativa considerando um numero minimo de iteraçoes que garanta que nenhum valor de pagerank muda mais em modulo que 10^-4 na ultima iteraçao e o numero de iteraçoes necessarias para atingir esse criterio
+e) determine o valor de pagerank das paginas dead end que foram identificadas da alinea A
+
+3. igual ao 3 do teste de quinta. trocam as strings, usam-se '1','3','5','7','9','FIM'
+prob inicial é [0.25 0.125 0.25 0.25 0.125], para obter o randomIndex de acordo com a probabilidade, usa-se discrete_rnd([1 2 3 4 5], [0.25 0.125 0.25 0.25 0.125])
+
+b) fazer matriz
+c) gerar uma palavra
+d) simule a geraçao de 10^6 strings aleatorias (com cell arays) para obter uma lista de strings geradas
+e) com base na simulaçao anterior, estime a probabilidade da string '13579'
+f) calcule algebricamente a probabilidade da string '13579'
+g) calcule o comprimento medio das strings produzidas pelo gerador aleatorio e que começam pelo digito '1'
