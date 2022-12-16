@@ -1,0 +1,56 @@
+
+-- ## Ex. 7 --------------------------------
+IBA* 0 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.25
+53 101
+no(Faro,138)
+Guarda 23 263 455.67203118032165 5
+Time: 0.0026104980000000028
+
+IBA* 0 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.15
+50 89
+no(Faro,132)
+Guarda 23 263 455.67203118032165 5
+Time: 0.0024090699999999993
+
+IBA* 0 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.05
+34 54
+no(Faro,87)
+Santarem 45 399 319.6951673078591 7
+Time: 0.001384674999999995
+---------------------------------------------
+IBA* 1 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.25
+53 101
+('Faro', 138, 718, 0.0, 9)
+31
+Time: 0.0022967680000000046
+
+IBA* 1 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.15
+50 89
+('Faro', 132, 718, 0.0, 9)
+31
+Time: 0.0022001809999999955
+
+IBA* 1 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.05
+34 54
+('Faro', 87, 718, 0.0, 9)
+69
+Time: 0.001378314999999998
+---------------------------------------------
+IBA* 2 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.25
+53 101
+('Faro', 138, 718, 0.0, 9)
+31
+Time: 0.0022873289999999977
+
+IBA* 2 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.15
+50 89
+('Faro', 132, 718, 0.0, 9)
+31
+Time: 0.002065288999999998
+
+IBA* 2 ['Braga', 'Guimaraes', 'Porto', 'Agueda', 'Coimbra', 'Leiria', 'Santarem', 'Evora', 'Beja', 'Faro'] 0.05
+34 54
+('Faro', 87, 718, 0.0, 9)
+69
+Time: 0.0011585890000000015
+---------------------------------------------
