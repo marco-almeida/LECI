@@ -1,27 +1,29 @@
-% 2. Considere a funcao Matlab string2hash() que implementa duas funcoes de dispersao diferentes.
-% Considere ainda 2 funcoes Matlab fornecidas que sao adaptacoes para Matlab das funcoes de dispersao
-% hashstring() e DJB31MA().
+% 3. Utilizando a informacao obtida no exercıcio anterior, compare o desempenho das quatro funcoes de
+% dispersao para cada tamanho diferente da Hash Table, relativamente a:
 
-% Utilizando separadamente cada uma destas quatro funcoes de dispersao, simule a insercao das chaves
-% criadas no exercıcio 1a) em 3 Chaining Hash Tables, uma de tamanho 5 x 10e5, outra de tamanho 10e6 e
-% a terceira de tamanho 2 x 10e6. Para cada uma das simulacoes (4 funcoes de dispersao x 3 sizes):
+% (a) Uniformidade, de duas formas diferentes:
 
-%1 - a)
-N = 10^4;
+% i. visualize os histogramas dos hascodes com 100 intervalos e verifique se os valores nos dife-
+% rentes intervalos sao similares;
+
+% ii. calcule os momentos de ordem 2, 5 e 10 das variaveis aleat orias correspondentes aos valores
+% dos hashcodes divididos pelo comprimento da Hash Table (i.e, variavel aleatoria toma valores
+% entre 0 e 1) e compare com os valores teoricos da distribuicao uniforme.
+
+% (b) Numero de colisoes e numero maximo de atribuicoes numa mesma posicao da Hash Table.
+% (c) Tempos de execucao
+
+N = 10 ^ 4;
 imin = 6;
 imax = 20;
 caracteres = ['A':'Z' 'a':'z'];
 prob_caracteres = ones(1, length(caracteres)) / length(caracteres);
 chaves = gera_chaves(N, imin, imax, caracteres, prob_caracteres);
 
-% a) Guarde um vetor com os hashcodes obtidos.
-% b) Registe o numero de atribuicoes a cada uma das posicoes de cada Hash Table.
-% c) Calcule o numero de colisoes (em cada Hash Table e para cada funcao de dispersao).
-% d) O tempo de execucao da simulacao.
 tamanhos = [5e5, 1e6, 2e6];
 fprintf('\nAlgoritmo: string2hash: djb2\n');
 
-for i = 1:length(sizes)
+for i = 1:length(tamanhos)
     collisions = 0;
     vectorTables = zeros(1, tamanhos(i));
     hashCodes = zeros(1, length(chaves));
@@ -45,7 +47,7 @@ end
 
 fprintf('\nAlgoritmo: string2hash: sdbm\n');
 
-for i = 1:length(sizes)
+for i = 1:length(tamanhos)
     collisions = 0;
     vectorTables = zeros(1, tamanhos(i));
     hashCodes = zeros(1, length(chaves));
@@ -69,7 +71,7 @@ end
 
 fprintf('\nAlgoritmo: hashstring\n');
 
-for i = 1:length(sizes)
+for i = 1:length(tamanhos)
     collisions = 0;
     vectorTables = zeros(1, tamanhos(i));
     hashCodes = zeros(1, length(chaves));
@@ -93,7 +95,7 @@ end
 
 fprintf('\nAlgoritmo: DJB31MA\n');
 
-for i = 1:length(sizes)
+for i = 1:length(tamanhos)
     collisions = 0;
     vectorTables = zeros(1, tamanhos(i));
     hashCodes = zeros(1, length(chaves));
