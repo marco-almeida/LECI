@@ -44,8 +44,8 @@ Z='Z'
 
 class Stack(Operator):
     args = [X,Y]
-    pc   = [Holds(X),Free(Y)]
-    neg  = [Holds(X),Free(Y)]
+    pc   = [Holds(X),Free(Y)] # holds(a), free(b), on(c,d), Holds(X),Free(Y)
+    neg  = [Holds(X),Free(Y)] # holds(a), free(b), on(c,d), On(X,Y),HandFree(),Free(X)
     pos  = [On(X,Y),HandFree(),Free(X)]
 
 class Unstack(Operator):
