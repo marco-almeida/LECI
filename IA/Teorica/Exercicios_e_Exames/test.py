@@ -41,14 +41,39 @@ def get_ancestors(bn, event):
 # print(get_ancestors(bn, "D"))
 
 def g(x, y):
-	if y == []:
-		return (0, [])
+    if y == []:
+        return (0, [])
 
-	(z, t) = g(x, y[1:])
+    (z, t) = g(x, y[1:])
 
-	if y[0] == x:
-		return (z + 1, t)
+    if y[0] == x:
+        return (z + 1, t)
 
-	return (z, y[:1] + t)
+    return (z, y[:1] + t)
+
 
 print(g(4, [-1, 0, -3, 4, 2, 1]))
+
+
+def provar(lst, p):
+    '''lst é uma lista que contem listas.
+    Listas com apenas um elemento sao proposiçoes, i.e factos.
+    Listas com Mais de um elemento sao implicações, e.g [c, a, b] quer dizer que a E b implica c.
+    Logo, provar([['a'],['b'], ['c', 'a', 'b']], 'd') -> True'''
+
+    # nsei se esta resoluçao está totalmente correta.
+    known_p = []
+    for e in lst:
+        if len(e) == 1:
+            known_p.append(e[0])
+
+    for e in lst:
+        if e[0] == p:
+            if all([x in known_p for x in e[1:]]):
+                return True
+            if not all([x in known_p for x in e[1:]]):  # esta condição nsei se está bem, inspirei
+                return True                             # me na tabela de verdade de implicaçao
+    return False
+
+
+print(provar([['a'], ['b'], ['c', 'a', 'b']], 'd'))
