@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>User Area</title>
+{% endblock %}
+
+{% block body %}
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1>{{user.username}}'s personal space </h1>
+    </div>
+</div>
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1>My info</h1>
+        <table class="table table-bordered">
+            <caption>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Full Name</th>
+                <th>Email</th>
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            </caption>
+        </table>
+    </div>
+</div>
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1>My appointments</h1>
+        {% if appointments | length != 0 %}
+        <table class="table table-bordered">
+            <caption>
+                <th>Appointment ID</th>
+                <th>Doctor Name</th>
+                <th>Appointment Date and Time</th>
+                {% for a in appointments %}
+            <tr>
+                <td>{{ a.id }}</td>
+                <td>{{ a.doctor }}</td>
+                <td>{{ a.date }} {{ a.time }}</td>
+            </tr>
+            {% endfor %}
+            </caption>
+        </table>
+        {% else %}
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <p>You have no appointments</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container h-100">
+    <form action="/user_area/{{user.username}}/download_results/" method="GET" class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="id" class="sr-only">code(ID)</label>
+            <input min="1" type="number" step="1" placeholder="Appointment ID" name="id" required>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" download="docs/certification.txt">Get Appointment Results</button>
+    </form>
+</div>
+<!-- Only admin can see this. it shows the contact requests executed in the index page -->
+{% if user.username == 'admin' %}
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        {% if contact_requests | length != 0 %}
+        <h1>Contact Requests</h1>
+        <table class="table table-bordered">
+            <caption></caption>
+            <th>Request ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Message</th>
+            {% for r in contact_requests %}
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.fname }} {{ r.lname }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.phone }}</td>
+                <td>{{ r.message }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+        <p>There are no contact requests</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Schedule an appointment
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Schedule Appointment</h1>
+                <form method="post" action="/user_area/{{user.username}}/new_appointment/">
+                    <div class="mb-5 row">
+                        <div class="col">
+                            <label for="doctor">Choose a doctor:</label>
+                            <select id="doctor" name="doctor">
+                                {% for d in doctors %}
+                                <option value="{{ d.name }}">{{ d.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="date">Start date:</label><br>
+                            <input type="date" id="date" name="date" value="2022-01-01" min="2022-01-01" max="2024-12-31">
+                        </div>
+                        <div class="col">
+                            <label for="time">Appointment Time</label>
+                            <input type="time" id="time" name="time" min="09:00" max="18:00" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

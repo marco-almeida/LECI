@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Forum</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="pagination-centered">
+        <h1 class="pagination-centered"><strong>Forum</strong></h1>
+        <h1 class="pagination-centered">Welcome, {{ user.username }}</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Publish a new post
+        </button>
+
+        <br>
+        <br>
+        {% if posts | length != 0 %}
+        {% for post in posts %}
+        <h2 class="pagination-centered">{{post.title}}</h2>
+        <p class="pagination-centered">{{post.content}}</p>
+        <p class="pagination-centered">Published by {{post.user_username}} at {{post.date}} {{post.time}}</p>
+        <br>
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>New Post</h1>
+                <form action="/forum/{{user.username}}/newpost/" method="post">
+                    <div class="mb-5 row">
+                        <div class="col">
+                            <label>Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required maxlength="50">
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="content">Content</label>
+                        <textarea required class="form-control" id="content" name="content" rows="5"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

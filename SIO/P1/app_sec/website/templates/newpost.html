@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Publish a Post</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="pagination-centered">
+        <h1 class="pagination-centered">Publish a post in the forum</h1>
+        <div class="container">
+
+            <div class="pagination-centered">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label"><strong>Title</strong></label>
+                        <input name="title" type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"><strong>Description</strong></label>
+                        <textarea name="content" class="form-control" id="message-text"></textarea>
+                    </div>
+                    <input class="btn" type="submit" value="Post">
+                    <a class="btn" href="{{url_for('forum', uname=uname)}}">Cancel</a>
+                </form>
+            </div>
+        </div>
+        <br>
+</div>
+</div>
+{% endblock %}

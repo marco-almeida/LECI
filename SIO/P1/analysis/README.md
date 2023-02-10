@@ -1,0 +1,1 @@
+# Contains scripts/textual descriptions/logs/screen captures demonstrating the exploration of each vulnerability
