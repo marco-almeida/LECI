@@ -1,0 +1,144 @@
+\documentclass[12pt]{report}
+\usepackage[T1]{fontenc} % Fontes T1
+\usepackage[utf8]{inputenc} % Input UTF8
+\usepackage{csquotes}
+\usepackage[main=portuguese,portuguese]{babel} %Usar língua portuguesa
+\usepackage{iflang}
+\usepackage[backend=biber, style=ieee]{biblatex} % para usar bibliografia
+\usepackage{blindtext} % Gerar texto automaticamente
+\usepackage[printonlyused]{acronym}
+\usepackage{hyperref} % para autoref
+\usepackage{fancybox, graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\usepackage{geometry}
+\geometry{a4paper,total={170mm,257mm},left=20mm,top=20mm,}
+\bibliography{bibliografia}
+
+\begin{document}
+
+\def\titulo{\textbf{Development of an autonomous agent for the game Rush
+Hour\break \break Relatório}}
+\def\data{26 de novembro de 2022}
+\def\autores{Marco Almeida (103440)\break Rui Machado (65081)}
+\def\versao{}
+\def\departamento{DETI}
+\def\empresa{\textbf{Universidade de Aveiro}}
+\def\logotipo{img/ua.pdf}
+
+
+\begin{titlepage}
+
+\begin{center}
+%
+\vspace*{50mm}
+%
+{\Huge \titulo}\\
+%
+\vspace{10mm}
+%
+{\Large \empresa}\\
+%
+\begin{figure}[h]
+\center
+\includegraphics{\logotipo}
+\end{figure}
+%
+\Large \departamento\\
+%
+\vspace{10mm}
+%
+{\Large \autores}\\
+%
+\vspace{10mm}
+%
+\Large \data\\
+%
+\end{center}
+%
+\end{titlepage}
+
+\chapter{Introdução}
+\par Este trabalho prático foi desenvolvido no âmbito da unidade curricular Inteligência Artificial na Licenciatura de Engenharia de Computadores e Informática. O objetivo é criar um agente artificial em \emph{Python} capaz de resolver níveis do jogo \emph{Rush Hour}, sem ter conhecimento prévio dos mesmos. 
+  
+\par O Rush Hour é um jogo inventado por Nob Yoshigahara na década de 1970 e consiste num puzzle de tabuleiro com vários carros orientados na horizontal ou vertical. Cada carro só se pode mover na direção em que está orientado (carros horizontais só podem mover-se na horizontal) e não se podem mover vários carros simultaneamente. O objetivo é levar o carro vermelho até ao extremo direito do tabuleiro.
+  
+\par No contexto da disciplina, o agente tem acesso a um cursor que se pode mover em todas as direções dentro de uma \emph{grid} e selecionar/mover as peças do jogo. O agente só pode executar uma ação do cursor a cada 0.1 segundos. Além disso foi adicionado o \emph{“Crazy Step”} que é um movimento aleatório do jogo externo ao controlo do agente.
+  
+\par O objetivo deste projeto é implementar um agente, que além de conseguir resolver os vários níveis do Rush Hour consiga executar essa solução no contexto proposto (lidar com o cursor e lidar com o Crazy Step).
+
+\par Na elaboração deste projeto decidimos priorizar a performance acima da legibilidade do código, salvo algumas exceções. 
+
+\chapter{Arquitetura}
+\par O nosso agente está dividido em 3 componentes que são \emph{Search Tree}, \emph{Domain},  e \emph{Student}. O Search Tree e Domain são usados em conjunto para calcular a solução dos níveis apresentados. O Student é o componente que está conectado ao servidor e traduz as soluções encontradas em ações do cursor. 
+\par Existe ainda um ficheiro externo \emph{commonplus.py} derivado do \emph{common.py} fornecido pelos docentes, mas com algumas adições, que contém funções úteis aos vários componentes.
+
+\section{Search Domain}
+\par O Domain tem uma estrutura similar ao ficheiro \emph{cidades.py}, estudado nas aulas práticas.
+\par Este componente serve principalmente para, em cada estado da pesquisa, verificar quais os movimentos possíveis e retornar os estados resultantes desses movimentos.
+\par Além disso é neste componente que implementamos as funções de custo e heurística.
+
+\subsection{Heurísticas}
+
+\par Para a implementação de heurísticas, pesquisamos exaustivamente sobre este tópico e tentámos implementar uma série de heurísticas, sendo o objetivo principal reduzir o número de nós expandidos na pesquisa da solução e consequentemente, a reduzir do tempo demorado.
+
+\begin{itemize}
+\item \par Começando do mais básico, definimos uma heurística que retorna a distância desde o carro vermelho até à saída. Esta heurística é admissível uma vez que o número de ações que precisamos de fazer para chegar ao objetivo é, no mínimo, a distância do carro vermelho à saída. Assim, esta heurística não sobrestima o número real de ações e, portanto, é admissível. 
+
+\item \par Foi implementada outra heurística que retorna o número de carros a bloquear o caminho para a saída. Esta heurística é admissível porque o número de carros a bloquear o carro vermelho é inferior ou igual à distância do carro vermelho à saída, logo é admissível.
+
+\item \par Decidimos implementar outra versão da heurística anterior em que os veículos bloqueados (que estejam em a bloquear o carro vermelho) contam como dois. Isto, porque para desbloquear estes carros, é preciso desbloquear o carro que os está a bloquear, executando pelo menos mais um movimento.Esta heurística  também é admissível.
+
+\end{itemize}
+
+Tentámos implementar outras variações deste conceito, em que tentamos explorar o número de carros a bloquear o carro vermelho ou outros carros, mas chegámos à conclusão que nenhuma das heurísticas melhorava a performance do agente. Apesar de algumas heurísticas reduzirem o tempo de pesquisa “greedy”, a solução encontrada nunca é ideal. No caso da pesquisa a*, nenhuma das heurísticas apresenta melhorias significativas ao tempo de pesquisa.
+
+\subsection{Custo}
+
+\par À semelhança das heurísticas, tentámos várias implementações diferentes para a função de custo mas encontrámos uma que achamos ser muito superior a todas as outras.
+\par A função de custo escolhida retorna a quantidade de movimentos do cursor da próxima ação + o custo anterior acumulado. Desta forma conseguimos que a solução encontrada seja a solução mais eficiente no contexto do nosso problema, já que quanto menor for o número de movimentos de cursor, maior será a pontuação final.
+\par Para implementar esta função tivemos de fazer algumas alterações ao código na Search Tree, nomeadamente adicionar um atributo cursor ao SearchNode, para poder calcular a posição final do cursor no estado anterior.
+
+\section{Search Tree}
+\par A Search Tree implementada é similar em estrutura à Search Tree estudada no guião prático, mas modificada para o nosso problema em concreto em vez de generalizada para vários tipos de problemas.
+\par A Search Tree calcula a solução para os níveis ignorando o cursor (sequência de ações de jogo). É de notar que o objetivo da nossa pesquisa é encontrar um estado em que o carro vermelho não esteja bloqueado em vez do objectivo real que é quando o carro vermelho chega ao extremo direito do mapa. Esta pequena alteração reduz o tempo de pesquisa na maioria dos níveis.
+\par A questão inicial em relação à Search Tree foi como definir um estado. Tentamos inicialmente que cada estado fosse uma lista com todas as peças (id, coordenadas) mas rapidamente chegamos à conclusão que isso iria envolver uma maior complexidade nas funções intermediárias. Acabámos por usar a classe \emph{Map()} do commonplus.py como estado, o que resolveu o problema referido.
+\par Para evitar que a pesquisa passe por estados repetidos, todos os estados visitados são armazenados num \emph{set} e só são criados \emph{nodes} derivados de novos estados.
+\par Importante notar que para a comparação de estados (testar se são iguais), decidiu-se utilizar grids em formato string (atributo \emph{grid\_txt} de Map()) em vez de comparar objetos Map ou atributos \emph{Map.grid}. Este método aumentou a performance da Search Tree em 4 a 5 vezes. Não foi utilizada a função \emph{\_\_repr\_\_()} uma vez que implicava a execução de \emph{nested loops} em cada comparação de estados, algo que prova ser muito impactante na performance.
+\par Por fim, corremos um \emph{profiler} para analisar que funções estavam a gastar mais tempo. Com a utilização desta ferramenta percebemos que algumas funções são chamadas milhões de vezes. Logo, otimizações nos módulos do domínio (e por extensão, as funções auxiliares do commonplus.py lá utilizadas) foram bastante importantes para diminuir o tempo de execução de cada função. Cada função foi revista e grande parte alterada para produzir um resultado melhor.
+\par Reconhecemos que ainda é possível fazer melhorias à performance e uma das formas é substituindo a classe Map por tuplos, uma vez que a criação de objetos em Python é bastante dispendiosa. Decidimos não ir por este caminho para não complicar a leitura e compreensão do código. Apenas criamos objetos quando estritamente necessário e portanto utilizamos simulações em grid\_txt para determinar efetivamente quando é necessário. Este método permite-nos criar 3 vezes menos objetos Map, de acordo com o cenário utilizado no profiler.
+
+\section{Student}
+\par O Student é o componente que está conectado ao servidor do jogo e que traduz as soluções encontradas no Search em movimentos do cursor.
+\par Assim que um novo nível é apresentado ao Student, este efectua uma search() para calcular a solução. 
+\par A solução retornada pelo SearchTree é uma sequência de tuplos que representa os movimentos a efectuar. Cada tuplo contem a peça a movimentar e a respectiva coordenada a ocupar (ex: B, (0,0),(0,1)). Esta abordagem tem algumas vantagens para lidar com o Crazy Step que irão ser referenciadas na secção seguinte. Adicionalmente é importante lembrar que o Student tem de adicionar o movimento do carro vermelho até ao extremo direito do mapa, visto que a Search apenas calcula o caminho até ao estado em que o carro vermelho não está bloqueado.
+\par Após a search() devolver uma solução (sequência de ações de jogo), esta fica guardada numa lista e o agente calcula, a cada ciclo, o movimento que o cursor precisa de fazer para executar a próxima acção do jogo. Uma vez concluida uma acção a mesma é removida da lista.
+
+\subsection{Crazy Step}
+\par Como referido anteriormente, a abordagem usada na solução retornada pelo Search (peça, coordenadas a ocupar no fim da acção) tem 2 grandes vantagens para lidar com o Crazy Step.
+\par Em primeiro lugar, o agente pode estar constantemente a fazer checks para verificar se a próxima acção da solução já foi concretizada e passar para a acção seguinte. Por exemplo, se a próxima acção for B,(0,0) e por sorte o crazy step fez com que B já esteja nessa posição, o agente passa à acção seguinte. Este check está implementado num loop, o que significa que este \emph{skip} pode acontecer mais que uma vez no mesmo ciclo.
+\par Em segundo lugar, o agente pode corrigir movimentos do Crazy Step. Por exemplo, se tínhamos B originalmente em (2,0) e queremos mover B para (1,0), mas o crazy step entretanto moveu B para (3,0), com esta abordagem o agente não é afectado por esse crazy step. Se tivéssemos usado uma abordagem de retornar tuplos com peça e movimento (ex: B,”esquerda”), neste caso o B acabaria em (2,0) o que poderia estragar a solução encontrada.
+\par Com esta abordagem o agente pode ignorar o Crazy Step na sua maioria e só precisa de recalcular uma solução no caso do Crazy Step bloquear um movimento (Ex: no caso anterior mover uma peça diferente de B para (1,0)).
+
+\newpage
+
+\chapter{Testes e Resultados}
+
+\par Criámos um ficheiro de teste \emph{test\_searchtree.py} para testar a performance das nossas estratégias. Este ficheiro calcula o tempo gasto na pesquisa e o numero de jogadas devolvido pela solução obtida. Estimamos o tempo total como o tempo de pesquisa + (custo da solução * 0.1 segundos).
+\par Esta estimativa não conta com o Crazy Step, mas já nos dá dados suficientes para entender quais as melhores técnicas para o contexto do jogo.
+
+\par Através dos nossos testes chegámos à conclusão que as únicas pesquisas com melhor performance pesquisa de custo uniforme e pesquisa A*.
+\par A pesquisa em comprimento retorna sempre a solução com menor numero de jogadas, mas não toma em conta o cursor, então nalguns níveis perde tempo com movimentos excessivos do cursor.
+\par A pesquisa em profundidade, apesar de ser extremamente rápida, devolve soluções muito ineficientes com um elevado número de jogadas, e acaba por perder muito mais tempo a executar a solução.
+\par A pesquisa gulosa também é bastante rápida, mas na maior parte dos níveis retorna soluções um pouco inferiores às outras pesquisas.
+\par A pesquisa de custo uniforme é a melhor, porque apesar, de ser mais demorada que as outras, calcula sempre a solução mais eficiente em termos de movimentos do cursor, o que acaba por compensar.
+\par A pesquisa A* é semelhante à de custo uniforme, porque as heurísticas que desenvolvemos não reduzem o tempo de pesquisa, então acaba por ser uma versão inferior da pesquisa de custo uniforme.
+\par Olhando unicamente para o resultado dos testes escolheríamos sempre a pesquisa de custo uniforme, mas na prática não é necessariamente a melhor. Como o nosso jogo conta com a existência do Crazy Step, se este se intrometer na solução do agente com uma frequência alta, pode ser mais vantajoso utilizar uma pesquisa mais rápida, mesmo que menos eficiente na sua solução de forma a executar o maior número de movimentos possíveis antes de recomeçar a próxima pesquisa. Nos testes em que corremos o jogo real, podemos observar que o resultado não varia muito entre as pesquisas de comprimento, gulosa e custo uniforme. O que ganhamos em eficiência podemos perder em tempo de pesquisa e vice-versa.
+
+\par A nossa melhor pontuação é cerca de 539466 pontos e foi utilizada a pesquisa uniforme.
+
+\printbibliography
+\nocite{*}
+\end{document}
