@@ -1,0 +1,5 @@
+# avoid build, lib and bin folders
+build
+lib
+bin
+.vscode
