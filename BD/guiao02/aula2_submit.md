@@ -17,22 +17,55 @@ Considere um Sistema de Gestão de Stocks de uma empresa. O presente exercício 
 Identify the entities, attributes, and relationships of the database.
 
 ```
-Entidade Fornecedor. Atributos: Endereço, NIF, Nome, Condiçoes de Pagamento e Numero de Fax.
-Entidade Tipo de Fornecedor. Atributos: id e Designação.
-Entidade Encomenda. Atributos: Numero e Data.
-Entidade Produto. Atributos: Stock, IVA, Preço, Nome e Código.
-Fornecedores têm um Tipo de Fornecedor.
-Encomendas sao fornecidas por um Fornecedor.
-Encomendas têm vários Produtos.
+-Entidade: Tipo de Fornecedor
+	.Atributo: ID
+	.Atributo: Designação
+
+-Entidade: Fornecedor
+	.Atributo: Nome
+	.Atributo: NIF
+	.Atributo: Endereço
+	.Atributo: Condições de Pagamento
+	.Atributo: Número de Fax
+
+-Entidade: Encomenda
+	.Atributo: Número
+	.Atributo: Data
+
+-Entidade: Produto
+	.Atributo: Codigo
+	.Atributo: Nome
+	.Atributo: Preço
+	.Atributo: Taxa de IVA
+	.Atributo (Derivado): Stock
+
+Relações:
+	-Encomenda -> tem -> Produto
+	-Encomenda -> fornecida -> Fornecedor
+	-Fornecedor -> tipo -> Tipo de Fornecedor
+
 ```
 
 #### *b)* Caracterize as relações quanto ao grau, cardinalidade e obrigatoriedade de participação das instâncias das entidades no relacionamento.
 Specify the relationships regarding the degree, cardinality and instances mandatory participation of the entities in the relationship.
 
 ```
-Fornecedores têm obrigatoriamente vários tipos de fornecedor. N:M, Relação Binária.
-Encomendas são obrigatoriamente fornecidas por 1 fornecedor. 1:N, Relação Binária.
-Encomendas têm obrigatoriamente vários produtos. N:N, Relação Binária.
+Relação: Fornecedor -> tipo -> Tipo de fornecedor
+-Relação N:M
+-Relação binária
+(Tipo de fornecedor tem obrigatoriedade)
+
+Relação: Encomenda -> fornecida por -> Fornecedor
+-Relação 1:N
+-Relação binária
+-Participação parcial
+(Fornecedor tem obrigatoriedade)
+
+Relação: Encomenda -> tem -> Produto
+-Relação N:M
+-Relação binária
+-Participação parcial
+(Produto tem obrigatoriedade)
 ```
 
 #### *c)* Desenvolva o desenho conceptual da base de dados com recurso a um diagrama entidade-relacionamento. Numa primeira fase, utilize lápis e papel para realizar o trabalho. Uma vez concluído o desenho em papel, transponha o diagrama para um formato eletrónico utilizando uma ferramenta gráfica como, por exemplo, o Microsoft Visio ou o Visual Paradigm.

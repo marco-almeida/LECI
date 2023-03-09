@@ -37,7 +37,7 @@ public class Ex06 {
         try {
             return Files.readAllLines(path);
         } catch (IOException ex) {
-            ex.printStackTrace();// handle exception here
+            ex.printStackTrace(); // handle exception here
             return List.of();
         }
     }
@@ -64,12 +64,12 @@ public class Ex06 {
     public static Map<String, List<String>> readFileToMap(String filePath) {
         Path path = FileSystems.getDefault().getPath(filePath);
         try {
-            // for each String, split(" ") and add [0] as key and the rest as value(list<String>)
+            // for each String, split(" ") and add [0] as key and the rest as
+            // value(list<String>)
             return Files.lines(path)
                     .collect(Collectors.toMap(k -> k.split(" ")[0],
                             v -> Arrays.asList(v.split(" ")).subList(1, v.split(" ").length)));
         } catch (Exception e) {
-            System.out.println("Error reading file\n" + e.initCause(e));
             return Map.of();
         }
     }
