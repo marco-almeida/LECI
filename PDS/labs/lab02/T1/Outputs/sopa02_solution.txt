@@ -1,0 +1,48 @@
+Begin
+B U T X R E C J F U J T Q R C
+A O A S Y S I D L G D J I M C
+N S N A A E D E A K G X M Z P
+A M G J H M O O C E A N B M B
+N W E N L C L V J C W C G I D
+A U R A E E J C A W K J G R M
+R G I R S R R B Y D P H X T P
+O W N A O E A N K B Q R B I U
+M C A L R J W U E Z B X V L F
+A S V V G A Z V V B V U L O H
+M A R A C U J A A Q E Y G J C
+C C M B X N Z S N Y C M J C M
+H T N H J V H S F L Z Q P I T
+W F O G I F R A M B O E S A V
+V O G N A R O M J N R R O G X
+Validating matrix and words...
+nlines: 15 ncolumns: 15
+Matrix and words are valid
+Solution:
+banana          6        1,1     DOWN
+morango         7       15,8     LEFT
+tangerina       9        1,3     DOWN
+groselha        8       10,5     UP
+figo            4       14,6     LEFT
+uvas            4        9,8     DOWN
+maracuja        8       11,1     RIGHT
+framboesa       9       14,6     RIGHT
+abacaxi         7        8,7     UPRIGHT
+cereja          6        5,6     DOWN
+amora           5       10,1     UP
+laranja         7        9,4     UP
+mirtilo         7        4,14    DOWN
+B . T . . . . . . . . . . . .
+A . A . . . . . . . . . I . .
+N . N A A . . . . . . X . . .
+A . G J H . . . . . A . . M .
+N . E N L C . . . C . . . I .
+A . R A E E . . A . . . . R .
+R . I R S R . B . . . . . T .
+O . N A O E A . . . . . . I .
+M . A L R J . U . . . . . L .
+A . . . G A . V . . . . . O .
+M A R A C U J A . . . . . . .
+. . . . . . . S . . . . . . .
+. . . . . . . . . . . . . . .
+. . O G I F R A M B O E S A .
+. O G N A R O M . . . . . . .

@@ -1,0 +1,14 @@
+ola
+adeus
+homem
+mulher
+gato
+computador
+animal
+carne
+pedra
+agua
+fogo
+terra
+ar
+lua
