@@ -1,0 +1,42 @@
+Cliente:
+NIF nome endereço num_carta
+
+
+Aluguer:
+numero data duracao Balcao(numero) Cliente(NIF) Veiculo(matricula)
+
+Balcao:
+numero nome endereço
+
+Veiculo:
+matricula marca ano TIPO(codigo)
+
+TIPO:
+codigo designaçao arcondicionado Isa ?Similaridade?
+
+Ligeiro:
+numLugares
+portas
+combustivel
+
+Pesado:
+peso
+passageiros
+
+Chaves primarias:
+Cliente -> NIF
+Aluguer -> numero
+Balcao -> numero
+Veiculo -> matricula
+Tipo -> codigo
+
+Chaves candidatas:
+Cliente -> num_carta
+Balcao -> endereço?
+tipo -> designaçao
+
+Chaves estrangeiras
+Aluguer -> Balcao(numero) Cliente(NIF) Veiculo(matricula)
+Veiculo -> Tipo(codigo)
+
+
