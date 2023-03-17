@@ -47,7 +47,6 @@ public class ex03 {
 		System.out.print("Radius of circle: ");
 		double radius = input.nextDouble();
 		lst.add(new Circulo(radius));
-		Circulo c = new Circulo(radius);
 	}
 
 	public static void createRectangle(ArrayList<Retangulo> lst, Scanner input) {
