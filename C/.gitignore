@@ -2,3 +2,7 @@
 *.zip
 .vscode/
 copy_guioes.bat
+*.Identifier
+.antlr/
+*.interp
+P2_05fev2020/

@@ -1,3 +1,0 @@
-// programa com erros:
-pint 2;
-print 2.1;

@@ -1,2 +1,0 @@
-hello Joe
-bye John
