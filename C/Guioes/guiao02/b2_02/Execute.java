@@ -24,6 +24,7 @@ public class Execute extends SuffixCalculatorBaseVisitor<Double> {
    public Double visitExprSuffix(SuffixCalculatorParser.ExprSuffixContext ctx) {
       Double n1 = visit(ctx.expr(0));
       Double n2 = visit(ctx.expr(1));
+      
       switch (ctx.op.getText()) {
          case "*":
             return n1 * n2;

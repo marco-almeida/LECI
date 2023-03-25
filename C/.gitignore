@@ -6,3 +6,4 @@ copy_guioes.bat
 .antlr/
 *.interp
 P2_05fev2020/
+*.tokens
