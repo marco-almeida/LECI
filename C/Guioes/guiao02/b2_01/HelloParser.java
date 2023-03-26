@@ -18,17 +18,17 @@ public class HelloParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, ID=3, WS=4;
 	public static final int
-		RULE_statement = 0, RULE_greetings = 1, RULE_bye = 2;
+		RULE_top = 0, RULE_bye = 1, RULE_greetings = 2, RULE_name = 3;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"statement", "greetings", "bye"
+			"top", "bye", "greetings", "name"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'hello '", "'bye '"
+			null, "'goodbye'", "'hello'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -89,118 +89,55 @@ public class HelloParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class StatementContext extends ParserRuleContext {
-		public List<GreetingsContext> greetings() {
-			return getRuleContexts(GreetingsContext.class);
+	public static class TopContext extends ParserRuleContext {
+		public GreetingsContext greetings() {
+			return getRuleContext(GreetingsContext.class,0);
 		}
-		public GreetingsContext greetings(int i) {
-			return getRuleContext(GreetingsContext.class,i);
+		public ByeContext bye() {
+			return getRuleContext(ByeContext.class,0);
 		}
-		public List<ByeContext> bye() {
-			return getRuleContexts(ByeContext.class);
-		}
-		public ByeContext bye(int i) {
-			return getRuleContext(ByeContext.class,i);
-		}
-		public StatementContext(ParserRuleContext parent, int invokingState) {
+		public TopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_statement; }
+		@Override public int getRuleIndex() { return RULE_top; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof HelloListener ) ((HelloListener)listener).enterStatement(this);
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).enterTop(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof HelloListener ) ((HelloListener)listener).exitStatement(this);
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).exitTop(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof HelloVisitor ) return ((HelloVisitor<? extends T>)visitor).visitStatement(this);
+			if ( visitor instanceof HelloVisitor ) return ((HelloVisitor<? extends T>)visitor).visitTop(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StatementContext statement() throws RecognitionException {
-		StatementContext _localctx = new StatementContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_statement);
-		int _la;
+	public final TopContext top() throws RecognitionException {
+		TopContext _localctx = new TopContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_top);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(8); 
+			setState(10);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
+			switch (_input.LA(1)) {
+			case T__1:
+				enterOuterAlt(_localctx, 1);
 				{
 				setState(8);
-				_errHandler.sync(this);
-				switch (_input.LA(1)) {
-				case T__0:
-					{
-					setState(6);
-					greetings();
-					}
-					break;
-				case T__1:
-					{
-					setState(7);
-					bye();
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+				greetings();
 				}
+				break;
+			case T__0:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(9);
+				bye();
 				}
-				setState(10); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==T__0 || _la==T__1 );
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class GreetingsContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(HelloParser.ID, 0); }
-		public GreetingsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_greetings; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof HelloListener ) ((HelloListener)listener).enterGreetings(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof HelloListener ) ((HelloListener)listener).exitGreetings(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof HelloVisitor ) return ((HelloVisitor<? extends T>)visitor).visitGreetings(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final GreetingsContext greetings() throws RecognitionException {
-		GreetingsContext _localctx = new GreetingsContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_greetings);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(12);
-			match(T__0);
-			setState(13);
-			match(ID);
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -216,7 +153,9 @@ public class HelloParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ByeContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(HelloParser.ID, 0); }
+		public NameContext name() {
+			return getRuleContext(NameContext.class,0);
+		}
 		public ByeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -238,14 +177,120 @@ public class HelloParser extends Parser {
 
 	public final ByeContext bye() throws RecognitionException {
 		ByeContext _localctx = new ByeContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_bye);
+		enterRule(_localctx, 2, RULE_bye);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(12);
+			match(T__0);
+			setState(13);
+			name();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class GreetingsContext extends ParserRuleContext {
+		public NameContext name() {
+			return getRuleContext(NameContext.class,0);
+		}
+		public GreetingsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_greetings; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).enterGreetings(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).exitGreetings(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof HelloVisitor ) return ((HelloVisitor<? extends T>)visitor).visitGreetings(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final GreetingsContext greetings() throws RecognitionException {
+		GreetingsContext _localctx = new GreetingsContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_greetings);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(15);
 			match(T__1);
 			setState(16);
-			match(ID);
+			name();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class NameContext extends ParserRuleContext {
+		public List<TerminalNode> ID() { return getTokens(HelloParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(HelloParser.ID, i);
+		}
+		public NameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_name; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).enterName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof HelloListener ) ((HelloListener)listener).exitName(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof HelloVisitor ) return ((HelloVisitor<? extends T>)visitor).visitName(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final NameContext name() throws RecognitionException {
+		NameContext _localctx = new NameContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_name);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(19); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(18);
+				match(ID);
+				}
+				}
+				setState(21); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==ID );
 			}
 		}
 		catch (RecognitionException re) {
@@ -260,19 +305,22 @@ public class HelloParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0004\u0013\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0002\u0002\u0007\u0002\u0001\u0000\u0001\u0000\u0004\u0000\t\b\u0000"+
-		"\u000b\u0000\f\u0000\n\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0000\u0000\u0003\u0000\u0002\u0004"+
-		"\u0000\u0000\u0011\u0000\b\u0001\u0000\u0000\u0000\u0002\f\u0001\u0000"+
-		"\u0000\u0000\u0004\u000f\u0001\u0000\u0000\u0000\u0006\t\u0003\u0002\u0001"+
-		"\u0000\u0007\t\u0003\u0004\u0002\u0000\b\u0006\u0001\u0000\u0000\u0000"+
-		"\b\u0007\u0001\u0000\u0000\u0000\t\n\u0001\u0000\u0000\u0000\n\b\u0001"+
-		"\u0000\u0000\u0000\n\u000b\u0001\u0000\u0000\u0000\u000b\u0001\u0001\u0000"+
-		"\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u000e\u0005\u0003\u0000\u0000"+
-		"\u000e\u0003\u0001\u0000\u0000\u0000\u000f\u0010\u0005\u0002\u0000\u0000"+
-		"\u0010\u0011\u0005\u0003\u0000\u0000\u0011\u0005\u0001\u0000\u0000\u0000"+
-		"\u0002\b\n";
+		"\u0004\u0001\u0004\u0018\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000"+
+		"\u0003\u0000\u000b\b\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0003\u0004\u0003\u0014\b\u0003\u000b\u0003"+
+		"\f\u0003\u0015\u0001\u0003\u0000\u0000\u0004\u0000\u0002\u0004\u0006\u0000"+
+		"\u0000\u0015\u0000\n\u0001\u0000\u0000\u0000\u0002\f\u0001\u0000\u0000"+
+		"\u0000\u0004\u000f\u0001\u0000\u0000\u0000\u0006\u0013\u0001\u0000\u0000"+
+		"\u0000\b\u000b\u0003\u0004\u0002\u0000\t\u000b\u0003\u0002\u0001\u0000"+
+		"\n\b\u0001\u0000\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b\u0001\u0001"+
+		"\u0000\u0000\u0000\f\r\u0005\u0001\u0000\u0000\r\u000e\u0003\u0006\u0003"+
+		"\u0000\u000e\u0003\u0001\u0000\u0000\u0000\u000f\u0010\u0005\u0002\u0000"+
+		"\u0000\u0010\u0011\u0003\u0006\u0003\u0000\u0011\u0005\u0001\u0000\u0000"+
+		"\u0000\u0012\u0014\u0005\u0003\u0000\u0000\u0013\u0012\u0001\u0000\u0000"+
+		"\u0000\u0014\u0015\u0001\u0000\u0000\u0000\u0015\u0013\u0001\u0000\u0000"+
+		"\u0000\u0015\u0016\u0001\u0000\u0000\u0000\u0016\u0007\u0001\u0000\u0000"+
+		"\u0000\u0002\n\u0015";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

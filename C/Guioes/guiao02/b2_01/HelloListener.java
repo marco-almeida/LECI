@@ -7,15 +7,25 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface HelloListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#statement}.
+	 * Enter a parse tree produced by {@link HelloParser#top}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(HelloParser.StatementContext ctx);
+	void enterTop(HelloParser.TopContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#statement}.
+	 * Exit a parse tree produced by {@link HelloParser#top}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(HelloParser.StatementContext ctx);
+	void exitTop(HelloParser.TopContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HelloParser#bye}.
+	 * @param ctx the parse tree
+	 */
+	void enterBye(HelloParser.ByeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#bye}.
+	 * @param ctx the parse tree
+	 */
+	void exitBye(HelloParser.ByeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#greetings}.
 	 * @param ctx the parse tree
@@ -27,13 +37,13 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitGreetings(HelloParser.GreetingsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#bye}.
+	 * Enter a parse tree produced by {@link HelloParser#name}.
 	 * @param ctx the parse tree
 	 */
-	void enterBye(HelloParser.ByeContext ctx);
+	void enterName(HelloParser.NameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#bye}.
+	 * Exit a parse tree produced by {@link HelloParser#name}.
 	 * @param ctx the parse tree
 	 */
-	void exitBye(HelloParser.ByeContext ctx);
+	void exitName(HelloParser.NameContext ctx);
 }

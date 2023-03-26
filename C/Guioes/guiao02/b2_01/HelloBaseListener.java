@@ -16,13 +16,25 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(HelloParser.StatementContext ctx) { }
+	@Override public void enterTop(HelloParser.TopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(HelloParser.StatementContext ctx) { }
+	@Override public void exitTop(HelloParser.TopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBye(HelloParser.ByeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBye(HelloParser.ByeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -40,13 +52,13 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBye(HelloParser.ByeContext ctx) { }
+	@Override public void enterName(HelloParser.NameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBye(HelloParser.ByeContext ctx) { }
+	@Override public void exitName(HelloParser.NameContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -10,11 +10,17 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#statement}.
+	 * Visit a parse tree produced by {@link HelloParser#top}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(HelloParser.StatementContext ctx);
+	T visitTop(HelloParser.TopContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#bye}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBye(HelloParser.ByeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#greetings}.
 	 * @param ctx the parse tree
@@ -22,9 +28,9 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGreetings(HelloParser.GreetingsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#bye}.
+	 * Visit a parse tree produced by {@link HelloParser#name}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBye(HelloParser.ByeContext ctx);
+	T visitName(HelloParser.NameContext ctx);
 }
