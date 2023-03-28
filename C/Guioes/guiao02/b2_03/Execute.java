@@ -18,6 +18,9 @@ public class Execute extends CalculatorBaseVisitor<Long> {
    @Override
    public Long visitExprPosNeg(CalculatorParser.ExprPosNegContext ctx) {
       Long num = visit(ctx.expr());
+      if (num == null) {
+         return null;
+      }
       if (ctx.op.getText().equals("-")) {
          return num * -1;
       }
@@ -28,6 +31,9 @@ public class Execute extends CalculatorBaseVisitor<Long> {
    public Long visitExprAddSub(CalculatorParser.ExprAddSubContext ctx) {
       Long n1 = visit(ctx.expr(0));
       Long n2 = visit(ctx.expr(1));
+      if (n1 == null || n2 == null) {
+         return null;
+      }
 
       if (ctx.op.getText().equals("+")) {
          return n1 + n2;
@@ -51,6 +57,9 @@ public class Execute extends CalculatorBaseVisitor<Long> {
    public Long visitExprMultDivMod(CalculatorParser.ExprMultDivModContext ctx) {
       Long n1 = visit(ctx.expr(0));
       Long n2 = visit(ctx.expr(1));
+      if (n1 == null || n2 == null) {
+         return null;
+      }
 
       switch (ctx.op.getText()) {
          case "*":
