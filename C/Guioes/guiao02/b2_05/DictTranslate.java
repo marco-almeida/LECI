@@ -30,6 +30,7 @@ public class DictTranslate extends DictBaseListener {
 
    @Override
    public void enterExpr(DictParser.ExprContext ctx) {
+      System.out.println();
    }
 
    @Override
