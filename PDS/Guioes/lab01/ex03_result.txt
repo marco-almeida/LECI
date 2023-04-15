@@ -1,0 +1,32 @@
+estudante       9       8,10     BottomLeft  
+vela            4       15,5      BottomRight
+rafael          6       13,10     UpLeft     
+palestra        8       10,14     Up
+sala            4       11,1      UpRight    
+gomes           5       10,9      UpLeft     
+polo            4       20,11     UpRight    
+agueda          6       12,13     Up
+computador      10      11,10     BottomRight
+telefone        8       3,4      BottomRight 
+cabeca          6       17,19     Up
+
+. . . . . . . . . . . . . . . . . . . .      
+. . . . . . . . . . . . . . . . . . . .      
+. . . T . . . . . . . . . A . . . . . .      
+. . . . E . . . . . . . . R . . . . . .      
+. . . . . L . . . . . . . T . . . . . .      
+. . . . S . E . . . . . . S . . . . . .      
+. . . . . E . F . . . . A E . . . . . .      
+. . . A L . M . O E . . D L . . . . . .      
+. . L . . E . O S N . . E A . . . . . .      
+. A . . . . A T G . E . U P . . . . . .      
+S . . . . . U F . C . . G . . . . . . .
+. . . . . D . . A . O . A . . . . . A .
+. . . . A . . . . R . M . . . . . . C .
+. . . N . . . . . . . . P . . . . . E .
+. . T . V . . . . . . . . U . . . . B .
+. E . . . E . . . . . . . . T . . . A .
+. . . . . . L . . . . . . O . A . . C .
+. . . . . . . A . . . . L . . . D . . .
+. . . . . . . . . . . O . . . . . O . .
+. . . . . . . . . . P . . . . . . . R .

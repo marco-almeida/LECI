@@ -1,0 +1,13 @@
+lisboa
+aveiro
+leiria
+coimbra
+porto
+faro
+beja
+guarda
+braga
+alentejo
+viseu
+setubal 
+santarem 

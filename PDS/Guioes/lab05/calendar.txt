@@ -1,0 +1,4 @@
+Factory:
+	private static Calendar createCalendar(TimeZone zone, Locale aLocale)
+
+O método 'createCalendar' cria o calendário de acordo com os argumentos passados. Funciona como uma Fábrica, pois cria os vários tipos de Calendário, implementado o Factory Creational Design Pattern.

@@ -1,0 +1,8 @@
+idade
+introducao
+arquitetura
+janela
+computador
+luz
+frigorifico
+condicionado
