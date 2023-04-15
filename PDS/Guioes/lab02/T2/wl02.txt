@@ -1,4 +1,0 @@
-gnome;tux
-super,ubuntu
-mail
-Bin;
