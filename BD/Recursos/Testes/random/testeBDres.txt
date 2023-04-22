@@ -1,0 +1,20 @@
+1 - V
+2 - V
+3 - V
+4 - F, só para non-clustered
+5 - V
+6 - F, multi-statement table-valued
+7 - V
+8 - F, lost-update
+9 - V
+10 - V
+11 - F, preventivo
+12 - F, só dá conflito no escalonamento concorrente com leitura e escrita (lost-update e dirty-read)
+13 - F, marca no transaction log qd escrevemos os buffers em disco
+14 - V?
+15 - F, fillfactor perto de 100%
+16 - T
+17 - F, deny over grant
+18 - F inserts
+19 - T
+20 - F instead of
