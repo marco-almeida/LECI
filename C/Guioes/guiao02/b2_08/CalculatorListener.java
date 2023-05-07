@@ -41,18 +41,6 @@ public interface CalculatorListener extends ParseTreeListener {
 	 */
 	void exitStatAssign(CalculatorParser.StatAssignContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code StatNL}
-	 * labeled alternative in {@link CalculatorParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatNL(CalculatorParser.StatNLContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StatNL}
-	 * labeled alternative in {@link CalculatorParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatNL(CalculatorParser.StatNLContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CalculatorParser#assignment}.
 	 * @param ctx the parse tree
 	 */

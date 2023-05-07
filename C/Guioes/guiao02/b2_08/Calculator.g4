@@ -1,13 +1,12 @@
 grammar Calculator;
 
 program:
-    stat* EOF
+    (stat NEWLINE)* EOF
     ;
 
 stat:
         expr                            #StatExpr
     |   assignment                      #StatAssign
-    |   NEWLINE                         #StatNL
 ;
 
 assignment: ID '=' expr;

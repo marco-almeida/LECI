@@ -22,7 +22,7 @@ public class CalculatorMain {
             // print LISP-style tree:
             // System.out.println(tree.toStringTree(parser));
             Execute visitor0 = new Execute();
-            visitor0.visit(tree);
+            System.out.println(visitor0.visit(tree));
          }
       }
       catch(IOException e) {

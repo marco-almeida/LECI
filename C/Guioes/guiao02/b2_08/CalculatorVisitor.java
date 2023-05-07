@@ -30,13 +30,6 @@ public interface CalculatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatAssign(CalculatorParser.StatAssignContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code StatNL}
-	 * labeled alternative in {@link CalculatorParser#stat}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStatNL(CalculatorParser.StatNLContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link CalculatorParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
