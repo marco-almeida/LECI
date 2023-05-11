@@ -1,0 +1,23 @@
+# prefixes for SI units:
+
+prefix real Y = 1e24;
+prefix real Z = 1e21;
+prefix real E = 1e18;
+prefix real P = 1e15;
+prefix real T = 1e12;
+prefix real G = 1e9;
+prefix real M = 1e6;
+prefix real k = 1e3;
+prefix real h = 1e2;
+prefix real da = 10;
+prefix real d = 1e-1;
+prefix real c = 1e-2;
+prefix real m = 1e-3;
+prefix real u = 1e-6;
+prefix real n = 1e-9;
+prefix real p = 1e-12;
+prefix real f = 1e-15;
+prefix real a = 1e-18;
+prefix real z = 1e-21;
+prefix real y = 1e-24;
+

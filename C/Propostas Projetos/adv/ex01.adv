@@ -1,0 +1,134 @@
+/*
+ * ex01: a quite simple example, that must be covered by the minimum version.
+ */
+
+// this is a single line comment
+
+/*
+ * This is a multi-line comment
+ */
+
+/*
+ * All automata in an ADV description share the same alphabet, 
+ * which must be the first thing to be declared.
+ * 
+ * It is a set of symbols (ASCII characters), symbols being specified between single quotes.
+ *
+ * In this example, the set is specified by a comma-separated list of items, enclosed in braces.
+ */
+alphabet { 'a', 'b', 'c' }
+
+/*
+ * An ADV section is devoted to define an automaton.
+ * It is based on different keywords, depending on the type of automaton wanted.
+ *
+ * Keyword 'NFA' defines a non-determinist finite automaton,
+ */
+NFA a1 <<<
+
+    /*
+     * keyword 'state' allows to define states.
+     */
+    state A, B;
+
+    /*
+     * States have intrinsic properties.
+     * Properties are represented by key-value pairs and always have default values.
+     * From the automaton definition point of view, the possible properties for states are:
+     * - 'initial', a boolean value indicating if the state is the initial one
+     *   (only one state in an automaton can be the initial);
+     * - 'accepting', a boolean value indicating if the state is an accepting one.
+     * 
+     * Changing a property is specified with an assignment between square brackets.
+     */
+    A [initial = true];  // state A as the initial one
+    B [accepting = true];  // state B as an accepting one
+
+    /*
+     * A set of symbols of the alphabet is associated to every ordered pair of states.
+     * By default, the set is empty, meaning there is no transition between the
+     * corresponding pair of states.
+     * 
+     * Keyword 'transition' allows to add a transition.
+     * Construction 'state 1 -> symbol(s) -> state 2' allows to add symbol(s) to the set of
+     * transitions between state 1 and state 2.
+     */
+    transition 
+        A -> 'a','b' -> B,
+        A -> 'a','b','c' -> A;
+>>>
+
+/* 
+ * The 'view .. of' construction allows to define 
+ * how a given automaton appears on a viewport.
+ * The automaton itself must be already defined.
+ *
+ * A state is represented by a shape and a label.
+ * - The default shape is a cicle with radius 0.5 
+ *   and the label appearing in the center.
+ * - Accepting states include an additional circle with radius 0.4.
+ * - Initial state includes an arrow, pointing to it.
+ * - A set of properties may be used to change the default view of states.
+ *
+ * A transition is represented by an arrow connecting two states and a label.
+ * - By default, there are default shapes for the arrows. 
+ *   If start and ending states are differente,
+ *   the arrow is drawn over the straight line connecting the origins of the states,
+ *   starting at a distance of radius plus 10% of the starting state 
+ *   and ending at a distance of radius plus 10% of the destination state.
+ *   If they are the same, the arrow have a triangular shape.
+ * - By default, the transition label is written in the middle of the arrow,
+ *   slightly above it.
+ * - A set of properties may be used to change the default view of transitions.
+ *
+ * In view of the above, the minimum requirements for a view is 
+ * the placement of the states in the viewport.
+ */
+
+/*
+ * A view is necessarely associated to an automaton
+ * The automaton's items (states and transitions) are
+ * accessible inside the view.
+ */
+view v1 of a1 <<<
+    /* 
+     * The 'place .. at' contruction allows to place states in the viewport
+     * All states in the automaton must be placed.
+     */
+    place A at (2,1), B at (5,1);
+
+>>>
+
+/*
+ * The 'animation' keyword allows to define an animation
+ * It can include one or more viewports, one per automaton view.
+ */
+
+animation m1 <<<
+    /*
+     * create a viewport to show the view v1 of automaton a1, 
+     * with the upper-left corner at the given point
+     */
+    viewport vp1 for v1 at (10,10) -- ++(500,500);
+
+    /* 
+     * Inside a viewport, the items of the associated view/automaton 
+     * are accessible
+     */
+    on vp1 <<<
+        show A, B [accepting = false];
+        pause;
+        /*
+         * Construction '<state 1,state 2>' represents all transitions from state 1 to state 2
+         */
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+>>>
+
+play m1;
+

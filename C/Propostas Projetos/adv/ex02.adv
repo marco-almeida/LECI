@@ -1,0 +1,124 @@
+/*
+ * ex02: a quite simple example, that must be also covered by the minimum version.
+ * 
+ * It corresponds to a DFA, equivalent to ex01
+ *
+ * In relation to example ex01, it introduces:
+ * - the automaton type DFA;
+ * - the point data type and operations on it;
+ * - the manipulation of transitions in a view.
+ */
+
+/* 
+ * The alphabet 
+ */
+alphabet { 'a', 'b', 'c' }
+
+/*
+ * Keyword 'DFA' defines a determinist finite automaton
+ */
+DFA a2 <<<
+
+    /*
+     * The states
+     */
+    state A, B;
+    A [initial = true];  // state A as the initial one
+    B [accepting = true];  // state B as an accepting one
+
+    /*
+     * The transitions
+     */
+    transition 
+        A -> 'a','b' -> B,
+        A -> 'c' -> A,
+        B -> 'c' -> A,
+        B -> 'a','b' -> B;
+>>>
+
+/*
+ * The view of a2
+ */
+view v2 of a2 <<<
+    /* 
+     * Place states 
+     */
+    place A at (2,1), B at (5,1);
+
+    /* 
+     * The default view for transitions <A,B> and <B,A> overlap them.
+     * Let modify the view of transition <B,A>,
+     * which allows to introduce other ADV constructions.
+     */
+    
+    /* 
+     * keyword 'point' allows to define a point
+     */
+    point p1;
+
+    /* 
+     * A state reference within parentesis represents a point (its origin)
+     */
+    p1 = (B);
+
+    /*
+     * A point can be defined in both 
+     * cartesian (x,y) coordinates or polar (angle:norm) coordinates
+     */
+    point x1 = (200:0.6);
+
+    /*
+     * algebra on points is possible
+     */
+    p1 = p1 + x1;
+
+    point p2 = (A) + (-20:0.6);
+    point pm = (p1+p2)/2 + (0,0.2);
+
+    /*
+     * Transition arrows can be totally redefined, using points and slopes.
+     * The result can be a polyline or a curse
+     * Construction 'as .. --' allows to do that.
+    */
+    <B,A> as p1 -- pm -- p2;
+
+    /* 
+     * The label of a transition is referenced with the construction '<.,.>#label'.
+     * 
+     * The 'place .. at' contruction also allows to place labels of transitions
+     */
+    place <B,A>#label [align = below] at pa;
+>>>
+
+/*
+ * The animation
+ */
+
+animation m2 <<<
+    /*
+     * create a viewport to show the view v2 of automaton a2.
+     * It corresponds to a window with the upper-left corner at ((10,10),
+     * and with width 500 and height 300.
+     */
+    viewport vp2 for v2 at (10,10) -- ++(500,300);
+
+    /* 
+     * Inside a viewport, the items of the associated view/automaton are accessible
+     */
+    on vp2 <<<
+        show A;
+        pause;
+        show <A,A>;
+        pause;
+        show B;
+        show <A,B>;
+        pause;
+        show <B,B>;
+        pause;
+        show <B,A>;
+        pause;
+    >>>
+>>>
+
+play m1;
+

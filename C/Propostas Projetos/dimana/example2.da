@@ -1,0 +1,21 @@
+# line comment
+
+use "grades.da"; # Processed in compile time!
+
+integer N = 4;
+list[NMEC] nmecs = new list[NMEC]; # dynamic list of NMEC (first element has index 1)
+list[string] names = new list[string];
+list[Grade] grades = new list[Grade];
+integer i;
+
+for i = 1 to N do 
+   integer(read "NMEC: ")*nmec >> nmecs; # add element to the end of list
+   read "Name: " >> names;
+   real(read "Grade: ")*val >> grades;
+end;
+
+writeln string("NMEC:",10), string("Name",30), string("Grade:",10);
+for i = 1 to length(nmecs) do 
+   writeln string(nmecs[i],10), string(names[i],30), string(grades[i],10);
+end;
+

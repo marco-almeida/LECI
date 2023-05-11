@@ -1,0 +1,140 @@
+/*
+ * ex03: another example, that must be also covered by the minimum version.
+ * 
+ * It corresponds to a complete DFA.
+ *
+ * In relation to example ex01 and ex02, it introduces:
+ * - the automaton type complete DFA;
+ * - the 'foreach' construction.
+ */
+
+/* 
+ * The alphabet 
+ */
+alphabet { 'a', 'b', 'c' }
+
+/*
+ * Keywords 'complete' 'DFA' defines a determinist finite automaton,
+ * in which all states and transitions are explicitly represented
+ */
+complete DFA a3 <<<
+
+    /*
+     * The states
+     */
+    state A, B, C, D, E;
+    A [initial = true];  // state A as the initial one
+
+    /*
+     * A 'foreach' construction applied to sets exist.
+     */
+    for s in {{ A, B, D }}
+        s [accepting = true];
+
+    /*
+     * The transitions
+     */
+    transition 
+        A -> 'a' -> B,
+        B -> 'b' -> C,
+        C -> 'c' -> D,
+        C -> 'a','b' -> E,
+        E -> 'a','b','c' -> E,
+        B -> 'a' -> B,
+        B -> 'c' -> A,
+        A -> 'c' -> A,
+        D -> 'c' -> D,
+        D -> 'a' -> B,
+        D -> 'b' -> E,
+        A -> 'b' -> E;
+>>>
+
+/* 
+ * The view of a3
+ */
+
+/*
+ * A view is necessarely associated to an automaton
+ * The automaton's items (states and transitions) are
+ * accessible inside the view.
+ */
+view v3 of a3 <<<
+    /*
+     * The 'grid' construction allows to draw a grid.
+     * A grid has several properties
+     */
+    grid g3 (21,10) [  // width = 21; height = 10
+        step = 0.5,        // cell size
+        margin = 0.25,     // external margin (must be lower than step)
+        color = gray,      // stroke color
+        line = solid       // may also be dotted or dashed
+    ];
+
+    /* 
+     * Place states 
+     */
+    place A at (2,1), B at (5,1), C at (7,1), D at (10,1);
+    place E at (4.5,4);
+
+    /*
+     * Redefine some of the transitions, including their label positions
+     */
+    point p1, p2, pm;
+
+    p1 = (B) + (200:0.7);
+    p2 = (A) + (20:0.7);
+    pm = ((A) + (B)) / 2 + (0,0.5);
+    <B,A> as p1 -- pm -- p2;
+    place <B,A>#label [align=above] at pm;
+
+    p1 = (D) + (200:0.7);
+    p2 = (B) + (20:0.7);
+    pm = ((D) + (B)) / 2 + (0,1.0);
+    <D,B> as p1 -- pm -- p2;
+    place <D,B>#label [align=above] at pm;
+
+    /*
+     * Change the location of some transition labels
+     */
+    <A,E>#label [align=below left];
+    <D,E>#label [align=below right];
+    <C,E>#label [align=right];
+    <E,E>#label [align=left];
+>>>
+
+/*
+ * The animation
+ */
+
+animation m3 <<<
+    /*
+     * create a viewport to show view v3 of automaton a3, 
+     */
+    viewport vp3 for v3 at (10,10) -- ++(500,300);
+
+    /* 
+     * Inside a canvas, the items of the associated view/automaton are accessible
+     */
+    on vp3 <<<
+        show g3;
+        pause;
+        for i in {{ A, B, D }} <<<
+            show i [accepting = false];
+        >>>
+        show C, <A,B>, <B,C>, <C,D>;
+        pause;
+        show E, <C,E>, <E,E>;
+        pause;
+        show <B,B>, <B,A>;
+        pause;
+        show <A,A>, <A,E>, <D,D>, <D,E>, <D,B>;
+        pause;
+        for i in {{ A, B, D }} <<<
+            show i [accepting = true];
+        >>>
+        pause;
+    >>>
+>>>
+
+play m1;
+

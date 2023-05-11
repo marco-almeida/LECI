@@ -1,0 +1,18 @@
+# line comment
+
+use "physics.da"; # Processed in compile time!
+
+Length l;
+Time t;
+Velocity v;
+
+l = 10*meter; # l=10 is a semantic (dimensional) error
+t = 2*second;
+v = l/t;      # t/l is a semantic (dimensional) error
+writeln "Velocity: ", v; # Result: "Velocity: 5m/s"
+
+l = real(read "Distance: ")*meter;
+t = real(read "Time: ")*second;
+v = l/t;
+writeln "Velocity: ", v;
+

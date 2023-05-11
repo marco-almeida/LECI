@@ -1,0 +1,17 @@
+# line comment
+
+use "grades.da"; # Processed in compile time!
+
+NMEC n;
+string name;
+Grade g;
+
+n = integer(read "NMEC: ")*nmec;
+name = read "Name: ";
+g = real(read "Grade: ")*val;
+# string(val,len): creates a string with len length containing <val> with right alignment
+write string("NMEC:",10); # writes expressions to stdout without a \n at the end
+write string("Name",30);
+writeln string("Grade:",10); # writes expressions to stdout with a \n at the end
+writeln string(n,10), string(name,30), string(g,10);
+

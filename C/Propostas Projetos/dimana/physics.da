@@ -1,0 +1,25 @@
+## independent SI base units
+
+# dimension <numeric-type> [<unit-name>,<suffix-name>]
+dimension real Length [meter,m];
+dimension real Time [second,s];
+dimension real Mass [gram,g]; # NOTE: SI unit is kg and not gram!
+dimension real Temperature [kelvin,K];
+dimension real ElectricCurrent [ampere,A];
+dimension real AmountOfSubstance [mole,mol];
+dimension real LuminousIntensity [candela,cd];
+
+## alternative Length unit:
+
+# unit <dimension-name> [<unit-name>,<suffix-name>]
+unit Length [inch,in] = 0.0254*meter;
+
+## dependant units:
+
+dimension real Velocity = Length/Time;
+dimension real Acceleration = Velocity/Time;
+dimension real Area = Length*Length;
+dimension real Volume = Length*Length*Length;
+dimension real Force[newton, N] = Mass*Acceleration;
+
+
