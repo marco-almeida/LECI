@@ -1,0 +1,3 @@
+hints - 3
+erradas - 10
+certas - 16
