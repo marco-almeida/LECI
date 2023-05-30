@@ -1,0 +1,51 @@
+
+Alínea a) ----------------------------------
+
+Alojamento [name=Camping Serr&Sol - Tenda 1, description=Local para tenda, 2 m2, price=40.0, ocupacao maxima=1]
+Alojamento [name=Camping Serr&Sol - Tenda 2, description=Local para tenda, 3 m2, price=50.0, ocupacao maxima=2]
+Alojamento [name=Camping Serr&Sol - Tenda 3, description=Local para tenda, 5 m2, price=70.0, ocupacao maxima=3]
+Alojamento [name=Camping Serr&Sol - Bungalow 1, description=Bungalow T0, price=90.0, ocupacao maxima=2]
+Alojamento [name=Camping Serr&Sol - Bungalow 2, description=Bungalow T1, price=120.0, ocupacao maxima=3]
+Passeio [name=Lousã a cavalo, description=Passeio a cavalo pelas aldeias de xisto, price=100.0]
+Passeio [name=Lousã TT, description=Passeio na serra em 4x4, price=320.0]
+Aventura [name=Escalada, description=Escalada em Góis, price=80.0]
+Aventura [name=Descida do rio, description=Descida em kayak, price=100.0]
+Aventura [name=Canyoning Ribeira da Pena, description=Descida a pé da Ribeira da Pena, price=80.0]
+MundoRural [name=Pastoreio, description=Pastor por um dia, price=60.0]
+MundoRural [name=Queijos & Doces, description=Faça o seu queijo e doce para o lanche, price=80.0]
+
+Alínea b) ----------------------------------
+
+Alojamento [name=Camping Serr&Sol - Tenda 1, description=Local para tenda, 2 m2, price=40.0, ocupacao maxima=1]
+Alojamento [name=Camping Serr&Sol - Tenda 2, description=Local para tenda, 3 m2, price=50.0, ocupacao maxima=2]
+Alojamento [name=Camping Serr&Sol - Tenda 3, description=Local para tenda, 5 m2, price=70.0, ocupacao maxima=3]
+Alojamento [name=Camping Serr&Sol - Bungalow 1, description=Bungalow T0, price=90.0, ocupacao maxima=2]
+Alojamento [name=Camping Serr&Sol - Bungalow 2, description=Bungalow T1, price=120.0, ocupacao maxima=3]
+Passeio [name=Lousã a cavalo, description=Passeio a cavalo pelas aldeias de xisto, price=100.0]
+Passeio [name=Lousã TT, description=Passeio na serra em 4x4, price=320.0]
+Aventura [name=Escalada, description=Escalada em Góis, price=80.0]
+Aventura [name=Descida do rio, description=Descida em kayak, price=100.0]
+Aventura [name=Canyoning Ribeira da Pena, description=Descida a pé da Ribeira da Pena, price=80.0]
+MundoRural [name=Pastoreio, description=Pastor por um dia, price=60.0]
+MundoRural [name=Queijos & Doces, description=Faça o seu queijo e doce para o lanche, price=80.0]
+Pacote com 4 AbstractServicos de 4 tipos. Preco (desconto = 10%): 504.0
+Alojamento [name=Camping Serr&Sol - Bungalow 2, description=Bungalow T1, price=120.0, ocupacao maxima=3]
+Passeio [name=Lousã TT, description=Passeio na serra em 4x4, price=320.0]
+Aventura [name=Escalada, description=Escalada em Góis, price=80.0]
+Transporte [name=Serviço de transporte, description=Deslocação entre atividades, price=40.0]
+
+Pacote com 4 AbstractServicos de 4 tipos. Preco (desconto = 10%): 234.0
+Passeio [name=Lousã a cavalo, description=Passeio a cavalo pelas aldeias de xisto, price=100.0]
+MundoRural [name=Pastoreio, description=Pastor por um dia, price=60.0]
+MundoRural [name=Queijos & Doces, description=Faça o seu queijo e doce para o lanche, price=80.0]
+Transporte [name=Serviço de transporte, description=Deslocação entre atividades, price=20.0]
+
+
+Alínea c) ----------------------------------
+
+
+Preço médio das atividades (exclui alojamento e pacotes)
+117.14285714285714
+
+Preço mínimo das atividades de aventura
+80.0
