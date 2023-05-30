@@ -1,0 +1,12 @@
+1) create grammar:
+
+vim Calculator.g4
+
+2) create visitor:
+
+antlr4-visitor -cpp Execute double
+
+3) create main & Makefile:
+
+antlr4-main -cpp -v Execute -i
+

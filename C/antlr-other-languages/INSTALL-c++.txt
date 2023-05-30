@@ -1,0 +1,22 @@
+- Get c++ runtime library:
+
+    https://github.com/antlr/website-antlr4/tree/gh-pages/download
+
+  For example: antlr4-cpp-runtime-4.9.3-source.zip
+
+- Create directory and unzip file:
+
+  mkdir antlr4-cpp-runtime-4.9.3; cd antlr4-cpp-runtime-4.9.3; unzip ../antlr4-cpp-runtime-4.9.3-source.zip
+
+- Build library:
+
+  mkdir build && cd build && cmake ..
+  make
+
+- Install library:
+
+  sudo make install   # check if it is installed in /usr/local (as it should!)
+
+- Update OS dynamic libraries:
+
+  sudo ldconfig

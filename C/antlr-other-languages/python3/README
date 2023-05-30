@@ -1,0 +1,5 @@
+- generate parser&lexer:
+antlr4-build -python
+
+- run:
+python3 CalculatorMain.py
