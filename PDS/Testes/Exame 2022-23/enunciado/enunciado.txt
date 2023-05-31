@@ -1,0 +1,14 @@
+Enunciado PDS 2022-23 epoca normal
+
+Não modificar as classes Course, TestPart1, TestPart2, Student.
+
+PARTE 1
+
+a) Modificar as classes Monitor, StudentAdm, Director e Professor.
+O output do TestPart1 deve estar igual ao texto comentado no ficheiro.
+
+PARTE 2
+
+b) Completar os metodos na classe GradingSystem de modo a obter o output esperado (comentado) no TestPart2.
+c) Fazer um iterator para alunos de um curso, no GradingSystem. Adicionar codigo no main a iterar os alunos de LEI.
+
