@@ -1,5 +1,7 @@
 Enunciado PDS 2022-23 epoca normal
 
+O objetivo geral é que os diretores e os professores consigam ser notificados quando um aluno recebe avaliaçoes.
+
 Não modificar as classes Course, TestPart1, TestPart2, Student.
 
 PARTE 1
