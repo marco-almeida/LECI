@@ -1,0 +1,9 @@
+i: integer;
+x,y: real;
+2 -> i;
+show i*i+i;
+1 -> x;
+1.0 -> y;
+show 2 // i;
+show 2 \\ i;
+show 3*x-y;

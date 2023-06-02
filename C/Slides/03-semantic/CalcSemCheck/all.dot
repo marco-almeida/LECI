@@ -1,0 +1,12 @@
+digraph foo {
+  rankdir = BT;
+  "CalcSemanticCheck" -> "CalcBaseVisitor"  // "visitor" "callbacks" "return" "true" "if" "no" "semantic" "error" "was" "detected"!
+  "CalcMain" 
+   "Type"
+  "RealType" -> "Type" 
+   "Symbol"
+  "ErrorHandling"
+  "IntegerType" -> "Type" 
+  "VariableSymbol" -> "Symbol"
+  "CalcExec" -> "CalcBaseListener" 
+}
