@@ -1,0 +1,38 @@
+/*
+ * example that shouldnt run, a declared state is not placed in a view
+ */
+alphabet { 'a', 'b', 'c' }
+
+NFA a1 <<<
+
+    state A, B;
+
+    A [initial = true];  // state A as the initial one
+    B [accepting = true];  // state B as an accepting one
+
+    transition 
+        A -> 'a','b' -> B,
+        A -> 'a','b','c' -> A;
+>>>
+
+view v1 of a1 <<<
+    place A at (2,1);
+
+>>>
+
+animation m1 <<<
+    viewport vp1 for v1 at (10,10) -- ++(500,500);
+
+    on vp1 <<<
+        show A, B [accepting = false];
+        pause;
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+>>>
+
+play m1;

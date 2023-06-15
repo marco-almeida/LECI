@@ -1,0 +1,38 @@
+/*
+ * example that shouldnt run, symbol used in transition that does not appear in the alphabet
+ */
+alphabet { 'a', 'b', 'c' }
+
+NFA a1 <<<
+
+    state A, B;
+
+    A [initial = true];  // state A as the initial one
+    B [accepting = true];  // state B as an accepting one
+
+    transition 
+        A -> 'a','b' -> B,
+        A -> 'a','b','e' -> A;
+>>>
+
+view v1 of a1 <<<
+    place A at (2,1), B at (5,1);
+
+>>>
+
+animation m1 <<<
+    viewport vp1 for v1 at (10,10) -- ++(500,500);
+
+    on vp1 <<<
+        show A, B [accepting = false];
+        pause;
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+>>>
+
+play m1;

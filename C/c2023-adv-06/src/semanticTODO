@@ -1,0 +1,8 @@
+1 DONE Check if vector isn't given as field in vector (easier to change grammar)
+2 DONE Check if point is actually a vector (grammar allows it to be expr, which means single numbers are allowed)
+3 DONE Check if complete DFA is actually complete (no transitions missing)
+4 DONE Check if all variables are declared
+5 DONE Check if has one and only one initial state
+6 DONE Check if key_values used in grid statement and in place statement are valid.
+7 DONE Check if declared statements are placed in the viewport
+8 DONE Check if automaton does not break DFA rules when it is declared as such

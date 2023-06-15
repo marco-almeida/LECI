@@ -1,0 +1,94 @@
+/*
+ * another example of multiple declared views, animations and viewports
+ */
+
+alphabet { 'a', 'b', 'c' }
+
+NFA a1 <<<
+
+    /*
+     * keyword 'state' allows to define states.
+     */
+    state A, B;
+
+    /*
+     * States have intrinsic properties.
+     * Properties are represented by key-value pairs and always have default values.
+     * From the automaton definition point of view, the possible properties for states are:
+     * - 'initial', a boolean value indicating if the state is the initial one
+     *   (only one state in an automaton can be the initial);
+     * - 'accepting', a boolean value indicating if the state is an accepting one.
+     * 
+     * Changing a property is specified with an assignment between square brackets.
+     */
+    A [initial = true];  // state A as the initial one
+    B [accepting = true];  // state B as an accepting one
+
+    /*
+     * A set of symbols of the alphabet is associated to every ordered pair of states.
+     * By default, the set is empty, meaning there is no transition between the
+     * corresponding pair of states.
+     * 
+     * Keyword 'transition' allows to add a transition.
+     * Construction 'state 1 -> symbol(s) -> state 2' allows to add symbol(s) to the set of
+     * transitions between state 1 and state 2.
+     */
+    transition 
+        A -> 'a','b' -> B,
+        A -> 'a','b','c' -> A;
+>>>
+
+view v1 of a1 <<<
+    place A at (2,1), B at (5,1);
+>>>
+
+view v2 of a1 <<<
+    place A at (4,1), B at (5,1);
+>>>
+
+animation m1 <<<
+    viewport vp3 for v1 at (10,10) -- ++(500,500);
+
+    on vp3 <<<
+        show A, B [accepting = false];
+        pause;
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+>>>
+
+animation m2 <<<
+    viewport vp2 for v2 at (10,10) -- ++(500,500);
+    viewport vp1 for v1 at (10,10) -- ++(500,500);
+
+    on vp2 <<<
+        show A, B [accepting = false];
+        pause;
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+
+    on vp1 <<<
+        show A, B;
+        pause;
+        /*
+         * Construction '<state 1,state 2>' represents all transitions from state 1 to state 2
+         */
+        show <A,B>;
+        pause;
+        show <A,A>;
+        pause;
+        show B [accepting = true];
+        pause;
+    >>>
+>>>
+
+play m2;

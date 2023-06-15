@@ -1,0 +1,640 @@
+// dicts
+
+alignmentValues ::= [
+    "left":"LEFT",
+    "right":"RIGHT",
+    "centered":"CENTERED",
+    "above":"ABOVE",
+    "below":"BELOW",
+    "below left":"BOTTOM_LEFT",
+    "left below":"BOTTOM_LEFT",
+    "below right":"BOTTOM_RIGHT",
+    "right below":"BOTTOM_RIGHT",
+    "above left":"TOP_LEFT",
+    "left above":"TOP_LEFT",
+    "above right":"TOP_RIGHT",
+    "right above":"TOP_RIGHT"
+]
+
+module(name, stat) ::= <<
+import logging
+import math
+import sys
+from enum import Enum
+
+import cv2 as cv
+import numpy as np
+
+
+class Align(Enum):
+    CENTERED = 0
+    LEFT = 1
+    RIGHT = 2
+    ABOVE = 3
+    BELOW = 4
+    TOP_LEFT = 5
+    TOP_RIGHT = 6
+    BOTTOM_LEFT = 7
+    BOTTOM_RIGHT = 8
+
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Point(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        return Point(self.x * scalar, self.y * scalar)
+
+    def __truediv__(self, scalar):
+        return Point(self.x / scalar, self.y / scalar)
+
+    def __floordiv__(self, scalar):
+        return Point(self.x // scalar, self.y // scalar)
+
+    def __str__(self):
+        return "(" + str(self.x) + "," + str(self.y) + ")"
+
+    def round_to_int(self):
+        return (int(round(self.x)), int(round(self.y)))
+
+    def norm(self):
+        return math.sqrt(self.x**2 + self.y**2)
+
+
+class State:
+    def __init__(self, label):
+        self.label = label
+        self.initial = False
+        self.accepting = False
+        self.transitions = {}
+
+    def add_transition(self, state, symbol):
+        if state not in self.transitions:
+            self.transitions[state] = [symbol]
+        else:
+            self.transitions[state].append(symbol)
+
+    def __str__(self):
+        res = f"State({self.label})"
+        if self.initial:
+            res += " [initial]"
+        return res + str(self.transitions)
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class AdvAutomatonView:
+    def __init__(self, name):
+        self.name = name
+        self.figures = {}
+
+    def add_figure(self, key, figure):
+        self.figures[key] = figure
+
+    def draw(self, mat, scale_from, scale_to):
+        for f in self.figures.values():
+            f.draw(mat, scale_from, scale_to)
+
+
+class AdvFigure:
+    def __init__(self, key):
+        self.key = key
+        self.reference_point = Point(0, 0)
+        self.visible = False
+        self.stroke_color = (0, 0, 0)
+        self.stroke_thickness = 2
+
+    def draw(self, mat, scale_from, scale_to):
+        # to be overwritten by subclasses
+        pass
+
+
+class AdvTransitionFigure(AdvFigure):
+    def __init__(self, key, label):
+        super().__init__(key)
+        self.label = label
+        self.labelreference_point = Point(0, 0)
+        self.label_alignment = Align.CENTERED
+        self.arrow_points = []
+
+    def draw(self, mat, scale_from, scale_to):
+        # if not visible do nothing
+        if not self.visible:
+            return
+
+        print("  Drawing transition " + self.key)
+
+        # convert arrow's points to image coordinates
+        points = []
+        for p in self.arrow_points:
+            p1 = p / scale_from * scale_to
+            points.append(p1.round_to_int())
+
+        # draw the arrow, assuming there are at least 2 points
+        for i, p in enumerate(points[:-2]):
+            cv.line(mat, p, points[i + 1], self.stroke_color, self.stroke_thickness)
+        cv.arrowedLine(mat, points[-2], points[-1], self.stroke_color, self.stroke_thickness)
+    
+    def redefine_arrow_points(self, *points):
+        self.arrow_points = []
+        for p in points:
+            self.arrow_points.append(p)
+
+
+    def adjust_label_position(self, label_alignment, sz):
+        if label_alignment == Align.BELOW:
+            return Point(0, sz[1] * 0.75)
+        elif label_alignment == Align.ABOVE:
+            return Point(0, -sz[1] * 0.75)
+        elif label_alignment == Align.LEFT:
+            return Point(-sz[0] * 0.75, 0)
+        elif label_alignment == Align.RIGHT:
+            return Point(sz[0] * 0.75, 0)
+        elif label_alignment == Align.TOP_LEFT:
+            return Point(-sz[0] * 0.75, -sz[1] * 0.75)
+        elif label_alignment == Align.TOP_RIGHT:
+            return Point(sz[0] * 0.75, -sz[1] * 0.75)
+        elif label_alignment == Align.BOTTOM_LEFT:
+            return Point(-sz[0] * 0.75, sz[1] * 0.75)
+        elif label_alignment == Align.BOTTOM_RIGHT:
+            return Point(sz[0] * 0.75, sz[1] * 0.75)
+        return Point(0, 0)
+
+
+class AdvLineTransitionFigure(AdvTransitionFigure):
+    def __init__(self, key, label, *points):
+        super().__init__(key, label)
+
+        # for p in points
+        if len(points) == 2:
+            p1 = points[0]
+            p2 = points[1]
+            # set arrow points
+            p21 = p2 - p1
+            d = p21 / p21.norm() * 0.7
+            pa = p1 + d
+            self.arrow_points.append(pa)
+            pb = p2 - d
+            self.arrow_points.append(pb)
+            p = (pa + pb) / 2 + Point(0, -0.2)
+        else:
+            self.redefine_arrow_points(*points)
+            # find the middle point
+            p = Point(0, 0)
+            for p1 in self.arrow_points:
+                p += p1
+            p /= len(self.arrow_points)
+        self.labelreference_point = p
+
+    def draw(self, mat, scale_from, scale_to):
+        # if not visible do nothing
+        if not self.visible:
+            return
+
+        print("  Drawing transition " + self.key)
+
+        # convert arrow's points to image coordinates
+        points = []
+        for p in self.arrow_points:
+            p1 = p / scale_from * scale_to
+            points.append(p1.round_to_int())
+
+        # draw the arrow, assuming there are at least 2 points
+        for i in range(len(points) - 1):
+            cv.line(mat, points[i], points[i + 1], self.stroke_color, self.stroke_thickness)
+        cv.arrowedLine(mat, points[-2], points[-1], self.stroke_color, self.stroke_thickness)
+
+        # draw the label according to the alignment
+        sz, _ = cv.getTextSize(self.label, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+        c = self.labelreference_point / scale_from * scale_to + Point(-sz[0] / 2, sz[1] / 2)
+        c += self.adjust_label_position(self.label_alignment, sz)
+        center = c.round_to_int()
+        cv.putText(mat, self.label, center, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+
+
+class AdvLoopTransitionFigure(AdvTransitionFigure):
+    def __init__(self, key, label, *p):
+        super().__init__(key, label)
+        if len(p) == 1:
+            # set arrow points
+            p1 = p[0] + Point(-0.2, -0.6)
+            self.arrow_points.append(p1)
+            p1 = p1 + Point(-0.2, -0.3)
+            start_mid_point = Point(0, 0) + p1
+            self.arrow_points.append(p1)
+            p1 = p1 + Point(0.8, 0.0)
+            self.arrow_points.append(p1)
+            end_mid_point = Point(0, 0) + p1
+            p1 = p1 + Point(-0.2, 0.3)
+            self.arrow_points.append(p1)
+
+            # set label reference point and alignment
+            self.labelreference_point = (start_mid_point + end_mid_point) / 2 + Point(0, 0.1)
+            self.label_alignment = Align.CENTERED
+        else:
+            self.redefine_arrow_points(*p)
+            # find the middle point
+            p1 = Point(0, 0)
+            for p2 in self.arrow_points:
+                p1 += p2
+            p1 /= len(self.arrow_points)
+            self.labelreference_point = p1
+            self.label_alignment = Align.CENTERED
+
+    def draw(self, mat, scale_from, scale_to):
+        # if not visible do nothing
+        if not self.visible:
+            return
+
+        print("  Drawing transition " + self.key)
+
+        # convert arrow's points to image coordinates
+        points = []
+        for p in self.arrow_points:
+            p1 = p / scale_from * scale_to
+            points.append(p1.round_to_int())
+
+        # draw the arrow, assuming there are at least 2 points
+        for i in range(len(points) - 1):
+            cv.line(mat, points[i], points[i + 1], self.stroke_color, self.stroke_thickness)
+        cv.arrowedLine(mat, points[-2], points[-1], self.stroke_color, self.stroke_thickness)
+
+        # draw the label according to the alignment
+        sz, _ = cv.getTextSize(self.label, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+        c = self.labelreference_point / scale_from * scale_to + Point(-sz[0] / 2, sz[1] / 2)
+        c += self.adjust_label_position(self.label_alignment, sz)
+        center = c.round_to_int()
+
+        cv.putText(mat, self.label, center, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+
+
+class AdvStateFigure(AdvFigure):
+    def __init__(self, key, origin):
+        super().__init__(key)
+        self.accepting = False
+        self.initial = False
+        self.reference_point = origin
+        self.transitions = {}
+        self.radius = 0.5
+
+    def draw(self, mat, scale_from, scale_to):
+        # if not visible do nothing
+        if not self.visible:
+            return
+
+        print("  Drawing state " + self.key)
+
+        # determine center and radius in image coordinates
+        c = self.reference_point / scale_from * scale_to
+        center = c.round_to_int()
+        r = int(round(self.radius / scale_from * scale_to))
+
+        # draw state shape
+        cv.circle(mat, center, r, self.stroke_color, self.stroke_thickness)
+        if self.accepting:
+            r2 = int(round(0.8 * self.radius / scale_from * scale_to))
+            cv.circle(mat, center, r2, self.stroke_color, self.stroke_thickness)
+        if self.initial:
+            p2 = self.reference_point - Point(self.radius, 0)
+            p1 = self.reference_point - Point(self.radius * 3, 0)
+            p21 = p2 - p1
+            d = p21 / p21.norm() * 0.9
+            pa = p1 + d
+            points = []
+            points.append((pa / scale_from * scale_to).round_to_int())
+            pb = p2 - d
+            points.append((pb / scale_from * scale_to).round_to_int())
+            for i, p in enumerate(points[:-2]):
+                cv.line(mat, p, points[i + 1], self.stroke_color, self.stroke_thickness)
+            cv.arrowedLine(mat, points[-1], points[-2], self.stroke_color, self.stroke_thickness)
+
+        # draw label
+        sz, _ = cv.getTextSize(self.key, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+        c = c + Point(-sz[0] / 2, sz[1] / 2)
+        center = c.round_to_int()
+        cv.putText(mat, self.key, center, cv.FONT_HERSHEY_SIMPLEX, 0.6, self.stroke_thickness)
+
+
+class Automaton:
+    def __init__(self, name, automaton_type):
+        self.name = name
+        self.automaton_type = automaton_type
+        self.states = {}
+
+    def add_state(self, label):
+        self.states[label] = State(label)
+
+    def __str__(self):
+        return f"Automaton({self.name}, {self.automaton_type}, {self.states})"
+
+    def __repr__(self):
+        return self.__str__()
+
+
+class Viewport:
+    def __init__(self, name, view, bound_x, bound_y, width, height):
+        self.name = name
+        self.view = view
+        self.bound_x = bound_x
+        self.bound_y = bound_y
+        self.width = width
+        self.height = height
+
+
+# START OF FILE
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s,%(msecs)03d: %(module)17s->%(funcName)-15s - [%(levelname)7s] - %(message)s",
+    handlers=[logging.StreamHandler(stream=sys.stdout)],
+)
+
+logger = logging.getLogger().getChild("System")
+automata = {}
+views = {}
+grids = {}
+defined_alignments = {}
+
+COLOR_STRING_TO_TUPLE = {
+    "black": (0, 0, 0),
+    "white": (255, 255, 255),
+    "red": (0, 0, 255),
+    "green": (0, 255, 0),
+    "blue": (255, 0, 0),
+    "yellow": (0, 255, 255),
+    "cyan": (255, 255, 0),
+    "gray": (128, 128, 128),
+    "orange": (0, 165, 255),
+    "brown": (42, 42, 165),
+    "purple": (128, 0, 128),
+    "pink": (203, 192, 255),
+}
+
+def draw_grid(img, grid_shape, color=(0, 255, 0), margin=12, step=25, line_type="solid", thickness=1):
+    h, w, _ = img.shape
+    start_x, start_y = grid_shape
+
+    # draw vertical lines
+    for x in range(margin + start_x, w - margin, step):
+        x = int(round(x))
+        if line_type == "dotted":
+            for xy in range(h - margin - start_y - margin):
+                if xy % 3 == 0:
+                    cv.line(
+                        img,
+                        (x, start_y + margin + xy),
+                        (x, start_y + margin + xy + 1),
+                        color=color,
+                        thickness=thickness,
+                        lineType=cv.LINE_AA,
+                    )
+        elif line_type == "dashed":
+            for xy in range(h - margin - start_y - margin):
+                if xy % 10 == 0:
+                    cv.line(
+                        img,
+                        (x, start_y + margin + xy),
+                        (x, start_y + margin + xy + 5),
+                        color=color,
+                        thickness=thickness,
+                        lineType=cv.LINE_AA,
+                    )
+        else:
+            cv.line(img, (x, start_y + margin), (x, h - margin), color=color, thickness=thickness, lineType=cv.LINE_8)
+
+    # draw horizontal lines
+    for y in range(margin + start_y, h - margin, step):
+        y = int(round(y))
+        if line_type == "dotted":
+            for xy in range(w - margin - start_x - margin):
+                if xy % 3 == 0:
+                    cv.line(
+                        img,
+                        (start_x + margin + xy, y),
+                        (start_x + margin + xy + 1, y),
+                        color=color,
+                        thickness=thickness,
+                        lineType=cv.LINE_AA,
+                    )
+        elif line_type == "dashed":
+            for xy in range(w - margin - start_x - margin):
+                if xy % 10 == 0:
+                    cv.line(
+                        img,
+                        (start_x + margin + xy, y),
+                        (start_x + margin + xy + 5, y),
+                        color=color,
+                        thickness=thickness,
+                        lineType=cv.LINE_AA,
+                    )
+        else:
+            cv.line(img, (start_x + margin, y), (w - margin, y), color=color, thickness=thickness, lineType=cv.LINE_8)
+
+
+<stats(stat)>
+>>
+
+stats(stat) ::= <<
+<if(stat)><stat; separator="\n"><endif>
+>>
+
+alphabet(values) ::= <<
+# alphabet = set([<values; separator=", ">])
+
+>>
+
+declare_automaton(name, type) ::= <<
+automaton_name = "<name>"
+automata[automaton_name] = Automaton(automaton_name, "<type>")
+
+>>
+
+declare_state(state) ::= <<
+automata[automaton_name].add_state("<state>")
+>>
+
+change_state_property(state, key, value) ::= <<
+automata[automaton_name].states["<state>"].<key> = <value>
+>>
+
+declare_transition(from, to, symbol) ::= <<
+automata[automaton_name].states["<from>"].add_transition("<to>", <symbol>)
+>>
+
+declare_view(view_name, automaton_name) ::= <<
+
+# view <view_name> of <automaton_name>
+view_name = "<view_name>"
+automaton_name = "<automaton_name>"
+views[view_name] = AdvAutomatonView(view_name)
+>>
+
+declare_grid(grid_name, width, height, color, margin, step, line_type) ::= <<
+
+# grid width <width> height<height> y
+grids["<grid_name>"] = {"width": <width>, "height": <height>, "color": "<color>", "margin": int(<margin> * 50), "step": int(<step> * 50), "line_type": "<line_type>"}
+>>
+
+declare_label_alignment(transition_name, alignment_value) ::= <<
+
+# <transition_name>#label [align=<alignment_value>];
+defined_alignments["<transition_name>"] = Align.<alignmentValues.(alignment_value)>
+>>
+
+animation_show_grid(grid_name) ::= <<
+
+    # show grid <grid_name>;
+    draw_grid(vp1, (grids["<grid_name>"]["width"], grids["<grid_name>"]["height"]), COLOR_STRING_TO_TUPLE[grids["<grid_name>"]["color"]], margin=grids["<grid_name>"]["margin"], step=grids["<grid_name>"]["step"], line_type=grids["<grid_name>"]["line_type"], thickness=1)
+>>
+
+place_state(state_name, x, y) ::= <<
+
+# <state_name>
+state_name = "<state_name>"
+f = AdvStateFigure(state_name, Point(<x>, <y>))
+f.initial = automata[automaton_name].states[state_name].initial
+f.accepting = automata[automaton_name].states[state_name].accepting
+f.transitions = automata[automaton_name].states[state_name].transitions
+views[view_name].add_figure(state_name, f)
+>>
+
+declare_animation(animation_name) ::= <<
+
+# animation <animation_name>
+def animation_<animation_name>():
+    logger.info("Starting animation <animation_name>")
+    animation_name = "<animation_name>"
+    viewports = {}
+>>
+
+declare_viewport(viewport_name, view_name, x, y, width, height) ::= <<
+
+    # viewport <viewport_name> for <view_name> at (<x>,<y>) -- ++(<width>,<height>);
+    viewports["<viewport_name>"] = Viewport("<viewport_name>", views["<view_name>"], <x>, <y>, <width>, <height>)
+>>
+
+declare_animation_viewport(viewport_name) ::= <<
+
+    # on <viewport_name> 
+    viewport_name = "<viewport_name>"
+    vp1_bound_x = viewports[viewport_name].bound_x
+    vp1_bound_y = viewports[viewport_name].bound_y
+    vp1_height = viewports[viewport_name].height
+    vp1_width = viewports[viewport_name].width
+    view = viewports[viewport_name].view
+    window = np.zeros((vp1_bound_y + vp1_height, vp1_bound_x + vp1_width, 3), dtype="uint8")
+    window.fill(100)
+    vp1 = np.zeros((vp1_height, vp1_width, 3), dtype="uint8")
+    vp1.fill(255)
+>>
+
+animation_show_state(state_name) ::= <<
+
+    # show <state_name>;
+    view.figures["<state_name>"].visible = True
+>>
+
+animation_show_state_properties(state_name, key, value) ::= <<
+
+    # show B [<key> = <value>];
+    view.figures["<state_name>"].<key> = <value>
+>>
+
+redefine_transition(transition_name, points, is_loop) ::= <<
+
+# redefine transition <transition_name> to <points>
+points = [Point<points; separator=", Point">]
+<if(transition_name)>
+if "<transition_name>" not in views[view_name].figures:
+<if(is_loop)>
+    f = AdvLoopTransitionFigure("<transition_name>", "", *points)
+<else>
+    f = AdvLineTransitionFigure("<transition_name>", "", *points)
+<endif>
+    views[view_name].add_figure("<transition_name>", f)
+else:
+    views[view_name].figures["<transition_name>"].arrow_points = points[:]
+<endif>
+
+if "<transition_name>" in defined_alignments:
+    views[view_name].figures["<transition_name>"].label_alignment = defined_alignments["<transition_name>"]
+
+>>
+
+place_label(transition_name, point, alignment) ::= <<
+
+# place <transition_name>#label [align = <alignment>] at <point>;
+pa = Point<point>
+if "<transition_name>" in views[view_name].figures:
+
+    views[view_name].figures["<transition_name>"].label_alignment = Align.<alignmentValues.(alignment)>
+    views[view_name].figures["<transition_name>"].labelreference_point = pa
+else:
+    f = AdvLineTransitionFigure("<transition_name>", "", Point(0,0))
+    f.label_alignment = Align.<alignmentValues.(alignment)>
+    f.labelreference_point = pa
+    views[view_name].add_figure("<transition_name>", f)
+
+if "<transition_name>" in defined_alignments:
+    views[view_name].figures["<transition_name>"].label_alignment = defined_alignments["<transition_name>"]
+>>
+
+
+animation_show_line_transition(full_name, state1, state2) ::= <<
+
+    # show line transition <full_name>;
+    label = ",".join(view.figures["<state1>"].transitions["<state2>"])
+    if "<full_name>" not in view.figures:
+        pa = view.figures["<state1>"].reference_point
+        pb = view.figures["<state2>"].reference_point
+        f = AdvLineTransitionFigure("<full_name>", label, pa, pb)
+        view.add_figure("<full_name>", f)
+    else:
+        view.figures["<full_name>"].label = label
+
+    if "<full_name>" in defined_alignments:
+        view.figures["<full_name>"].label_alignment = defined_alignments["<full_name>"]
+>>
+
+animation_show_loop_transition(state) ::= <<
+
+    # show loop transition \<<state>,<state>\>;
+    label = ",".join(view.figures["<state>"].transitions["<state>"])
+    if "\<<state>,<state>\>" not in view.figures:
+        pa = view.figures["<state>"].reference_point
+        f = AdvLoopTransitionFigure("\<<state>,<state>\>", label, pa)
+        view.add_figure("\<<state>,<state>\>", f)
+    else:
+        view.figures["\<<state>,<state>\>"].label = label
+    
+    if "\<<state>,<state>\>" in defined_alignments:
+        view.figures["\<<state>,<state>\>"].label_alignment = defined_alignments["\<<state>,<state>\>"]
+>>
+
+pause() ::= <<
+
+    # pause;
+    print("Press any key to continue...")
+    cv.waitKey(0)
+>>
+
+post_show_command() ::= <<
+
+    # post show
+    view.draw(vp1, 1.0, 50)
+    np.copyto(window[vp1_bound_y:, vp1_bound_x:, :], vp1)
+    cv.imshow(f"Animation {animation_name} - Viewport {viewport_name}", window)
+>>
+
+play(animation_name) ::= <<
+
+# play <animation_name>;
+animation_<animation_name>()
+>> 

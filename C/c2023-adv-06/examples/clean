@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ../src || exit 1
+antlr4-clean
+rm -fv *.interp *.tokens *.pyc
