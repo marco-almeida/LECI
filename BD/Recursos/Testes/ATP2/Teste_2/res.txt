@@ -13,8 +13,8 @@
 13 - F, marca no transaction log qd escrevemos os buffers em disco
 14 - V?
 15 - F, fillfactor perto de 100%
-16 - T
+16 - V
 17 - F, deny over grant
 18 - F inserts
-19 - T
+19 - V
 20 - F instead of
