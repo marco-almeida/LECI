@@ -1,0 +1,45 @@
+1 - V
+2 - V
+3 - F, preventivo
+4 - V
+5 - F, read/write e nao queries
+6 - F, UDFs e Views sim.
+7 - F, inserts
+8 - V
+9 - V
+10 - F, em update, ambas as tabelas deleted e inserted podem ter tuplos (representam before e after)
+11 - V?
+12 - F
+13 - V
+14 - F, disparados uma vez pela operaçao
+15 - V
+16 - F, usar sql parametrizado
+17 - V
+18 - v
+19 - F, permite saber quantos tuplos foram afectadas por determinada instrução SQL
+20 - F
+
+21a
+A - F, segundo passo daria erro nas tabelas que referenciam o ssn dele?
+B - F, acho q nao dá para forçar o requisito 3 com ddl
+C - V?
+D - V
+E - V?
+F - F, prob um trigger instead of
+G - V
+
+21b
+Atributos relevantes
+Employee -> Ssn, (Fname, Lname)
+Department -> Dnumber, Dname
+Works_on -> (Essn, Pno)
+Project -> Pnumber
+Dept_locations -> Dnumber
+A - V
+B - V
+C - F, um composto para os dois
+D - F, ja existe um clustered na tabela e é do ssn
+E - F, a tabela já está sorted por ser um clustered index e ta sorted por essn, pno. sendo assim está sorted primeiramente por essn, nao sendo necessario outro indice para essn
+F - V
+G - F, teria que ser um indice filtered para cada nome acho eu?
+H - V?
