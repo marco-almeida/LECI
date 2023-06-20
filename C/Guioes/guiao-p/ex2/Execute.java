@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 @SuppressWarnings("CheckReturnValue")
 public class Execute extends FracLangBaseVisitor<Fraction> {
-	protected Map<String, Fraction> variables;
+	protected Map<String, Fraction> symbolTable;
 	protected Scanner sc;
 
 	public Execute() {
-		variables = new HashMap<>();
+		symbolTable = new HashMap<>();
 		sc = new Scanner(System.in);
 	}
 
@@ -25,7 +25,7 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 	public Fraction visitStatAssigment(FracLangParser.StatAssigmentContext ctx) {
 		String varName = ctx.ID().getText();
 		Fraction value = visit(ctx.fraction());
-		return variables.put(varName, value);
+		return symbolTable.put(varName, value);
 	}
 
 	@Override
@@ -34,10 +34,13 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 	}
 
 	@Override
-	public Fraction visitFractionDivision(FracLangParser.FractionDivisionContext ctx) {
+	public Fraction visitFractionMultDiv(FracLangParser.FractionMultDivContext ctx) {
 		Fraction f1 = visit(ctx.f1);
 		Fraction f2 = visit(ctx.f2);
 		if (f1 != null && f2 != null) {
+			if (ctx.op.getText().equals("*")) {
+				return Fraction.multiplyFractions(f1, f2);
+			}
 			return Fraction.divideFractions(f1, f2);
 		}
 		return null;
@@ -53,30 +56,29 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 	}
 
 	@Override
-	public Fraction visitFractionMultiplication(FracLangParser.FractionMultiplicationContext ctx) {
-		Fraction f1 = visit(ctx.f1);
-		Fraction f2 = visit(ctx.f2);
-		if (f1 != null && f2 != null) {
-			return Fraction.multiplyFractions(f1, f2);
-		}
-		return null;
-	}
-
-	@Override
 	public Fraction visitFractionRead(FracLangParser.FractionReadContext ctx) {
 		String toPrint = ctx.LITERAL_STRING().getText();
 		System.out.printf("%s: ", toPrint.substring(1, toPrint.length() - 1));
 		String input = sc.nextLine();
+		if (input.length() == 0) {
+			System.err.println("ERROR: empty input"); // o stor n verifica isto e dá lhe erro
+			return null;
+		}
+		String[] data = input.split("/");
 		try {
-			if (input.contains("/")) {
-				String[] data = input.split("/");
-				return new Fraction(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
+			switch (data.length) {
+				case 1:
+					return new Fraction(Integer.parseInt(input));
+				case 2:
+					return new Fraction(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
+				default:
+					System.err.printf("ERROR: invalid fraction %s\n", input);
 			}
-			return new Fraction(Integer.parseInt(input));
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			System.err.printf("ERROR: invalid fraction %s\n", input);
 		}
 		return null;
+
 	}
 
 	@Override
@@ -87,10 +89,10 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 	@Override
 	public Fraction visitFractionId(FracLangParser.FractionIdContext ctx) {
 		String variable = ctx.ID().getText();
-		if (!variables.containsKey(variable)) {
+		if (!symbolTable.containsKey(variable)) {
 			System.err.printf("ERROR: variable \"%s\" not found!\n", variable);
 		}
-		return variables.get(variable);
+		return symbolTable.get(variable);
 	}
 
 	@Override
@@ -99,20 +101,13 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 	}
 
 	@Override
-	public Fraction visitFractionSum(FracLangParser.FractionSumContext ctx) {
+	public Fraction visitFractionSumSub(FracLangParser.FractionSumSubContext ctx) {
 		Fraction f1 = visit(ctx.f1);
 		Fraction f2 = visit(ctx.f2);
 		if (f1 != null && f2 != null) {
-			return Fraction.sumFractions(f1, f2);
-		}
-		return null;
-	}
-
-	@Override
-	public Fraction visitFractionSubtraction(FracLangParser.FractionSubtractionContext ctx) {
-		Fraction f1 = visit(ctx.f1);
-		Fraction f2 = visit(ctx.f2);
-		if (f1 != null && f2 != null) {
+			if (ctx.op.getText().equals("+")) {
+				return Fraction.sumFractions(f1, f2);
+			}
 			return Fraction.subtractFractions(f1, f2);
 		}
 		return null;
@@ -124,12 +119,8 @@ public class Execute extends FracLangBaseVisitor<Fraction> {
 		if (f1 == null) {
 			return null;
 		}
-		if (ctx.sign != null) {
-			if (ctx.sign.getText().equals("-")) {
-				return Fraction.multiplyFractions(f1, new Fraction(-1));
-			} else {
-				return f1;
-			}
+		if (ctx.sign.getText().equals("-")) {
+			return Fraction.multiplyFractions(f1, new Fraction(-1));
 		}
 		return f1;
 	}

@@ -6,17 +6,15 @@ stat:
 	| ID '<=' fraction	# statAssigment;
 
 fraction:
-	sign = ('+' | '-') fraction			# fractionSign
-	| '(' fraction ')'					# fractionParenthesis
-	| f1 = fraction '*' f2 = fraction	# fractionMultiplication
-	| f1 = fraction ':' f2 = fraction	# fractionDivision
-	| f1 = fraction '-' f2 = fraction	# fractionSubtraction
-	| f1 = fraction '+' f2 = fraction	# fractionSum
-	| 'read' LITERAL_STRING				# fractionRead
-	| 'reduce' fraction					# fractionReduce
-	| ID								# fractionId
-	| NUM								# fractionNum
-	| NUM '/' NUM						# fractionFraction;
+	sign = ('+' | '-') fraction						# fractionSign
+	| '(' fraction ')'								# fractionParenthesis
+	| f1 = fraction op = ('*' | ':') f2 = fraction	# fractionMultDiv
+	| f1 = fraction op = ('+' | '-') f2 = fraction	# fractionSumSub
+	| 'read' LITERAL_STRING							# fractionRead
+	| 'reduce' fraction								# fractionReduce
+	| ID											# fractionId
+	| NUM											# fractionNum
+	| NUM '/' NUM									# fractionFraction;
 
 LITERAL_STRING: '"' .*? '"';
 ID: [a-z]+;

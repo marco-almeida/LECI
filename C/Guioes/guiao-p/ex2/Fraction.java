@@ -2,12 +2,13 @@
  * Fraction
  */
 public class Fraction {
-    protected int num; // numerator
-    protected int denom; // denominator
+    private int num; // numerator
+    private int denom; // denominator
 
     public Fraction(int num, int denom) {
-        if (denom == 0) {
-            System.err.println("WARNING: denominator is 0"); // o jar n faz nada
+        if (denom < 0) { // para nao termos denominadores negativos
+            num = -num;
+            denom = -denom;
         }
         this.num = num;
         this.denom = denom;
@@ -42,14 +43,11 @@ public class Fraction {
 
     public static Fraction reduce(Fraction f1) {
         int divider = mdc(f1.num, f1.denom);
-        Fraction f = new Fraction(f1.num, f1.denom);
-        f.num /= divider;
-        f.denom /= divider;
-        return f;
+        return new Fraction(f1.num / divider, f1.denom / divider);
     }
 
     @Override
     public String toString() {
-        return denom != 1 ? String.format("%s/%s", num, denom) : String.format("%s", num);
+        return denom != 1 ? String.format("%d/%d", num, denom) : String.format("%d", num);
     }
 }
