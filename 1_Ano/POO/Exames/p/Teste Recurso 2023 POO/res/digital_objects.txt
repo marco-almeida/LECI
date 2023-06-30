@@ -1,0 +1,22 @@
+# Fields
+# DOI; username; sensitivity level
+10.0000/fake/10.2998/zksvkin;sunnyday12;PERSONAL
+10.0000/fake/10.8382/bphxnlq;sunnyday12;PERSONAL
+10.0000/fake/10.1496/iugbzov;techguru123;RESTRICTED
+10.0000/fake/10.5255/uuskddr;musiclover87;RESTRICTED
+10.0000/fake/10.4693/auyejmr;techguru123;LOW
+10.0000/fake/10.8872/okklnjd;sunnyday12;LOW
+10.0000/fake/10.10112/lyweacg;adventure24;LOW
+10.0000/fake/10.8213/flotbeo;techguru123;LOW
+10.0000/fake/10.10154/knnweak;techguru123;PERSONAL
+10.0000/fake/10.1166/nmqkyjb;sunnyday12;PERSONAL
+10.0000/fake/10.10200/xhuwxpi;musiclover87;RESTRICTED
+10.0000/fake/10.3496/ugxwwsh;musiclover87;RESTRICTED
+10.0000/fake/10.9659/byjuvui;sunnyday12;PERSONAL
+10.0000/fake/10.4053/njfdczd;techguru123;RESTRICTED
+10.0000/fake/10.10213/ykbojmc;sunnyday12;RESTRICTED
+10.0000/fake/10.9126/ldlwikj;sunnyday12;RESTRICTED
+10.0000/fake/10.5738/lfzfwbc;musiclover87;PERSONAL
+10.0000/fake/10.7279/mwejthk;musiclover87;RESTRICTED
+10.0000/fake/10.9132/vfnaplb;musiclover87;RESTRICTED
+10.0000/fake/10.1250/ewscxxs;musiclover87;PERSONAL
